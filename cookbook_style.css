@@ -1,0 +1,131 @@
+/*
+ * CookBook - an e107 plugin by Tijn Kuyper (http://www.tijnkuyper.nl)
+ *
+ * Released under the terms and conditions of the
+ * Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
+ *
+ * CSS stylesheet
+*/
+
+.recipe-box {
+    text-align: left;
+  	margin: 10px 0px 0px 0px;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    max-width: 70%;
+    overflow: hidden;
+}
+
+.recipe-box-title {
+    background: #376a99;
+    color: #fff;
+    max-width: 75%;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 7px 0px 5px 10px;
+    border-top-left-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    margin-left: -15px;
+    margin-top: -1px;
+}
+
+.recipe-box-content {
+    padding: 5px 0px 5px 5px;
+}
+
+.recipe-instructions {
+    /*width: 95%;*/
+    text-align: justify;
+}
+
+.recipe-instructions ol li {
+    margin-bottom: 5px;
+}
+
+.recipe-sidebar {
+	border: 1px dashed;
+	-webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+	margin: 10px 0px 0px 10px;
+	max-width: 30%;
+}
+
+.recipe-box-content li, .recipe-sidebar li {
+	padding-top: 3px;
+}
+
+.recipe-photo {
+    max-width: 40%;
+    height: auto;
+}
+
+/* Specific styling for usage on mobile devices - TABLET: PORTRAIT */
+@media only screen and (max-width: 1080px) and (orientation:portrait) {
+	.recipe-box {
+		max-width: 100%;
+	}
+	.recipe-sidebar {
+		max-width: 100%;
+		margin-left: 0px;
+        font-size: 1.2em;
+	}
+	.recipe-box-title {
+		max-width: 100%;
+	}
+    .recipe-box-content {
+        font-size: 1.2em;
+    }
+    .recipe-instructions {
+        /*width: 95%;*/
+        text-align: left;
+    }
+}
+
+/* Specific styling for usage on mobile devices - TABLET: LANDSCAPE; */
+@media only screen and (max-width: 1080px) and (orientation:landscape) {
+    .recipe-box {
+        max-width: 90%;
+    }
+    .recipe-sidebar {
+        max-width: 30%;
+        margin-left: 5px;
+        font-size: 1.2em;
+    }
+    .recipe-box-title {
+        max-width: 100%;
+    }
+    .recipe-box-content {
+        font-size: 1.2em;
+    }
+    .recipe-instructions {
+        /*width: 95%;*/
+        text-align: left;
+    }
+
+}
+
+/* Specific styling for usage on mobile devices - TABLET: LANDSCAPE; */
+@media only screen and (max-width: 768px) and (orientation:landscape) {
+    .recipe-box {
+        max-width: 100%;
+    }
+    .recipe-sidebar {
+        max-width: 100%;
+        margin-left: 0px;
+        font-size: 1.2em;
+    }
+    .recipe-box-title {
+        max-width: 100%;
+    }
+    .recipe-box-content {
+        font-size: 1.2em;
+    }
+    .recipe-instructions {
+        /*width: 95%;*/
+        text-align: left;
+    }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e107Plugin name="CookBook" lan="LAN_CB_NAME" version="1.0" date="2015-05-01" compatibility="2.0" installRequired="true" >
+	<author name="Tijn Kuyper" url="http://www.tijnkuyper.nl" />
+	<summary lan="LAN_CB_SUMM">A fully featured CookBook for all your recipes.</summary>
+	<description lan="LAN_CB_DESC">A fully features CookBook for all your recipes. Includes functionalities such as categorization, sharing, and favoriting. Users can also submit new recipes.</description>
+	<keywords>
+		<word>recipes</word>
+		<word>cooking</word>
+	</keywords>
+	<category>misc</category>
+	<adminLinks>
+		<link url="admin_config.php" description="" icon="images/icon_32.png" iconSmall="images/icon_16.png" primary="true">LAN_CONFIGURE</link>
+	</adminLinks>
+	<siteLinks>
+		<link url="{e_PLUGIN}cookbook/index.php" icon="images/icon_32.png" sef='index' perm='everyone'>Cookbook</link>
+	</siteLinks>
+	<pluginPrefs>
+		<pref name='submission_userclass'>254</pref>
+		<pref name='allow_sharing'>1</pref>
+		<pref name='date_format'>%d %B, %Y</pref>
+	</pluginPrefs>
+	<extendedFields>
+		<field name="recipe_favorites" type='EUF_TEXTAREA' default='0' active="true" />
+	</extendedFields>
+	<mediaCategories>
+		<category type="image">Cookbook</category>
+	</mediaCategories>
+	<copyright>Created by Tijn Kuyper. Released under the terms and conditions of the Apache License 2.0.</copyright>
+</e107Plugin>
