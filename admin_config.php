@@ -9,6 +9,9 @@
 */
 
 require_once('../../class2.php');
+
+e107::lan('cookbook', 'admin', true);
+
 if (!getperms('P'))
 {
 	header('location:'.e_BASE.'index.php');
@@ -36,11 +39,11 @@ class cookbook_adminArea extends e_admin_dispatcher
 
 	protected $adminMenu = array(
 
-		'main/list'			=> array('caption'=> "Manage recipes", 'perm' => 'P'),
-		'main/create'		=> array('caption'=> "Create recipes", 'perm' => 'P'),
+		'main/list'			=> array('caption'=> LAN_CB_MANAGE_RECIPES, 'perm' => 'P'),
+		'main/create'		=> array('caption'=> LAN_CB_CREATE_RECIPE, 'perm' => 'P'),
 
-		'cat/list'			=> array('caption'=> "Manage categories", 'perm' => 'P'),
-		'cat/create'		=> array('caption'=> "Create categories", 'perm' => 'P'),
+		'cat/list'			=> array('caption'=> LAN_CB_MANAGE_CATEGORIES, 'perm' => 'P'),
+		'cat/create'		=> array('caption'=> LAN_CB_CREATE_CATEGORY, 'perm' => 'P'),
 
 		'main/prefs' 		=> array('caption'=> LAN_PREFS, 'perm' => 'P'),
 
@@ -51,14 +54,14 @@ class cookbook_adminArea extends e_admin_dispatcher
 		'main/edit'	=> 'main/list'
 	);
 
-	protected $menuTitle = 'CookBook';
+	protected $menuTitle = LAN_CB_NAME;
 
 	function init()
  	{
 		$pref = e107::pref('cookbook');
 
 		$this->access = array(
-			'main/prefs'   => varset($pref['admin_recipe_delete'],  e_UC_MAINADMIN),
+			'main/prefs'    => varset($pref['admin_recipe_delete'],  e_UC_MAINADMIN),
 			'main/create'   => varset($pref['admin_recipe_create'],   e_UC_ADMIN),
 			'main/edit'     => varset($pref['admin_recipe_edit'],     e_UC_ADMIN),
 			'main/delete'   => varset($pref['admin_recipe_delete'],   e_UC_ADMIN),
@@ -73,7 +76,7 @@ class cookbook_adminArea extends e_admin_dispatcher
 
 class cookbook_categories_ui extends e_admin_ui
 {
-	protected $pluginTitle		= 'CookBook';
+	protected $pluginTitle		= LAN_CB_NAME;
 	protected $pluginName		= 'cookbook';
 //	protected $eventName		= 'cookbook-cookbook_categories'; // remove comment to enable event triggers in admin.
 	protected $table			= 'cookbook_categories';
@@ -155,7 +158,7 @@ class cookbook_categories_form_ui extends e_admin_form_ui
 class cookbook_recipes_ui extends e_admin_ui
 {
 
-	protected $pluginTitle		= 'CookBook';
+	protected $pluginTitle		= LAN_CB_NAME;
 	protected $pluginName		= 'cookbook';
 //	protected $eventName		= 'cookbook-cookbook_recipes'; // remove comment to enable event triggers in admin.
 	protected $table			= 'cookbook_recipes';
@@ -172,20 +175,20 @@ class cookbook_recipes_ui extends e_admin_ui
 	protected $listOrder		= 'r_id ASC';
 
 	protected $fields 	= array (  'checkboxes' =>   array ( 'title' => '', 'type' => null, 'data' => null, 'width' => '5%', 'thclass' => 'center', 'forced' => '1', 'class' => 'center', 'toggle' => 'e-multiselect',  ),
-	  'r_id' 			=>   array ( 'title' => LAN_ID, 			'data' => 'int', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-	  'r_thumbnail'		=> 	 array(  'title' => LAN_IMAGE, 			'type' => 'method', 	'width' => '110px',	'thclass' => 'center', 			'class' => "center", 		'nosort' => false, 'readParms'=>'thumb=60&thumb_urlraw=0&thumb_aw=60','readonly'=>false),
-	  'r_name' 			=>   array ( 'title' => LAN_TITLE, 			'type' => 'text', 		'data' => 'str', 'width' => 'auto', 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-	  'r_name_sef'		=> 	 array(	 'title' => LAN_SEFURL,			'type' => 'hidden', 	'data'=>'str'),
-	  'r_category' 		=>   array ( 'title' => LAN_CATEGORY, 		'type' => 'dropdown', 	'data' => 'int', 'width' => 'auto', 'batch' => true, 'filter' => true, 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-	  'r_datestamp' 	=>   array(	 'title' => LAN_DATESTAMP, 		'type' => 'hidden', 	'data' => 'int'),
-	  'r_author' 		=>   array(	 'title' => LAN_AUTHOR, 		'type' => 'hidden', 	'data' => 'int'),
-	  'r_tags' 			=>   array ( 'title' => LAN_KEYWORDS, 		'type' => 'tags', 		'data' => 'str', 'width' => 'auto', 'help' => LAN_CB_HELP_TAGS, 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-	  'r_persons' 		=>   array ( 'title' => LAN_CB_PERSONS,		'type' => 'number', 	'data' => 'int', 'width' => 'auto', 'inline' => true, 'help' => LAN_CB_HELP_PERSONS, 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-	  'r_time' 			=>   array ( 'title' => LAN_CB_TIME, 		'type' => 'number', 	'data' => 'int', 'width' => 'auto', 'inline' => true, 'help' => LAN_CB_HELP_TIME, 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-	  'r_rating' 		=>   array ( 'title' => LAN_CB_RATING, 		'type' => 'number', 	'data' => 'int', 'width' => 'auto', 'inline' => true, 'help' => LAN_CB_HELP_RATING, 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-	  'r_ingredients' 	=>   array ( 'title' => LAN_CB_INGREDIENTS,	'type' => 'bbarea', 	'data' => 'str', 'width' => 'auto', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-	  'r_instructions' 	=>   array ( 'title' => LAN_CB_INSTRUCTIONS,'type' => 'bbarea', 	'data' => 'str', 'width' => 'auto', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
-	  'options' 		=>   array ( 'title' => LAN_OPTIONS, 		'type' => null, 		'data' => null, 'width' => '10%', 'thclass' => 'center last', 'class' => 'center last', 'forced' => '1',  ),
+	  'r_id' 			=>   array( 'title' => LAN_ID, 			'data' => 'int', 'width' => '5%', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+	  'r_thumbnail'		=> 	 array( 'title' => LAN_IMAGE, 			'type' => 'method', 	'width' => '110px',	'thclass' => 'center', 			'class' => "center", 		'nosort' => false, 'readParms'=>'thumb=60&thumb_urlraw=0&thumb_aw=60','readonly'=>false),
+	  'r_name' 			=>   array( 'title' => LAN_TITLE, 			'type' => 'text', 		'data' => 'str', 'width' => 'auto', 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+	  'r_name_sef'		=> 	 array( 'title' => LAN_SEFURL,			'type' => 'hidden', 	'data'=>'str'),
+	  'r_category' 		=>   array( 'title' => LAN_CATEGORY, 		'type' => 'dropdown', 	'data' => 'int', 'width' => 'auto', 'batch' => true, 'filter' => true, 'inline' => true, 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+	  'r_datestamp' 	=>   array( 'title' => LAN_DATESTAMP, 		'type' => 'hidden', 	'data' => 'int'),
+	  'r_author' 		=>   array( 'title' => LAN_AUTHOR, 			'type' => 'hidden', 	'data' => 'int'),
+	  'r_tags' 			=>   array( 'title' => LAN_KEYWORDS, 		'type' => 'tags', 		'data' => 'str', 'width' => 'auto', 'help' => LAN_CB_HELP_TAGS, 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+	  'r_persons' 		=>   array( 'title' => LAN_CB_PERSONS,		'type' => 'number', 	'data' => 'int', 'width' => 'auto', 'inline' => true, 'help' => LAN_CB_HELP_PERSONS, 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+	  'r_time' 			=>   array( 'title' => LAN_CB_TIME, 		'type' => 'number', 	'data' => 'int', 'width' => 'auto', 'inline' => true, 'help' => LAN_CB_HELP_TIME, 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+	  'r_rating' 		=>   array( 'title' => LAN_CB_RATING, 		'type' => 'number', 	'data' => 'int', 'width' => 'auto', 'inline' => true, 'help' => LAN_CB_HELP_RATING, 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+	  'r_ingredients' 	=>   array( 'title' => LAN_CB_INGREDIENTS,	'type' => 'bbarea', 	'data' => 'str', 'width' => 'auto', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+	  'r_instructions' 	=>   array( 'title' => LAN_CB_INSTRUCTIONS,	'type' => 'bbarea', 	'data' => 'str', 'width' => 'auto', 'help' => '', 'readParms' => '', 'writeParms' => '', 'class' => 'left', 'thclass' => 'left',  ),
+	  'options' 		=>   array( 'title' => LAN_OPTIONS, 		'type' => null, 		'data' => null, 'width' => '10%', 'thclass' => 'center last', 'class' => 'center last', 'forced' => '1',  ),
 	);
 
 	protected $fieldpref = array('r_id', 'r_thumbnail', 'r_name', 'r_category', 'r_persons', 'r_time', 'r_rating');
@@ -196,17 +199,26 @@ class cookbook_recipes_ui extends e_admin_ui
 			'title'	=> 'Submission userclass',
 			'type'	=>'userclass',
 			'data' 	=> 'str',
-			'help'	=>'Userclass that is allowed to submit new recipes'),
+			'help'	=>'Userclass that is allowed to submit new recipes'
+		),
 		'allow_sharing' => array(
 			'title'	=> 'Allow sharing',
 			'type'	=>'boolean',
 			'data' 	=> 'str',
-			'help'	=>'Enable the option to share recipes'),
+			'help'	=>'Enable the option to share recipes'
+		),
 		'date_format' => array(
 			'title'	=> 'Date format',
 			'type'	=> 'text',
 			'data'	=> 'str',
-			'help'	=> 'Defines how the date is displayed (using PHP\'s date() format)'),
+			'help'	=> 'Defines how the date is displayed (using PHP\'s date() format)'
+		),
+		'caching' => array(
+			'title'	=> 'Caching',
+			'type'	=> 'boolean',
+			'data'	=> 'str',
+			'help'	=> 'Choose whether to enable caching on this plugin (increases performance)'
+		),
 	);
 
 	public function init()

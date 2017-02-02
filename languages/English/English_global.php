@@ -8,13 +8,13 @@
  * Global language file
 */
 
-define("LAN_CB_NAME", "Kookboek");
+define("LAN_CB_NAME", "CookBook");
 
-define("LAN_CB_RECIPE", 		"Recept");
-define("LAN_CB_RECIPES", 		"Recepten");
-define("LAN_CB_PERSONS",		"Personen");
-define("LAN_CB_TIME", 			"Tijdsduur");
+define("LAN_CB_RECIPE", 		"Recipe");
+define("LAN_CB_RECIPES", 		"Recipes");
+define("LAN_CB_PERSONS",		"Persons");
+define("LAN_CB_TIME", 			"Time");
 define("LAN_CB_TAGS", 			"Tags");
-define("LAN_CB_RATING", 		"Beoordeling");
-define("LAN_CB_INGREDIENTS",	"Ingredienten");
-define("LAN_CB_INSTRUCTIONS",	"Instructies");
+define("LAN_CB_RATING", 		"Rating");
+define("LAN_CB_INGREDIENTS",	"Ingredients");
+define("LAN_CB_INSTRUCTIONS",	"Instructions");

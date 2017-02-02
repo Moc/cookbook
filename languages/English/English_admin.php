@@ -8,10 +8,8 @@
  * Admin language file
 */
 
-define("LAN_CB_PERSONS",  "Personen");
+define("LAN_CB_PERSONS",  "Persons");
+
 
 // HELP
-define("LAN_CB_HELP_TIME", 		"Bereidingstijd");
-define("LAN_CB_HELP_PERSONS", 	"Aantal personen");
-define("LAN_CB_HELP_TAGS", 		"Keywords die bij dit recept passen");
-define("LAN_CB_HELP_RATING",	"Beoordeling van dit recept. Tussen de 1 en 3 sterren.");
+

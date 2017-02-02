@@ -52,6 +52,12 @@ class cookbook_url
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?tag=0',
 		);
 
+		$config['recent'] = array(
+			'regex'			=> '^recepten/recent(.*)$',
+			'sef'			=> 'recepten/recent/',
+			'redirect'		=> '{e_PLUGIN}cookbook/recent.php',
+		);
+
 		return $config;
 	}
 }
