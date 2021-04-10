@@ -10,7 +10,7 @@
 
 if (!defined('e107_INIT')) { exit; }
 
-if (strpos(e_REQUEST_SELF, 'recepten') !== false)
+if (strpos(e_REQUEST_SELF, 'recepten') !== false || strpos(e_REQUEST_SELF, 'cookbook') !== false )
 {
     $cookbook_page = true;
 }
@@ -30,9 +30,18 @@ if(USER_AREA && $cookbook_page)
 	e107::css('cookbook', 'plugins/datatables/css/dataTables.responsive.css');
 
 	// DataTables language files
-	$system_lan		= e_PLUGIN_ABS."cookbook/plugins/datatables/languages/".e_LANGUAGE.".json";
-	$default_lan 	= e_PLUGIN_ABS."cookbook/plugins/datatables/languages/Dutch.json";
-	$dt_lan_file 	= (file_exists($system_lan) ? $system_lan : $default_lan);
+	// $system_lan		= e_PLUGIN."cookbook/plugins/datatables/languages/".e_LANGUAGE.".json";
+	// $default_lan 	= e_PLUGIN."cookbook/plugins/datatables/languages/English.json";
+	// $dt_lan_file 	= (file_exists($system_lan) ? $system_lan : $default_lan);
+
+	if(file_exists(e_PLUGIN."cookbook/plugins/datatables/languages/".e_LANGUAGE.".json"))
+	{
+		$dt_lan_file = e_PLUGIN_ABS."cookbook/plugins/datatables/languages/".e_LANGUAGE.".json";
+	}
+	else
+	{
+		$dt_lan_file = e_PLUGIN_ABS."cookbook/plugins/datatables/languages/English.json";
+	}
 
 	e107::js('cookbook', 'plugins/datatables/js/jquery.dataTables.min.js', 'jquery');
 	e107::js('cookbook', 'plugins/datatables/js/dataTables.responsive.min.js', 'jquery');

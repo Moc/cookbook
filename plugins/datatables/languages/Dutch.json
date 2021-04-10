@@ -5,7 +5,6 @@
     "sInfo": "_START_ tot _END_ van _TOTAL_ resultaten",
     "sInfoEmpty": "Geen resultaten om weer te geven",
     "sInfoFiltered": " (gefilterd uit _MAX_ resultaten)",
-    "sInfoPostFix": "",
     "sSearch": "Zoeken:",
     "sEmptyTable": "Geen resultaten aanwezig in de tabel",
     "sInfoThousands": ".",
@@ -15,5 +14,9 @@
         "sLast": "Laatste",
         "sNext": "Volgende",
         "sPrevious": "Vorige"
+    },
+    "oAria": {
+        "sSortAscending":  ": activeer om kolom oplopend te sorteren",
+        "sSortDescending": ": activeer om kolom aflopend te sorteren"
     }
 }

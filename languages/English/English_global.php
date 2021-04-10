@@ -8,7 +8,7 @@
  * Global language file
 */
 
-define("LAN_CB_NAME", "CookBook");
+define("LAN_CB_NAME", "Cookbook");
 
 define("LAN_CB_RECIPE", 		"Recipe");
 define("LAN_CB_RECIPES", 		"Recipes");

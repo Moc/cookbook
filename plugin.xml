@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e107Plugin name="CookBook" lan="LAN_CB_NAME" version="1.0" date="2015-05-01" compatibility="2.0" installRequired="true" >
-	<author name="Tijn Kuyper" url="http://www.tijnkuyper.nl" />
-	<summary lan="LAN_CB_SUMM">A fully featured CookBook for all your recipes.</summary>
-	<description lan="LAN_CB_DESC">A fully features CookBook for all your recipes. Includes functionalities such as categorization, sharing, and favoriting. Users can also submit new recipes.</description>
+<e107Plugin name="Cookbook" lan="LAN_CB_NAME" version="1.0" date="2021-04-10" compatibility="2.0" installRequired="true" >
+	<author name="Tijn Kuyper" url="https://www.tijnkuyper.nl" />
+	<summary lan="LAN_CB_SUMM">A fully featured Cookbook for all your recipes.</summary>
+	<description lan="LAN_CB_DESC">A fully features Cookbook for all your recipes. Includes functionalities such as categorization, sharing, and favoriting. Users can also submit new recipes.</description>
 	<keywords>
 		<word>recipes</word>
 		<word>cooking</word>

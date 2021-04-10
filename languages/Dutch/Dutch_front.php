@@ -11,7 +11,7 @@
 define("PAGE_NAME", "Recepten");
 
 define("LAN_CB_TAG", "Tag");
-define("LAN_CB_TAG_OVERIVEW", "Overzicht van alle tags");
+define("LAN_CB_TAG_OVERVIEW", "Overzicht van alle tags");
 define("LAN_CB_RECIPE_OVERVIEW", "Overzicht van alle recepten");
 define("LAN_CB_CATEGORY_OVERVIEW", "Overzicht van alle recepten per categorie");
 define("LAN_CB_RECIPE_RECENT", "Meest recente recepten");

@@ -141,7 +141,7 @@ elseif(isset($_GET['tag']) && $_GET['tag'] != '0')
 elseif(isset($_GET['tag']) && $_GET['tag'] == '0')
 {
 	$text .= $tp->parseTemplate($template['tagoverview'], false, $sc);
-	e107::getRender()->tablerender(LAN_CB_TAG_OVERIVEW, $text);
+	e107::getRender()->tablerender(LAN_CB_TAG_OVERVIEW, $text);
 }
 
 // Category overview
