@@ -21,6 +21,7 @@ class cookbook_setup
 	 */
 	function install_post($var)
 	{
+		/*
 		$sql = e107::getDb();
 		$mes = e107::getMessage();
 
@@ -48,6 +49,7 @@ class cookbook_setup
 
 		$status = ($sql->gen($query_recipes)) ? E_MESSAGE_SUCCESS : E_MESSAGE_ERROR;
 		$mes->add("Adding example recipes", $status);
+	 */
 	}
 
 
