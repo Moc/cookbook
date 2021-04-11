@@ -11,8 +11,6 @@
 
 define("LAN_CB_MANAGE_RECIPES",  	"Recipe overview");
 define("LAN_CB_CREATE_RECIPE",  	"Add a recipe");
-define("LAN_CB_MANAGE_CATEGORIES",  "Category overview");
-define("LAN_CB_CREATE_CATEGORY",  	"Add a category");
 
 define("LAN_CB_PERSONS",  "Persons");
 

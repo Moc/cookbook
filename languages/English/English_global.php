@@ -9,6 +9,9 @@
 */
 
 define("LAN_CB_NAME", "Cookbook");
+define("LAN_CB_SUMM", "A fully featured Cookbook for all your recipes.");
+define("LAN_CB_DESC", "A fully featured Cookbook for all your recipes. Includes functionalities such as categorization, sharing, and favoriting. Users can also submit new recipes.");
+
 
 define("LAN_CB_RECIPE", 		"Recipe");
 define("LAN_CB_RECIPES", 		"Recipes");

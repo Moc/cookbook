@@ -9,9 +9,7 @@
 */
 
 define("LAN_CB_MANAGE_RECIPES",  	"Recepten overzicht");
-define("LAN_CB_CREATE_RECIPE",  	"Voeg recept toe");
-define("LAN_CB_MANAGE_CATEGORIES",  "Categorieen overzicht");
-define("LAN_CB_CREATE_CATEGORY",  	"Voeg categorie toe");
+define("LAN_CB_CREATE_RECIPE",  	"Voeg een recept toe");
 
 define("LAN_CB_PERSONS",  "Personen");
 
