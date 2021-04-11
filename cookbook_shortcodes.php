@@ -12,32 +12,7 @@ if (!defined('e107_INIT')) { exit; }
 
 class cookbook_shortcodes extends e_shortcode
 {
-    function sc_cookbook_h_id()
-    {
-    	return LAN_CB_ID;
-   	}
-
-    function sc_cookbook_h_thumbnail()
-    {
-        return LAN_CB_THUMB;
-    }
-
-    function sc_cookbook_h_name()
-    {
-        return LAN_CB_NAME;
-    }
-
-    function sc_cookbook_h_persons()
-    {
-        return LAN_CB_PERSONS;
-    }
-
-    function sc_cookbook_h_rating()
-    {
-        return LAN_CB_RATING;
-    }
-
-    // Items
+    // Recipe items
     function sc_cookbook_id($parm='')
     {
         return $this->var['r_id'];
@@ -46,18 +21,16 @@ class cookbook_shortcodes extends e_shortcode
     function sc_cookbook_recipe_thumb($parm='')
     {
         $thumburl = e107::getParser()->thumbUrl($this->var['r_thumbnail'], 'aw=180');
-        return '<img class="img-responsive" src="'.$thumburl.'" alt="" />';
-    }
 
-    function sc_cookbook_recipe_thumb_url($parm='')
-    {
-        $thumburl = e107::getParser()->thumbUrl($this->var['r_thumbnail'], 'aw=180');
-        return $thumburl;
+        if($parm == 'url')
+        {
+            return '<img class="img-responsive" src="'.$thumburl.'" alt="" />';
+        }
     }
 
     function sc_cookbook_date($parm='')
     {
-        $date_format = e107::getPlugPref('cookbook', 'date_format', '%d %B, %Y');
+        $date_format = e107::getPlugPref('cookbook', 'date_format', '%d %B, %Y'); // FIXME use e107 core date preferences
         return e107::getDate()->convert_date($this->var["r_datestamp"], $date_format);
     }
 
@@ -264,7 +237,7 @@ class cookbook_shortcodes extends e_shortcode
 		if(check_class(e107::getPlugPref('cookbook', 'submission_userclass')))
 		{
 			$link = e_PLUGIN_ABS.'cookbook/admin_config.php?action=edit&id='.$this->var["r_id"].'';
-			return '<li><i class="fa-li fa fa-pencil"></i> <a href="'.$link.'">Bewerk</a></li>';
+			return '<li><i class="fa-li fa fa-pencil"></i> <a href="'.$link.'">'.LAN_EDIT.'</a></li>';
 		}
 		return;
 	}
