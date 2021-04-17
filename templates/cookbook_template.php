@@ -51,29 +51,29 @@ $COOKBOOK_TEMPLATE['overview']['end'] = '
 $COOKBOOK_TEMPLATE['recipe_item'] = '
 <div class="row">
         <div class="col-md-12">
+
 	        <!-- Start content left  -->
 	        <div class="col-md-8 recipe-box">
 	          <div class="recipe-box-title">{COOKBOOK_RECIPE_NAME=no_url}</div>
 	          <div class="recipe-box-content">
-	            <h3>Ingrediënten</h3>
+	            <h3>{LAN=LAN_CB_INGREDIENTS}</h3>
 	            <img class="img-thumbnail pull-right hidden-xs" alt="{COOKBOOK_RECIPE_NAME=sef}" src="{COOKBOOK_RECIPE_THUMB_URL}">
 	            {COOKBOOK_INGREDIENTS}
-
 	            <div class="recipe-instructions">
-	                <h3>Instructies</h3>
+	                <h3>{LAN=LAN_CB_INSTRUCTIONS}</h3>
 	                {COOKBOOK_INSTRUCTIONS}
 	            </div>
 	          </div>
 	        </div>
 	        <!-- End content left-->
+
             <!-- Sidebar -->
             <div class="col-md-4 recipe-sidebar">
-
             	<h3>Recept info</h3>
         		<ul class="fa-ul">
         			<li><i class="fa-li fa fa-cutlery"></i>{COOKBOOK_CATEGORY_NAME=no_url}</li>
-              		<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS} personen</li>
-              		<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME} minuten</li>
+              		<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
+              		<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
                 	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_TAGS}</li>
                   	<li><i class="fa-li fa fa-trophy"></i><div id="rating">{COOKBOOK_RATING=stars}</div></li>
                   	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
@@ -84,7 +84,7 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
                 	{COOKBOOK_EDIT}
                   	<li><i class="fa-li fa fa-print"></i> Print</li>
                   	<li><i class="fa-li fa fa-envelope"></i> E-mail</li>
-                  	<li><i class="fa-li fa fa-save"></i> Download als PDF</li>
+                  	<li><i class="fa-li fa fa-save"></i> Download as PDF</li>
               	</ul>
             </div>
             <!-- End sidebar -->

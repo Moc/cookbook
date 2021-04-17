@@ -16,6 +16,9 @@ define("LAN_CB_RECIPE_OVERVIEW", "Overzicht van alle recepten");
 define("LAN_CB_CATEGORY_OVERVIEW", "Overzicht van alle recepten per categorie");
 define("LAN_CB_RECIPE_RECENT", "Meest recente recepten");
 
+// Individueel recept
+define("LAN_CB_INGREDIENTS", "Ingrediënten");
+define("LAN_CB_INSTRUCTIONS", "Instructies");
 
 // Error
 define("LAN_CB_NORECIPES", 		"Nog geen recepten.");

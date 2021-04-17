@@ -17,6 +17,10 @@ define("LAN_CB_CATEGORY_OVERVIEW", "Overview of all recipes split by category");
 define("LAN_CB_RECIPE_RECENT", "Most recent recipes");
 
 
+// Individual recipe
+define("LAN_CB_INGREDIENTS", "Ingredients");
+define("LAN_CB_INSTRUCTIONS", "Instructions");
+
 // Error
 define("LAN_CB_NORECIPES", 		"No recipes yet");
 define("LAN_CB_NORECIPESINCAT",	"No recipes in this category yet");
