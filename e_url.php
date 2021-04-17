@@ -16,52 +16,59 @@ class cookbook_url
 	{
 		$config = array();
 
+		// Overview of all recipes
 		$config['index'] = array(
 			'alias'         => 'cookbook',
-			'regex'			=> '^recepten/?$',
-			'sef'			=> 'recepten',
+			'regex'			=> '^{alias}/?$',
+			'sef'			=> '{alias}',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php',
 		);
 
+		// Individual recipes
 		$config['id'] = array(
 			'alias'         => 'cookbook',
-			'regex'			=> '^recepten/id/(.*)$',
-			'sef'			=> 'recepten/id/{id}/{name}',
+			'regex'			=> '^{alias}/id/(.*)$',
+			'sef'			=> '{alias}/id/{id}/{name}',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?id=$1',
 		);
-
+		
+		// All recipes in a specific category
 		$config['category'] = array(
 			'alias'         => 'cookbook',
-			'regex'			=> '^recepten/categorie/(.*)$',
-			'sef'			=> 'recepten/categorie/{id}/{name}',
+			'regex'			=> '^{alias}/category/(.*)$',
+			'sef'			=> '{alias}/category/{id}/{name}',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?category=$1',
 		);
 
+		// Overview of all recipes split by category
 		$config['categories'] = array(
 			'alias'         => 'cookbook',
-			'regex'			=> '^recepten/categorieen(.*)$',
-			'sef'			=> 'recepten/categorieen/',
+			'regex'			=> '^{alias}/categories(.*)$',
+			'sef'			=> '{alias}/categories/',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?category=0',
 		);
 
+		// Individual tag
 		$config['tag'] = array(
 			'alias'         => 'cookbook',
-			'regex'			=> '^recepten/tag/(.*)$',
-			'sef'			=> 'recepten/tag/{tag}',
+			'regex'			=> '^{alias}/tag/(.*)$',
+			'sef'			=> '{alias}/tag/{tag}',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?tag=$1',
 		);
 
+		// Tagcloud
 		$config['tags'] = array(
 			'alias'         => 'cookbook',
-			'regex'			=> '^recepten/tags(.*)$',
-			'sef'			=> 'recepten/tags/',
+			'regex'			=> '^{alias}/tags(.*)$',
+			'sef'			=> '{alias}/tags/',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?tag=0',
 		);
 
+		// Recently added recipes
 		$config['recent'] = array(
 			'alias'         => 'cookbook',
-			'regex'			=> '^recepten/recent(.*)$',
-			'sef'			=> 'recepten/recent/',
+			'regex'			=> '^{alias}/recent(.*)$',
+			'sef'			=> '{alias}/recent/',
 			'redirect'		=> '{e_PLUGIN}cookbook/recent.php',
 		);
 
