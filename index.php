@@ -43,6 +43,14 @@ $text = '';
 	6. Recipe overview = index (no $_GET specified)
 */
 
+$breadcrumb_array = array(); 
+
+// Add Cookbook home to breadcrumb (default)
+$breadcrumb_array[] = array(
+	'text' 	=> LAN_CB_NAME, 
+	'url' 	=> e107::url('cookbook', 'index'),
+);
+
 // Individual recipe
 if(isset($_GET['id']))
 {
@@ -50,13 +58,25 @@ if(isset($_GET['id']))
 	if($recipe = $sql->retrieve('cookbook_recipes', '*', 'r_id = '.(int)$_GET['id'].''))
 	{
 		// Set title
-		$caption = " - ".$recipe['r_name'];
+		$caption = " - ".$recipe['r_name']; 
 
 		// Pass database info onto the shortcodes
 		$sc->setVars($recipe);
 
 		// Display using template
 		$text .= $tp->parseTemplate($template['recipe_item'], true, $sc);
+
+		// Add breadcrumb data
+		$breadcrumb_array[] = array(
+			'text' => "Category name", 
+			'url' => "todo"
+		);
+
+		$breadcrumb_array[] = array(
+			'text' => "Recipe name", 
+			'url' => "todo"
+		);
+
 	}
 	// Recipe ID not found
 	else
@@ -64,6 +84,9 @@ if(isset($_GET['id']))
 		$text .= "<div class='alert alert-danger text-center'>".LAN_CB_RECIPENOTFOUND."</div>";
 		// TODO notify admin
 	}
+	
+	// Send breadcrumb information
+	e107::breadcrumb($breadcrumb_array);
 
 	// Let's render and show it all!
 	e107::getRender()->tablerender(LAN_CB_RECIPE.$caption, $text);
