@@ -57,7 +57,7 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
 	          <div class="recipe-box-title">{COOKBOOK_RECIPE_NAME=no_url}</div>
 	          <div class="recipe-box-content">
 	            <h3>{LAN=LAN_CB_INGREDIENTS}</h3>
-	            <img class="img-thumbnail pull-right hidden-xs" alt="{COOKBOOK_RECIPE_NAME=sef}" src="{COOKBOOK_RECIPE_THUMB_URL}">
+	            <img class="img-thumbnail pull-right hidden-xs" alt="{COOKBOOK_RECIPE_NAME=sef}" src="{COOKBOOK_RECIPE_THUMB=url}">
 	            {COOKBOOK_INGREDIENTS}
 	            <div class="recipe-instructions">
 	                <h3>{LAN=LAN_CB_INSTRUCTIONS}</h3>

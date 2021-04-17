@@ -24,8 +24,10 @@ class cookbook_shortcodes extends e_shortcode
 
         if($parm == 'url')
         {
-            return '<img class="img-responsive" src="'.$thumburl.'" alt="" />';
+           return $thumburl; 
         }
+
+        return '<img class="img-responsive" src="'.$thumburl.'" alt="" />';
     }
 
     function sc_cookbook_date($parm='')
