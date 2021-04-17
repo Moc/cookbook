@@ -69,7 +69,7 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
 
             <!-- Sidebar -->
             <div class="col-md-4 recipe-sidebar">
-            	<h3>Recept info</h3>
+            	<h3>{LAN=LAN_CB_RECIPEINFO}</h3>
         		<ul class="fa-ul">
         			<li><i class="fa-li fa fa-cutlery"></i>{COOKBOOK_CATEGORY_NAME=no_url}</li>
               		<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
@@ -79,12 +79,10 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
                   	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
               	</ul>
 
-              	<h3>Acties</h3>
+              	<h3>{LAN=LAN_CB_ACTIONS}</h3>
               	<ul class="fa-ul">
                 	{COOKBOOK_EDIT}
                   	<li><i class="fa-li fa fa-print"></i> Print</li>
-                  	<li><i class="fa-li fa fa-envelope"></i> E-mail</li>
-                  	<li><i class="fa-li fa fa-save"></i> Download as PDF</li>
               	</ul>
             </div>
             <!-- End sidebar -->

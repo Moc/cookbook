@@ -16,7 +16,7 @@ if (!defined('e107_INIT'))
 // Make this page inaccessible when plugin is not installed.
 if (!e107::isInstalled('cookbook'))
 {
-	header('location:'.e_BASE.'index.php');
+	e107::redirect();
 	exit;
 }
 
@@ -28,7 +28,7 @@ $sql = e107::getDb();
 $tp  = e107::getParser();
 
 // Load template and shortcodes
-$sc = e107::getScBatch('cookbook', TRUE);
+$sc = e107::getScBatch('cookbook', true);
 $template = e107::getTemplate('cookbook');
 $template = array_change_key_case($template); // temporary fix until proper solution is found
 $text = '';
@@ -56,7 +56,7 @@ if(isset($_GET['id']))
 		$sc->setVars($recipe);
 
 		// Display using template
-		$text .= $tp->parseTemplate($template['recipe_item'], false, $sc);
+		$text .= $tp->parseTemplate($template['recipe_item'], true, $sc);
 	}
 	// Recipe ID not found
 	else
@@ -79,21 +79,21 @@ elseif(isset($_GET['category']) && $_GET['category'] != 0)
 	$category_name 	= $sql->retrieve('cookbook_categories', 'c_name', 'c_id = '.$category_id.'');
 
 	// Retrieve all recipe entries within this category
-	$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category_id.'', TRUE);
+	$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category_id.'', true);
 
 	// Check if there are recipes in this category
 	if($recipes)
 	{
-	 	$text .= $tp->parseTemplate($template['overview']['start'], false, $sc);
+	 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
 
 		foreach($recipes as $recipe)
 		{
 			// Pass query values onto the shortcodes
 			$sc->setVars($recipe);
-			$text .= $tp->parseTemplate($template['overview']['items'], false, $sc);
+			$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
 		}
 
-		$text .= $tp->parseTemplate($template['overview']['end'], false, $sc);
+		$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
 	}
 	// No recipes yet
 	else
@@ -116,16 +116,16 @@ elseif(isset($_GET['tag']) && $_GET['tag'] != '0')
 	// Check if there are recipes in this category
 	if($recipes)
 	{
-	 	$text .= $tp->parseTemplate($template['overview']['start'], false, $sc);
+	 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
 
 		foreach($recipes as $recipe)
 		{
 			// Pass query values onto the shortcodes
 			$sc->setVars($recipe);
-			$text .= $tp->parseTemplate($template['overview']['items'], false, $sc);
+			$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
 		}
 
-		$text .= $tp->parseTemplate($template['overview']['end'], false, $sc);
+		$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
 	}
 	// No recipes with this tag
 	else
@@ -140,7 +140,7 @@ elseif(isset($_GET['tag']) && $_GET['tag'] != '0')
 // Tag overview
 elseif(isset($_GET['tag']) && $_GET['tag'] == '0')
 {
-	$text .= $tp->parseTemplate($template['tagoverview'], false, $sc);
+	$text .= $tp->parseTemplate($template['tagoverview'], true, $sc);
 	e107::getRender()->tablerender(LAN_CB_TAG_OVERVIEW, $text);
 }
 
@@ -161,16 +161,16 @@ elseif(isset($_GET['category']) && $_GET['category'] == '0')
 		// Check if there are recipes in this category
 		if($recipes)
 		{
-		 	$text .= $tp->parseTemplate($template['overview']['start'], false, $sc);
+		 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
 
 			foreach($recipes as $recipe)
 			{
 				// Pass query values onto the shortcodes
 				$sc->setVars($recipe);
-				$text .= $tp->parseTemplate($template['overview']['items'], false, $sc);
+				$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
 			}
 
-			$text .= $tp->parseTemplate($template['overview']['end'], false, $sc);
+			$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
 		}
 		// No recipes for this category, display info message
 		else
@@ -192,16 +192,16 @@ else
 	// Check if there are recipes in this category
 	if($recipes)
 	{
-	 	$text .= $tp->parseTemplate($template['overview']['start'], false, $sc);
+	 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
 
 		foreach($recipes as $recipe)
 		{
 			// Pass query values onto the shortcodes
 			$sc->setVars($recipe);
-			$text .= $tp->parseTemplate($template['overview']['items'], false, $sc);
+			$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
 		}
 
-		$text .= $tp->parseTemplate($template['overview']['end'], false, $sc);
+		$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
 	}
 	// No recipes yet
 	else
