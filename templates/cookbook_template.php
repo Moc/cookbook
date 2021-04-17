@@ -88,13 +88,22 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
               	</ul>
             </div>
             <!-- End sidebar -->
+
         </div> <!-- col-md-12 -->
       </div> <!-- row -->
+
+
+<div class="row">
+    <div class="col-md-12">
+        {COOKBOOK_COMMENTS}
+    </div>
+</div>
+
 ';
 
 // CATEGORY
 $COOKBOOK_TEMPLATE['category'] = '
-Dit is de category pagina
+ 
 ';
 
 // TAG OVERVIEW

@@ -241,4 +241,16 @@ class cookbook_shortcodes extends e_shortcode
 		}
 		return;
 	}
+
+  function sc_cookbook_comments($parm = '')
+  {
+    // TODO Add check if comments are enabled
+
+    $plugin   = 'cookbook';
+    $id       = $this->var['r_id'];
+    $subject  = $this->var["r_name"];
+    $rate     = false;
+
+    return e107::getComment()->render($plugin, $id, $subject, $rate);
+  }
 }
