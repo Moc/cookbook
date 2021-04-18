@@ -77,6 +77,7 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
                 	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_TAGS}</li>
                   	<li><i class="fa-li fa fa-trophy"></i><div id="rating">{COOKBOOK_RATING=stars}</div></li>
                   	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
+                  	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
               	</ul>
 
               	<h3>{LAN=LAN_CB_ACTIONS}</h3>

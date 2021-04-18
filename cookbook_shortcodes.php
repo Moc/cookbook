@@ -32,7 +32,7 @@ class cookbook_shortcodes extends e_shortcode
 
     function sc_cookbook_date($parm='')
     {
-        $date_format = e107::getPlugPref('cookbook', 'date_format', '%d %B, %Y'); // FIXME use e107 core date preferences
+        $date_format = e107::getPlugPref('cookbook', 'date_format', 'short'); 
         return e107::getDate()->convert_date($this->var["r_datestamp"], $date_format);
     }
 

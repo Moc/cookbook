@@ -387,9 +387,9 @@ class cookbook_recipes_ui extends e_admin_ui
 		),
 		'date_format' => array(
 			'title'	=> 'Date format',
-			'type'	=> 'text',
+			'type'	=> 'dropdown',
 			'data'	=> 'str',
-			'help'	=> 'Defines how the date is displayed (using PHP\'s date() format)'
+			'help'	=> 'Uses the format defined in Preferences > Date Display options'
 		),
 		'caching' => array(
 			'title'	=> 'Caching',
@@ -417,10 +417,16 @@ class cookbook_recipes_ui extends e_admin_ui
 		// Default rating is 1
 		$this->fields['r_rating']['writeParms'] = '1';
 
-		// Preferences addon
-		//$this->prefs['submission_userclass']['writeParms']['post']	= " <span class='label label-important'>Not working yet</span>";
+		// Preferences 
 		$this->prefs['allow_sharing']['writeParms']['post'] 		= " <span class='label label-danger'>Not working yet</span>";
 		$this->prefs['submission_userclass']['writeParms']['post'] 	= " <span class='label label-danger'>Not working yet</span>";
+
+		// Choose between 'long|short|relative', as defined in Preferences > Date Display options
+		$this->prefs['date_format']['writeParms'] = array(
+			"long" 		=> "long", 
+			"short" 	=> "short", 
+			"relative" 	=> "relative"
+		); 
 
 	}
 

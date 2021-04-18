@@ -17,7 +17,7 @@
 	<pluginPrefs>
 		<pref name='submission_userclass'>254</pref>
 		<pref name='allow_sharing'>1</pref>
-		<pref name='date_format'>%d %B, %Y</pref>
+		<pref name='date_format'>short</pref>
 		<pref name='caching'>1</pref>
 	</pluginPrefs>
 	<extendedFields>
