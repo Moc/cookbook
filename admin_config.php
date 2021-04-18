@@ -432,15 +432,12 @@ class cookbook_recipes_ui extends e_admin_ui
 
 
 		// Preferences 
-		$this->prefs['allow_sharing']['writeParms']['post'] 		= " <span class='label label-danger'>Not working yet</span>";
-		$this->prefs['submission_userclass']['writeParms']['post'] 	= " <span class='label label-danger'>Not working yet</span>";
-
-		// Choose between 'long|short|relative', as defined in Preferences > Date Display options
-		$this->prefs['date_format']['writeParms'] = array(
-			"long" 		=> "long", 
-			"short" 	=> "short", 
-			"relative" 	=> "relative"
-		); 
+			// Date format: choose between 'long|short|relative', as defined in Preferences > Date Display options
+			$this->prefs['date_format']['writeParms'] = array(
+				"long" 		=> "long", 
+				"short" 	=> "short", 
+				"relative" 	=> "relative"
+			); 
 
 	}
 
