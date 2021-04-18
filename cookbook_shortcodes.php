@@ -118,6 +118,17 @@ class cookbook_shortcodes extends e_shortcode
         }
     }
 
+   /**
+   * Renders all tags belonging to a recipe
+   *
+   * @param string $class - a custom class that is used when rendering individual tags
+   * @param int $limit - the (maximum) amount of tags that are displayed
+   *
+   * @example {COOKBOOK_TAGS: class=btn btn-default pull-right} 
+   * @example {COOKBOOK_TAGS: limit=2} 
+   * @example {COOKBOOK_TAGS: class=btn btn-default pull-right&limit=2} 
+   *
+   */
    function sc_cookbook_tags($parm='')
    {
       // Retrieve tags from db. Stop when no tags are present.
@@ -128,13 +139,15 @@ class cookbook_shortcodes extends e_shortcode
       $ret = $urlparms = array();
       $all_tags = array_map('trim', explode(',', $tags));
 
+      // Set class
+	  $class = (!empty($parm['class'])) ? $parm['class'] : 'label label-primary';
+
       // Limit is set, clean the array to get rid of the surplus tags
-      if($parm)
+      if($parm['limit'])
       {
          // Set variables
-         $parms = eHelper::scDualParams($parm);
-         $limit = $parms['limit'];
-         $real_limit = $parms['limit']-1;
+         $limit 	 = $parm['limit'];
+         $real_limit = $parm['limit']-1;
 
          // Explode by limit. If more tags are present than limit, the last tag contains all the surplus tags.
          $all_tags = array_filter(array_map('trim', explode(',', $tags, $limit)));
@@ -150,13 +163,13 @@ class cookbook_shortcodes extends e_shortcode
          }
       }
 
-      // The array of tags is clean. Now format them into bootstrap labels.
+      // The array of tags is clean. Now format them into individual labels
       foreach ($all_tags as $tag)
       {
          $urlparms['tag'] = $tag;
          $url = e107::url('cookbook', 'tag', $urlparms);
          $tag = htmlspecialchars($tag, ENT_QUOTES, 'utf-8');
-         $ret[] = '<a href="'.$url.'" title="'.$tag.'"><span class="label label-primary">'.$tag.'</span></a>';
+         $ret[] = '<a href="'.$url.'" title="'.$tag.'"><span class="'.$class.'">'.$tag.'</span></a>';
       }
 
       // And let's return the tags so the template can display them :)
