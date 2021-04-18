@@ -95,6 +95,15 @@ class cookbook_shortcodes extends e_shortcode
         return $this->var["r_time"];
     }
 
+
+   /**
+   * Renders the author rating of a recipe
+   *
+   * @param string $stars - determines whether star images are displayed or just the numeric value
+   * 
+   * @example {COOKBOOK_AUTHORRATING} // returns numeric value, e.g. "1" 
+   * @example {COOKBOOK_AUTHORRATING=stars} // returns star images of the rating
+   */
     function sc_cookbook_authorrating($parm='')
     {
         // Check if we want to display the stars
