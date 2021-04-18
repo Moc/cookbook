@@ -330,7 +330,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	  	),
 	  	'r_authorrating' => array( 
 	  		'title' 		=> LAN_CB_AUTHORRATING, 		
-	  		'type' 			=> 'number', 	
+	  		'type' 			=> 'hidden', 	
 	  		'data' 			=> 'int', 
 	  		'width' 		=> 'auto', 
 	  		'inline' 		=> true, 
@@ -373,7 +373,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	  	),
 	);
 
-	protected $fieldpref = array('r_id', 'r_thumbnail', 'r_name', 'r_category', 'r_persons', 'r_time', 'r_authorrating');
+	protected $fieldpref = array('r_id', 'r_thumbnail', 'r_name', 'r_category', 'r_persons', 'r_time');
 
 
 	protected $prefs = array(
@@ -383,11 +383,11 @@ class cookbook_recipes_ui extends e_admin_ui
 			'data' 	=> 'str',
 			'help'	=> 'Userclass that is allowed to submit new recipes'
 		),
-		'allow_sharing' => array(
-			'title'	=> 'Allow sharing',
+		'author_rating' => array(
+			'title'	=> 'Author rating',
 			'type'	=> 'boolean',
 			'data' 	=> 'str',
-			'help'	=> 'Enable the option to share recipes'
+			'help'	=> 'Enable the option for authors to rate their own recipes'
 		),
 		'date_format' => array(
 			'title'	=> 'Date format',
@@ -406,6 +406,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	public function init()
 	{
 		$sql = e107::getDb();
+		$pref = e107::pref('cookbook');
 
 		// Link recipes with categories
 		if($sql->select('cookbook_categories'))
@@ -418,8 +419,17 @@ class cookbook_recipes_ui extends e_admin_ui
 
 		$this->fields['r_category']['writeParms'] = $this->category;
 
-		// Default rating is 1
-		$this->fields['r_authorrating']['writeParms'] = '1';
+
+		// Author rating
+		if($pref['author_rating'])
+		{
+			// Change type from 'hidden' to 'number'
+			$this->fields['r_authorrating']['type'] = 'number';
+
+			// If enabled, default author rating is 1
+			$this->fields['r_authorrating']['writeParms'] = '1';
+		}
+
 
 		// Preferences 
 		$this->prefs['allow_sharing']['writeParms']['post'] 		= " <span class='label label-danger'>Not working yet</span>";
