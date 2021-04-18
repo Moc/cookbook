@@ -16,7 +16,7 @@ CREATE TABLE `cookbook_recipes` (
   `r_tags` varchar(255) DEFAULT NULL,
   `r_persons` tinyint(3) DEFAULT NULL,
   `r_time` int(3) DEFAULT NULL,
-  `r_rating` tinyint(3) DEFAULT NULL,
+  `r_authorrating` tinyint(3) DEFAULT NULL,
   `r_ingredients` text NOT NULL,
   `r_instructions` text NOT NULL,
   PRIMARY KEY (r_id)

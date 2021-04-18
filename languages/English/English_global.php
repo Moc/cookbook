@@ -13,11 +13,11 @@ define("LAN_CB_SUMM", "A fully featured Cookbook for all your recipes.");
 define("LAN_CB_DESC", "A fully featured Cookbook for all your recipes. Includes functionalities such as categorization, sharing, and favoriting. Users can also submit new recipes.");
 
 
-define("LAN_CB_RECIPE", 		"Recipe");
-define("LAN_CB_RECIPES", 		"Recipes");
-define("LAN_CB_PERSONS",		"Persons");
-define("LAN_CB_TIME", 			"Time");
-define("LAN_CB_TAGS", 			"Tags");
-define("LAN_CB_RATING", 		"Rating");
-define("LAN_CB_INGREDIENTS",	"Ingredients");
-define("LAN_CB_INSTRUCTIONS",	"Instructions");
+define("LAN_CB_RECIPE", 			"Recipe");
+define("LAN_CB_RECIPES", 			"Recipes");
+define("LAN_CB_PERSONS",			"Persons");
+define("LAN_CB_TIME", 				"Time");
+define("LAN_CB_TAGS", 				"Tags");
+define("LAN_CB_AUTHORRATING", 		"Author rating");
+define("LAN_CB_INGREDIENTS",		"Ingredients");
+define("LAN_CB_INSTRUCTIONS",		"Instructions");

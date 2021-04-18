@@ -95,7 +95,7 @@ class cookbook_shortcodes extends e_shortcode
         return $this->var["r_time"];
     }
 
-    function sc_cookbook_rating($parm='')
+    function sc_cookbook_authorrating($parm='')
     {
         // Check if we want to display the stars
         if($parm == 'stars')
@@ -105,7 +105,7 @@ class cookbook_shortcodes extends e_shortcode
                     $("#rating").raty({
                         readOnly: true,
                         number: 3,
-                        score: '.$this->var["r_rating"].',
+                        score: '.$this->var["r_authorrating"].',
                         path: "'.e_PLUGIN_ABS.'cookbook/images/stars"
                     });
                 });
@@ -114,7 +114,7 @@ class cookbook_shortcodes extends e_shortcode
         // Just the numeric value as stored in the database
         else
         {
-            return $this->var["r_rating"];
+            return $this->var["r_authorrating"];
         }
     }
 

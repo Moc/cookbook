@@ -14,7 +14,7 @@ define("LAN_CB_CREATE_RECIPE",  	"Voeg een recept toe");
 define("LAN_CB_PERSONS",  "Personen");
 
 // HELP
-define("LAN_CB_HELP_TIME", 		"Bereidingstijd");
-define("LAN_CB_HELP_PERSONS", 	"Aantal personen");
-define("LAN_CB_HELP_TAGS", 		"Keywords die bij dit recept passen");
-define("LAN_CB_HELP_RATING",	"Beoordeling van dit recept. Tussen de 1 en 3 sterren.");
+define("LAN_CB_HELP_TIME", 			"Bereidingstijd in minuten.");
+define("LAN_CB_HELP_PERSONS", 		"Aantal personen");
+define("LAN_CB_HELP_TAGS", 			"Keywords die bij dit recept passen");
+define("LAN_CB_HELP_AUTHORRATING",	"Beoordeling van het recept door de auteur. Tussen de 1 en 3 sterren.");

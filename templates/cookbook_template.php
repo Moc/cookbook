@@ -35,7 +35,7 @@ $COOKBOOK_TEMPLATE['overview']['items'] = '
 	    	<td>{COOKBOOK_CATEGORY_NAME}</td>
 	    	<td>{COOKBOOK_PERSONS}</td>
 	    	<td>{COOKBOOK_TIME}</td>
-	    	<td>{COOKBOOK_RATING}</td>
+	    	<td>{COOKBOOK_AUTHORRATING}</td>
 	    	<td>{COOKBOOK_TAGS: limit=5}</td>
     	</tr>
 ';
@@ -75,7 +75,7 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
               		<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
               		<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
                 	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_TAGS}</li>
-                  	<li><i class="fa-li fa fa-trophy"></i><div id="rating">{COOKBOOK_RATING=stars}</div></li>
+                  	<li><i class="fa-li fa fa-trophy"></i><div id="rating">{COOKBOOK_AUTHORRATING=stars}</div></li>
                   	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
                   	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
               	</ul>

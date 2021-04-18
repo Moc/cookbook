@@ -328,13 +328,13 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left',  
 	  	),
-	  	'r_rating' => array( 
-	  		'title' 		=> LAN_CB_RATING, 		
+	  	'r_authorrating' => array( 
+	  		'title' 		=> LAN_CB_AUTHORRATING, 		
 	  		'type' 			=> 'number', 	
 	  		'data' 			=> 'int', 
 	  		'width' 		=> 'auto', 
 	  		'inline' 		=> true, 
-	  		'help' 			=> LAN_CB_HELP_RATING, 
+	  		'help' 			=> LAN_CB_HELP_AUTHORRATING, 
 	  		'readParms' 	=> '', 
 	  		'writeParms' 	=> '', 
 	  		'class' 		=> 'left', 
@@ -373,7 +373,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	  	),
 	);
 
-	protected $fieldpref = array('r_id', 'r_thumbnail', 'r_name', 'r_category', 'r_persons', 'r_time', 'r_rating');
+	protected $fieldpref = array('r_id', 'r_thumbnail', 'r_name', 'r_category', 'r_persons', 'r_time', 'r_authorrating');
 
 
 	protected $prefs = array(
@@ -419,7 +419,7 @@ class cookbook_recipes_ui extends e_admin_ui
 		$this->fields['r_category']['writeParms'] = $this->category;
 
 		// Default rating is 1
-		$this->fields['r_rating']['writeParms'] = '1';
+		$this->fields['r_authorrating']['writeParms'] = '1';
 
 		// Preferences 
 		$this->prefs['allow_sharing']['writeParms']['post'] 		= " <span class='label label-danger'>Not working yet</span>";
@@ -447,9 +447,9 @@ class cookbook_recipes_ui extends e_admin_ui
 		}
 
 		// Default recipe rating is 1
-		if(!$new_data['r_rating'])
+		if(!$new_data['r_authorrating'])
 		{
-			$new_data['r_rating'] = '1';
+			$new_data['r_authorrating'] = '1';
 		}
 
 		// Set recipe author
@@ -482,9 +482,9 @@ class cookbook_recipes_ui extends e_admin_ui
 		}
 
 		// Default recipe rating is 1
-		if(!$new_data['r_rating'])
+		if(!$new_data['r_authorrating'])
 		{
-			$new_data['r_rating'] = '1';
+			$new_data['r_authorrating'] = '1';
 		}
 
 		// Automatically update SEF

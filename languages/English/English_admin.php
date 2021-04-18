@@ -15,7 +15,7 @@ define("LAN_CB_CREATE_RECIPE",  	"Add a recipe");
 define("LAN_CB_PERSONS",  "Persons");
 
 // HELP
-define("LAN_CB_HELP_TIME", 		"Preparation time of the recipe.");
-define("LAN_CB_HELP_PERSONS", 	"Amount of people that the recipe is for.");
-define("LAN_CB_HELP_TAGS", 		"Keywords that are applicable to the recipe.");
-define("LAN_CB_HELP_RATING",	"Rating of the recipe. Between 1 and 3 stars.");
+define("LAN_CB_HELP_TIME", 			"Preparation time of the recipe (in minutes).");
+define("LAN_CB_HELP_PERSONS", 		"Amount of people that the recipe is for.");
+define("LAN_CB_HELP_TAGS", 			"Keywords that are applicable to the recipe.");
+define("LAN_CB_HELP_AUTHORRATING",	"Author rating of the recipe. Between 1 and 3 stars.");
