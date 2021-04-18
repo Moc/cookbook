@@ -24,11 +24,11 @@ class cookbook_url
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php',
 		);
 
-		// Individual recipes
+		// Individual recipe
 		$config['id'] = array(
 			'alias'         => 'cookbook',
 			'regex'			=> '^{alias}/id/(.*)$',
-			'sef'			=> '{alias}/id/{id}/{name}',
+			'sef'			=> '{alias}/id/{id}/{sef}',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?id=$1',
 		);
 		
@@ -36,7 +36,7 @@ class cookbook_url
 		$config['category'] = array(
 			'alias'         => 'cookbook',
 			'regex'			=> '^{alias}/category/(.*)$',
-			'sef'			=> '{alias}/category/{id}/{name}',
+			'sef'			=> '{alias}/category/{id}/{sef}',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?category=$1',
 		);
 
