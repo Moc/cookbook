@@ -41,8 +41,12 @@ class cookbook_adminArea extends e_admin_dispatcher
 		'main/list'			=> array('caption'=> LAN_CB_MANAGE_RECIPES, 'perm' => 'P'),
 		'main/create'		=> array('caption'=> LAN_CB_CREATE_RECIPE, 'perm' => 'P'),
 
+		'main/div0' 		=> array('divider' => true),
+
 		'cat/list'			=> array('caption'=> LAN_CATEGORIES, 'perm' => 'P'),
 		'cat/create'		=> array('caption'=> LAN_CREATE_CATEGORY, 'perm' => 'P'),
+
+		'main/div1' 		=> array('divider' => true),
 
 		'main/prefs' 		=> array('caption'=> LAN_PREFS, 'perm' => 'P'),
 
