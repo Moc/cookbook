@@ -17,7 +17,7 @@ $COOKBOOK_TEMPLATE['overview']['start'] = '
 	<thead>
 		<tr>
 			<th></thr>
-		  	<th width="40%"></th>
+		  	<th width="40%">{LAN=LAN_CB_RECIPE}</th>
 		  	<th><i class="fa fa-cutlery"></i></th>
 		  	<th><i class="fa fa-users"></i></th>
 	  	 	<th><i class="fa fa-clock-o"></i></th>
