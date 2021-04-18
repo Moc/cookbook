@@ -387,7 +387,7 @@ class cookbook_recipes_ui extends e_admin_ui
 			'title'	=> 'Author rating',
 			'type'	=> 'boolean',
 			'data' 	=> 'str',
-			'help'	=> 'Enable the option for authors to rate their own recipes'
+			'help'	=> 'When enabled, recipe authors can rate their own recipes'
 		),
 		'date_format' => array(
 			'title'	=> 'Date format',
