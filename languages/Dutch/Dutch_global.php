@@ -16,5 +16,5 @@ define("LAN_CB_PERSONS",		"Personen");
 define("LAN_CB_TIME", 			"Tijdsduur");
 define("LAN_CB_TAGS", 			"Tags");
 define("LAN_CB_RATING", 		"Beoordeling");
-define("LAN_CB_INGREDIENTS",	"Ingredienten");
+define("LAN_CB_INGREDIENTS",	"Ingrediënten");
 define("LAN_CB_INSTRUCTIONS",	"Instructies");

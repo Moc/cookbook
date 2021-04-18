@@ -17,9 +17,6 @@ define("LAN_CB_CATEGORY_OVERVIEW", "Overzicht van alle recepten per categorie");
 define("LAN_CB_RECIPE_RECENT", "Meest recente recepten");
 
 // Individueel recept
-define("LAN_CB_INGREDIENTS", "Ingrediënten");
-define("LAN_CB_INSTRUCTIONS", "Instructies");
-
 define("LAN_CB_RECIPEINFO", "Recept info");
 define("LAN_CB_ACTIONS", "Acties"); 
 
