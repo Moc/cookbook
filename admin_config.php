@@ -375,15 +375,15 @@ class cookbook_recipes_ui extends e_admin_ui
 	protected $prefs = array(
 		'submission_userclass'	=> array(
 			'title'	=> 'Submission userclass',
-			'type'	=>'userclass',
+			'type'	=> 'userclass',
 			'data' 	=> 'str',
-			'help'	=>'Userclass that is allowed to submit new recipes'
+			'help'	=> 'Userclass that is allowed to submit new recipes'
 		),
 		'allow_sharing' => array(
 			'title'	=> 'Allow sharing',
-			'type'	=>'boolean',
+			'type'	=> 'boolean',
 			'data' 	=> 'str',
-			'help'	=>'Enable the option to share recipes'
+			'help'	=> 'Enable the option to share recipes'
 		),
 		'date_format' => array(
 			'title'	=> 'Date format',
@@ -453,7 +453,6 @@ class cookbook_recipes_ui extends e_admin_ui
 		{
 			$new_data['r_author'] = USERID;
 		}
-
 
 		// Automatically generate and set SEF of recipe name
 		$new_data['r_name_sef'] = empty($new_data['r_name_sef']) ? eHelper::title2sef($new_data['r_name']) : eHelper::secureSef($new_data['r_name_sef']);
