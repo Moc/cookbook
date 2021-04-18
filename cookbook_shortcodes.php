@@ -9,7 +9,7 @@
 */
 
 if (!defined('e107_INIT')) { exit; }
-
+    
 class cookbook_shortcodes extends e_shortcode
 {
     // Recipe items
@@ -20,14 +20,22 @@ class cookbook_shortcodes extends e_shortcode
 
     function sc_cookbook_recipe_thumb($parm='')
     {
-        $thumburl = e107::getParser()->thumbUrl($this->var['r_thumbnail'], 'aw=180');
+    	$thumbImage = $this->var['r_thumbnail']; 
+
+    	// If no thumbnail is set, use default thumbnail
+    	if(!$thumbImage)
+    	{
+    		$thumbImage = "{e_PLUGIN}cookbook/images/default_image.webp";
+    	}
+
+        $thumbUrl = e107::getParser()->thumbUrl($thumbImage, 'aw=180');
 
         if($parm == 'url')
         {
-           return $thumburl; 
+           return $thumbUrl; 
         }
 
-        return '<img class="img-responsive" src="'.$thumburl.'" alt="" />';
+        return '<img class="img-responsive" src="'.$thumbUrl.'" alt="" />';
     }
 
     function sc_cookbook_date($parm='')
