@@ -83,7 +83,7 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
               	<h3>{LAN=LAN_CB_ACTIONS}</h3>
               	<ul class="fa-ul">
                 	{COOKBOOK_EDIT}
-                  	<li><i class="fa-li fa fa-print"></i> Print</li>
+                	{COOKBOOK_PRINT}
               	</ul>
             </div>
             <!-- End sidebar -->

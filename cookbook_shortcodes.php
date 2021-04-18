@@ -273,6 +273,27 @@ class cookbook_shortcodes extends e_shortcode
 		}
 		return;
 	}
+  /**
+  * Renders a print icon and/or link that redirects to a printer-friendly page of the recipe
+  *
+  * @param string $url - if set to url, it wil only return the URL (without print icon)
+  *
+  * @example {COOKBOOK_PRINT=url} returns url e_HTTP.'print.php?plugin:cookbook.{$recipe_id}
+  * @example {COOKBOOK_PRINT} renders FA print icon and URL. 
+  *
+  */
+  function sc_cookbook_print($parm='')
+  {
+    $rid = $this->var["r_id"];
+    $url = e_HTTP.'print.php?plugin:cookbook.'.$rid;
+    
+    if($parm == 'url')
+    {
+       return $url; 
+    }
+
+    return '<li><i class="fa-li fa fa-print"></i> <a href="'.$url.'">Print recipe</a></li>';
+  }
 
   function sc_cookbook_comments($parm = '')
   {
