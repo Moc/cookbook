@@ -131,8 +131,6 @@ elseif(isset($_GET['category']) && $_GET['category'] != 0)
 		"category_sef" => $cbClass->getCategoryName($category_id, true),
 	);
 
-	print_a($cUrlparms);
-
 	$breadcrumb_array[] = array(
 		'text' 	=> $cbClass->getCategoryName($category_id),
 		'url' 	=> e107::url('cookbook', 'category', $cUrlparms),
