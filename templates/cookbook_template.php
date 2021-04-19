@@ -109,3 +109,26 @@ $COOKBOOK_TEMPLATE['category'] = '
 $COOKBOOK_TEMPLATE['tagoverview'] = '
 {COOKBOOK_TAGCLOUD}
 ';
+
+
+// PRINT TEMPLATE FOR INDIVIDUAL RECIPE
+$COOKBOOK_TEMPLATE['print_recipe_item'] = '
+<h1>{COOKBOOK_RECIPE_NAME=no_url}<h1>
+
+<h2>{LAN=LAN_CB_INGREDIENTS}</h2>
+<p>{COOKBOOK_INGREDIENTS}</p>
+	            
+<h2>{LAN=LAN_CB_INSTRUCTIONS}</h2>
+{COOKBOOK_INSTRUCTIONS}
+	           
+<h3>{LAN=LAN_CB_RECIPEINFO}</h3>
+<ul class="fa-ul">
+	<li><i class="fa-li fa fa-cutlery"></i>{COOKBOOK_CATEGORY_NAME=no_url}</li>
+	<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
+	<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
+	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_TAGS}</li>
+  	<li><i class="fa-li fa fa-trophy"></i><div id="rating">{COOKBOOK_AUTHORRATING=stars}</div></li>
+  	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
+  	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
+</ul>
+';
