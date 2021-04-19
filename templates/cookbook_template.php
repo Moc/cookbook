@@ -111,7 +111,7 @@ $COOKBOOK_TEMPLATE['keyword_overview'] = '
 
 
 // PRINT TEMPLATE FOR INDIVIDUAL RECIPE
-$COOKBOOK_TEMPLATE['print_recipe_item'] = '
+$COOKBOOK_TEMPLATE['print_recipe_layout'] = '
 <h1>{COOKBOOK_RECIPE_NAME=no_url}<h1>
 
 <h2>{LAN=LAN_CB_INGREDIENTS}</h2>

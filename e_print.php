@@ -34,7 +34,7 @@ class cookbook_print
             // Pass database info onto the shortcodes
             $sc->setVars($recipe);
 
-            $text = e107::getParser()->parseTemplate($template['print_recipe_item'], true, $sc);
+            $text = e107::getParser()->parseTemplate($template['print_recipe_layout'], true, $sc);
         }
         else
         {
