@@ -12,7 +12,6 @@ if (!defined('e107_INIT')) { exit; }
     
 class cookbook_shortcodes extends e_shortcode
 {
-    // Recipe items
     function sc_cookbook_id($parm='')
     {
         return $this->var['r_id'];
@@ -46,7 +45,6 @@ class cookbook_shortcodes extends e_shortcode
 
     function sc_cookbook_author($parm='')
     {
-        //return $this->var["r_author"]; 
         $username = e107::getDb()->retrieve('user', 'user_name', 'user_id = '.$this->var["r_author"].'');
         return $username;
     }
@@ -96,14 +94,14 @@ class cookbook_shortcodes extends e_shortcode
     }
 
 
-   /**
-   * Renders the author rating of a recipe
-   *
-   * @param string $stars - determines whether star images are displayed or just the numeric value
-   * 
-   * @example {COOKBOOK_AUTHORRATING} // returns numeric value, e.g. "1" 
-   * @example {COOKBOOK_AUTHORRATING=stars} // returns star images of the rating
-   */
+    /**
+    * Renders the author rating of a recipe
+    *
+    * @param string $stars - determines whether star images are displayed or just the numeric value
+    * 
+    * @example {COOKBOOK_AUTHORRATING} // returns numeric value, e.g. "1" 
+    * @example {COOKBOOK_AUTHORRATING=stars} // returns star images of the rating
+    */
     function sc_cookbook_authorrating($parm='')
     {
         // Check if we want to display the stars
@@ -127,17 +125,17 @@ class cookbook_shortcodes extends e_shortcode
         }
     }
 
-   /**
-   * Renders all keywords belonging to a recipe
-   *
-   * @param string $class - a custom class that is used when rendering individual keywords
-   * @param int $limit - the (maximum) amount of keywords that are displayed
-   *
-   * @example {COOKBOOK_KEYWORDS: class=btn btn-default pull-right} 
-   * @example {COOKBOOK_KEYWORDS: limit=2} 
-   * @example {COOKBOOK_KEYWORDS: class=btn btn-default pull-right&limit=2} 
-   *
-   */
+    /**
+    * Renders all keywords belonging to a recipe
+    *
+    * @param string $class - a custom class that is used when rendering individual keywords
+    * @param int $limit - the (maximum) amount of keywords that are displayed
+    *
+    * @example {COOKBOOK_KEYWORDS: class=btn btn-default pull-right} 
+    * @example {COOKBOOK_KEYWORDS: limit=2} 
+    * @example {COOKBOOK_KEYWORDS: class=btn btn-default pull-right&limit=2} 
+    *
+    */
     function sc_cookbook_keywords($parm='')
     {
         // Retrieve keywords from db. Stop when no keywords are present.
@@ -273,38 +271,38 @@ class cookbook_shortcodes extends e_shortcode
 		}
 		return;
 	}
-    
-  /**
-  * Renders a print icon and/or link that redirects to a printer-friendly page of the recipe
-  *
-  * @param string $url - if set to url, it wil only return the URL (without print icon)
-  *
-  * @example {COOKBOOK_PRINT=url} returns url e_HTTP.'print.php?plugin:cookbook.{$recipe_id}
-  * @example {COOKBOOK_PRINT} renders FA print icon and URL. 
-  *
-  */
-  function sc_cookbook_print($parm='')
-  {
-    $rid = $this->var["r_id"];
-    $url = e_HTTP.'print.php?plugin:cookbook.'.$rid;
-    
-    if($parm == 'url')
+
+    /**
+    * Renders a print icon and/or link that redirects to a printer-friendly page of the recipe
+    *
+    * @param string $url - if set to url, it wil only return the URL (without print icon)
+    *
+    * @example {COOKBOOK_PRINT=url} returns url e_HTTP.'print.php?plugin:cookbook.{$recipe_id}
+    * @example {COOKBOOK_PRINT} renders FA print icon and URL. 
+    *
+    */
+    function sc_cookbook_print($parm='')
     {
-       return $url; 
+        $rid = $this->var["r_id"];
+        $url = e_HTTP.'print.php?plugin:cookbook.'.$rid;
+    
+        if($parm == 'url')
+        {
+            return $url; 
+        }
+
+        return '<li><i class="fa-li fa fa-print"></i> <a href="'.$url.'">Print recipe</a></li>';
     }
 
-    return '<li><i class="fa-li fa fa-print"></i> <a href="'.$url.'">Print recipe</a></li>';
-  }
+    function sc_cookbook_comments($parm = '')
+    {
+        // TODO Add check if comments are enabled
 
-  function sc_cookbook_comments($parm = '')
-  {
-    // TODO Add check if comments are enabled
+        $plugin   = 'cookbook';
+        $id       = $this->var['r_id'];
+        $subject  = $this->var["r_name"];
+        $rate     = false;
 
-    $plugin   = 'cookbook';
-    $id       = $this->var['r_id'];
-    $subject  = $this->var["r_name"];
-    $rate     = false;
-
-    return e107::getComment()->render($plugin, $id, $subject, $rate);
-  }
+        return e107::getComment()->render($plugin, $id, $subject, $rate);
+    }
 }
