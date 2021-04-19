@@ -293,12 +293,12 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'type' 	=> 'hidden', 	
 	  		'data' 	=> 'int'
 	  	),
-	  	'r_tags' => array( 
+	  	'r_keywords' => array( 
 	  		'title' 		=> LAN_KEYWORDS, 		
 	  		'type' 			=> 'tags', 		
 	  		'data' 			=> 'str', 
 	  		'width' 		=> 'auto', 
-	  		'help' 			=> LAN_CB_HELP_TAGS, 
+	  		'help' 			=> LAN_CB_HELP_KEYWORDS, 
 	  		'readParms' 	=> '', 
 	  		'writeParms' 	=> '', 
 	  		'class' 		=> 'left', 

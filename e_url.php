@@ -48,20 +48,20 @@ class cookbook_url
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?category=0',
 		);
 
-		// Individual tag
-		$config['tag'] = array(
+		// Individual keyword
+		$config['keyword'] = array(
 			'alias'         => 'cookbook',
-			'regex'			=> '^{alias}/tag/(.*)$',
-			'sef'			=> '{alias}/tag/{tag}',
-			'redirect'		=> '{e_PLUGIN}cookbook/index.php?tag=$1',
+			'regex'			=> '^{alias}/keyword/(.*)$',
+			'sef'			=> '{alias}/keyword/{keyword}',
+			'redirect'		=> '{e_PLUGIN}cookbook/index.php?keyword=$1',
 		);
 
-		// Tagcloud
-		$config['tags'] = array(
+		// Overview of all keywords (tagcloud)
+		$config['keywords'] = array(
 			'alias'         => 'cookbook',
-			'regex'			=> '^{alias}/tags(.*)$',
-			'sef'			=> '{alias}/tags/',
-			'redirect'		=> '{e_PLUGIN}cookbook/index.php?tag=0',
+			'regex'			=> '^{alias}/keywords(.*)$',
+			'sef'			=> '{alias}/keywords/',
+			'redirect'		=> '{e_PLUGIN}cookbook/index.php?keyword=0',
 		);
 
 		// Recently added recipes

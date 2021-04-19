@@ -36,7 +36,7 @@ $COOKBOOK_TEMPLATE['overview']['items'] = '
 	    	<td>{COOKBOOK_PERSONS}</td>
 	    	<td>{COOKBOOK_TIME}</td>
 	    	<td>{COOKBOOK_AUTHORRATING}</td>
-	    	<td>{COOKBOOK_TAGS: limit=5}</td>
+	    	<td>{COOKBOOK_KEYWORDS: limit=5}</td>
     	</tr>
 ';
 
@@ -74,7 +74,7 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
         			<li><i class="fa-li fa fa-cutlery"></i>{COOKBOOK_CATEGORY_NAME=no_url}</li>
               		<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
               		<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
-                	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_TAGS}</li>
+                	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_KEYWORDS}</li>
                   	<li><i class="fa-li fa fa-trophy"></i><div id="rating">{COOKBOOK_AUTHORRATING=stars}</div></li>
                   	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
                   	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
@@ -101,8 +101,8 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
 ';
 
 
-// TAG OVERVIEW
-$COOKBOOK_TEMPLATE['tagoverview'] = '
+// KEYWORD OVERVIEW (TAGCLOUD)
+$COOKBOOK_TEMPLATE['keyword_overview'] = '
 {COOKBOOK_TAGCLOUD}
 ';
 
@@ -122,7 +122,7 @@ $COOKBOOK_TEMPLATE['print_recipe_item'] = '
 	<li><i class="fa-li fa fa-cutlery"></i>{COOKBOOK_CATEGORY_NAME=no_url}</li>
 	<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
 	<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
-	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_TAGS}</li>
+	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_KEYWORDS}</li>
   	<li><i class="fa-li fa fa-trophy"></i><div id="rating">{COOKBOOK_AUTHORRATING=stars}</div></li>
   	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
   	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>

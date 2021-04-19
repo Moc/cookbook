@@ -41,8 +41,8 @@ $text = '';
 	Use $_GET to determine which view we are on, either:
 	1. ID = indivual recipe (id = id)
 	2. Category = specific category (category = id)
-	3. Tag (tag = id)
-	4. Tag overview (tag = 0)
+	3. Keyword (keyword = id)
+	4. Keyword overview (keyword = 0)
 	5. Category overview = all recipes split by category (category = 0)
 	6. Recipe overview = index (no $_GET specified)
 */
@@ -163,15 +163,25 @@ elseif(isset($_GET['category']) && $_GET['category'] != 0)
 	e107::getRender()->tablerender(LAN_CATEGORY." - ".$category_name, $text);
 }
 
-// Tag
-elseif(isset($_GET['tag']) && $_GET['tag'] != '0')
+// Keyword
+elseif(isset($_GET['keyword']) && $_GET['keyword'] != '0')
 {
-	$tag = e107::getParser()->toDb($_GET['tag']);
+	$keyword = e107::getParser()->toDb($_GET['keyword']);
 
-	// Retrieve all recipe entries with this tag
-	$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_tags LIKE "%'.$tag.'%"', TRUE);
+	// Retrieve all recipe entries with this keyword
+	$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_keywords LIKE "%'.$keyword.'%"', TRUE);
 
-	// Check if there are recipes in this category
+	$breadcrumb_array[] = array(
+		'text' 	=> LAN_KEYWORDS,
+		'url' 	=> e107::url('cookbook', 'keywords'),
+	);
+
+	$breadcrumb_array[] = array(
+		'text' 	=> $keyword,
+		'url' 	=> e107::url('cookbook', 'keywords'),
+	);
+
+	// Check if there are recipes with this keyword
 	if($recipes)
 	{
 	 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
@@ -185,7 +195,7 @@ elseif(isset($_GET['tag']) && $_GET['tag'] != '0')
 
 		$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
 	}
-	// No recipes with this tag
+	// No recipes with this keyword
 	else
 	{
 		$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPES."</div>";
@@ -195,14 +205,22 @@ elseif(isset($_GET['tag']) && $_GET['tag'] != '0')
 	e107::breadcrumb($breadcrumb_array);
 
 	// Let's render and show it all!
-	e107::getRender()->tablerender(LAN_CB_TAG." - ".$tag, $text);
+	e107::getRender()->tablerender(LAN_KEYWORDS." - ".$keyword, $text);
 }
 
-// Tag overview
-elseif(isset($_GET['tag']) && $_GET['tag'] == '0')
+// Keyword overview (tagcloud)
+elseif(isset($_GET['keyword']) && $_GET['keyword'] == '0')
 {
-	$text .= $tp->parseTemplate($template['tagoverview'], true, $sc);
-	e107::getRender()->tablerender(LAN_CB_TAG_OVERVIEW, $text);
+	$breadcrumb_array[] = array(
+		'text' 	=> LAN_KEYWORDS,
+		'url' 	=> e107::url('cookbook', 'keywords'),
+	);
+
+	// Send breadcrumb information
+	e107::breadcrumb($breadcrumb_array);
+
+	$text .= $tp->parseTemplate($template['keyword_overview'], true, $sc);
+	e107::getRender()->tablerender(LAN_CB_KEYWORD_OVERVIEW, $text);
 }
 
 // Category overview

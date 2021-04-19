@@ -17,7 +17,6 @@ define("LAN_CB_RECIPE", 			"Recipe");
 define("LAN_CB_RECIPES", 			"Recipes");
 define("LAN_CB_PERSONS",			"Persons");
 define("LAN_CB_TIME", 				"Time");
-define("LAN_CB_TAGS", 				"Tags");
 define("LAN_CB_AUTHORRATING", 		"Author rating");
 define("LAN_CB_INGREDIENTS",		"Ingredients");
 define("LAN_CB_INSTRUCTIONS",		"Instructions");

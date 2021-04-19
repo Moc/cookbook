@@ -128,62 +128,62 @@ class cookbook_shortcodes extends e_shortcode
     }
 
    /**
-   * Renders all tags belonging to a recipe
+   * Renders all keywords belonging to a recipe
    *
-   * @param string $class - a custom class that is used when rendering individual tags
-   * @param int $limit - the (maximum) amount of tags that are displayed
+   * @param string $class - a custom class that is used when rendering individual keywords
+   * @param int $limit - the (maximum) amount of keywords that are displayed
    *
-   * @example {COOKBOOK_TAGS: class=btn btn-default pull-right} 
-   * @example {COOKBOOK_TAGS: limit=2} 
-   * @example {COOKBOOK_TAGS: class=btn btn-default pull-right&limit=2} 
+   * @example {COOKBOOK_KEYWORDS: class=btn btn-default pull-right} 
+   * @example {COOKBOOK_KEYWORDS: limit=2} 
+   * @example {COOKBOOK_KEYWORDS: class=btn btn-default pull-right&limit=2} 
    *
    */
-   function sc_cookbook_tags($parm='')
-   {
-      // Retrieve tags from db. Stop when no tags are present.
-      $tags = $this->var['r_tags'];
-      if(!$tags) return '';
+    function sc_cookbook_keywords($parm='')
+    {
+        // Retrieve keywords from db. Stop when no keywords are present.
+        $keywords = $this->var['r_keywords'];
+        if(!$keywords) return '';
 
-      // Define other variables
-      $ret = $urlparms = array();
-      $all_tags = array_map('trim', explode(',', $tags));
+        // Define other variables
+        $ret = $urlparms = array();
+        $all_keywords = array_map('trim', explode(',', $keywords));
 
-      // Set class
-	  $class = (!empty($parm['class'])) ? $parm['class'] : 'label label-primary';
+        // Set class
+        $class = (!empty($parm['class'])) ? $parm['class'] : 'label label-primary';
 
-      // Limit is set, clean the array to get rid of the surplus tags
-      if($parm['limit'])
-      {
-         // Set variables
-         $limit 	 = $parm['limit'];
-         $real_limit = $parm['limit']-1;
+        // Limit is set, clean the array to get rid of the surplus keywords
+        if($parm['limit'])
+        {
+            // Set variables
+            $limit 	 = $parm['limit'];
+            $real_limit = $parm['limit']-1;
 
-         // Explode by limit. If more tags are present than limit, the last tag contains all the surplus tags.
-         $all_tags = array_filter(array_map('trim', explode(',', $tags, $limit)));
+            // Explode by limit. If more keywords are present than limit, the last keyword contains all the surplus keywords.
+            $all_keywords = array_filter(array_map('trim', explode(',', $keywords, $limit)));
 
-         // Check if the last tag consists of just one just one tag or if it's combined of more tags (see above)
-         // If the latter, strip everything after the first separator (comma)
-         // Then replace the cleaned last tag with the combined last tag.
-         if(count($all_tags >= $real_limit))
-         {
-            $last_tag = $all_tags[$real_limit];
-            list($part1, $part2) = explode(',', $last_tag);
-            $all_tags = array_map('trim', array_replace($all_tags, array($real_limit => $part1)));
-         }
-      }
+            // Check if the last keyword consists of just one just one keyword or if it's combined of more keywords (see above)
+            // If the latter, strip everything after the first separator (comma)
+            // Then replace the cleaned last keyword with the combined last keyword.
+            if(count($all_keywords >= $real_limit))
+            {
+                $last_keyword = $all_keywords[$real_limit];
+                list($part1, $part2) = explode(',', $last_keyword);
+                $all_keywords = array_map('trim', array_replace($all_keywords, array($real_limit => $part1)));
+            }
+        }
 
-      // The array of tags is clean. Now format them into individual labels
-      foreach ($all_tags as $tag)
-      {
-         $urlparms['tag'] = $tag;
-         $url = e107::url('cookbook', 'tag', $urlparms);
-         $tag = htmlspecialchars($tag, ENT_QUOTES, 'utf-8');
-         $ret[] = '<a href="'.$url.'" title="'.$tag.'"><span class="'.$class.'">'.$tag.'</span></a>';
-      }
+        // The array of keywords is clean. Now format them into individual labels
+        foreach ($all_keywords as $keyword)
+        {
+            $urlparms['keyword'] = $keyword;
+            $url = e107::url('cookbook', 'keyword', $urlparms);
+            $keyword = htmlspecialchars($keyword, ENT_QUOTES, 'utf-8');
+            $ret[] = '<a href="'.$url.'" title="'.$keyword.'"><span class="'.$class.'">'.$keyword.'</span></a>';
+        }
 
-      // And let's return the tags so the template can display them :)
-      return implode(' ', $ret);
-   }
+        // And let's return the keywords so the template can display them :)
+        return implode(' ', $ret);
+    }
 
 	function sc_cookbook_tagcloud($parm='')
    	{
@@ -202,13 +202,13 @@ class cookbook_shortcodes extends e_shortcode
      	else
       	{
         	// Retrieve tags from database
-        	$all_tags = e107::getDb()->retrieve('cookbook_recipes', 'r_tags', '', TRUE);
+        	$all_tags = e107::getDb()->retrieve('cookbook_recipes', 'r_keywords', '', TRUE);
 
         	// Loop through the results and form simpler array
          	$values = array();
         	foreach($all_tags as $tag)
          	{
-           		$values[] = $tag['r_tags'];
+           		$values[] = $tag['r_keywords'];
          	}
 
          	// Loop through the array and split all the comma separated tags into separate array values
@@ -236,8 +236,8 @@ class cookbook_shortcodes extends e_shortcode
 		// Loop through the tag array and formulate the JS
 		foreach($vals as $key => $value)
 		{
-			$urlparms['tag'] = $key;
-			$url = e107::url('cookbook', 'tag', $urlparms);
+			$urlparms['keyword'] = $key;
+			$url = e107::url('cookbook', 'keyword', $urlparms);
 			$word_array_js .= '{text: "'.$key.'", weight: '.$value.', link: "'.$url.'"},';
 		}
 
@@ -273,6 +273,7 @@ class cookbook_shortcodes extends e_shortcode
 		}
 		return;
 	}
+    
   /**
   * Renders a print icon and/or link that redirects to a printer-friendly page of the recipe
   *

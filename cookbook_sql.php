@@ -13,7 +13,7 @@ CREATE TABLE `cookbook_recipes` (
   `r_name_sef` varchar(255) NOT NULL default '',
   `r_datestamp` int(10) unsigned NOT NULL,
   `r_category` tinyint(3) unsigned NOT NULL,
-  `r_tags` varchar(255) DEFAULT NULL,
+  `r_keywords` varchar(255) DEFAULT NULL,
   `r_persons` tinyint(3) DEFAULT NULL,
   `r_time` int(3) DEFAULT NULL,
   `r_authorrating` tinyint(3) DEFAULT NULL,
