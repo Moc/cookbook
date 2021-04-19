@@ -100,10 +100,6 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
 
 ';
 
-// CATEGORY
-$COOKBOOK_TEMPLATE['category'] = '
- 
-';
 
 // TAG OVERVIEW
 $COOKBOOK_TEMPLATE['tagoverview'] = '
