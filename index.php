@@ -75,18 +75,18 @@ if(isset($_GET['id']))
 
 		// Add breadcrumb data
 		$cUrlparms = array(
-			"id"  => $recipe['r_category'],
-			"sef" => $cbClass->getCategoryName($recipe['r_category'], true),
-		);
-
-		$rUrlparms = array(
-			"id"  => $rid,
-			"sef" => $recipe['r_name_sef'],
+			"category_id"  => $recipe['r_category'],
+			"category_sef" => $cbClass->getCategoryName($recipe['r_category'], true),
 		);
 
 		$breadcrumb_array[] = array(
 			'text' 	=> $cbClass->getCategoryName($recipe['r_category']),
 			'url' 	=> e107::url('cookbook', 'category', $cUrlparms),
+		);
+
+		$rUrlparms = array(
+			"recipe_id"  => $rid,
+			"recipe_sef" => $recipe['r_name_sef'],
 		);
 
 		$breadcrumb_array[] = array(
@@ -120,6 +120,23 @@ elseif(isset($_GET['category']) && $_GET['category'] != 0)
 
 	// Retrieve all recipe entries within this category
 	$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category_id.'', true);
+
+	$breadcrumb_array[] = array(
+		'text' 	=> LAN_CATEGORIES,
+		'url' 	=> e107::url('cookbook', 'categories'),
+	);
+
+	$cUrlparms = array(
+		"category_id"  => $category_id,
+		"category_sef" => $cbClass->getCategoryName($category_id, true),
+	);
+
+	print_a($cUrlparms);
+
+	$breadcrumb_array[] = array(
+		'text' 	=> $cbClass->getCategoryName($category_id),
+		'url' 	=> e107::url('cookbook', 'category', $cUrlparms),
+	);
 
 	// Check if there are recipes in this category
 	if($recipes)

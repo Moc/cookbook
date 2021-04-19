@@ -28,7 +28,7 @@ class cookbook_url
 		$config['id'] = array(
 			'alias'         => 'cookbook',
 			'regex'			=> '^{alias}/id/(.*)$',
-			'sef'			=> '{alias}/id/{id}/{sef}',
+			'sef'			=> '{alias}/id/{recipe_id}/{recipe_sef}',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?id=$1',
 		);
 		
@@ -36,7 +36,7 @@ class cookbook_url
 		$config['category'] = array(
 			'alias'         => 'cookbook',
 			'regex'			=> '^{alias}/category/(.*)$',
-			'sef'			=> '{alias}/category/{id}/{sef}',
+			'sef'			=> '{alias}/category/{category_id}/{category_sef}',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?category=$1',
 		);
 

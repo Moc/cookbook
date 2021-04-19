@@ -57,8 +57,8 @@ class cookbook_shortcodes extends e_shortcode
         if($parm == 'sef') { return $this->var["r_name_sef"]; }
 
         $urlparms = array(
-            'id'    => $this->var["r_id"],
-            'sef'  => $this->var['r_name_sef'],
+            'recipe_id'    => $this->var["r_id"],
+            'recipe_sef'  => $this->var['r_name_sef'],
         );
 
         $url = e107::url('cookbook', 'id', $urlparms);
@@ -76,8 +76,8 @@ class cookbook_shortcodes extends e_shortcode
         }
 
         $urlparms = array(
-            'id'	=> $category['c_id'],
-            'sef'   => $category['c_name_sef'],
+            'category_id'	  => $category['c_id'],
+            'category_sef'  => $category['c_name_sef'],
         );
 
         $url = e107::url('cookbook', 'category', $urlparms);
