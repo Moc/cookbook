@@ -100,13 +100,21 @@ class cookbook_shortcodes extends e_shortcode
     * @param string $stars - determines whether star images are displayed or just the numeric value
     * 
     * @example {COOKBOOK_AUTHORRATING} // returns numeric value, e.g. "1" 
-    * @example {COOKBOOK_AUTHORRATING=stars} // returns star images of the rating
+    * @example {COOKBOOK_AUTHORRATING: type=stars} // returns star images of the rating
     */
-    function sc_cookbook_authorrating($parm='')
+    function sc_cookbook_authorrating($parm = null)
     {
-        // Check if we want to display the stars
-        if($parm == 'stars')
+        $type = varset($parm['type']);
+       
+        if(e107::getPlugPref('cookbook', 'author_rating') == false)
         {
+            return false;
+        }
+
+        // Check if we want to display the stars
+        if($type == "stars")
+        {
+
             return e107::js('footer-inline', '
                 $(function() {
                     $("#rating").raty({
@@ -116,7 +124,7 @@ class cookbook_shortcodes extends e_shortcode
                         path: "'.e_PLUGIN_ABS.'cookbook/images/stars"
                     });
                 });
-            ');
+            ')."<!-- -->";
         }
         // Just the numeric value as stored in the database
         else

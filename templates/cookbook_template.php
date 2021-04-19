@@ -47,6 +47,9 @@ $COOKBOOK_TEMPLATE['overview']['end'] = '
 ';
 
 
+$COOKBOOK_WRAPPER['recipe_item']['COOKBOOK_AUTHORRATING: type=stars'] = '<li><i class="fa-li fa fa-trophy"></i><div id="rating">{---}</div></li>';
+
+
 // INDIVIDUAL RECIPE ITEM
 $COOKBOOK_TEMPLATE['recipe_item'] = '
 <div class="row">
@@ -75,7 +78,7 @@ $COOKBOOK_TEMPLATE['recipe_item'] = '
               		<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
               		<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
                 	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_KEYWORDS}</li>
-                  	<li><i class="fa-li fa fa-trophy"></i><div id="rating">{COOKBOOK_AUTHORRATING=stars}</div></li>
+                  	{COOKBOOK_AUTHORRATING: type=stars}
                   	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
                   	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
               	</ul>
@@ -123,7 +126,7 @@ $COOKBOOK_TEMPLATE['print_recipe_item'] = '
 	<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
 	<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
 	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_KEYWORDS}</li>
-  	<li><i class="fa-li fa fa-trophy"></i><div id="rating">{COOKBOOK_AUTHORRATING=stars}</div></li>
+  	{COOKBOOK_AUTHORRATING: type=stars}
   	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
   	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
 </ul>

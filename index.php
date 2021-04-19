@@ -67,6 +67,9 @@ if(isset($_GET['id']))
 		// Set caption
 		$caption 		= " - ".$recipe['r_name']; 
 
+		// Set wrapper
+		$sc->wrapper('cookbook/recipe_item');
+
 		// Pass database info onto the shortcodes
 		$sc->setVars($recipe);
 
