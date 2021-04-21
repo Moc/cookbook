@@ -66,6 +66,7 @@ class cookbook_front
 		{
 			$keyword = e107::getParser()->toDb($_GET['keyword']);
 			$this->renderKeyword($keyword);
+			return;
 		}
 
 		// Keyword overview (tagcloud)
