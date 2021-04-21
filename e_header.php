@@ -10,7 +10,7 @@
 
 if (!defined('e107_INIT')) { exit; }
 
-if (strpos(e_REQUEST_SELF, 'recepten') !== false || strpos(e_REQUEST_SELF, 'cookbook') !== false )
+if(defset('e_CURRENT_PLUGIN') == "cookbook" && e107::isInstalled('cookbook')) 
 {
     $cookbook_page = true;
 }
