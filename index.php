@@ -180,6 +180,31 @@ class cookbook_front
 		return e107::getParser()->parseTemplate($RECIPE_INFO, true, $sc);
 	}
 
+	private function renderOverviewTable($recipes)
+	{
+		$text = '';
+
+		// Load template
+		$template = e107::getTemplate('cookbook');
+		$template = array_change_key_case($template);
+
+		// Load shortcode
+		$sc = e107::getScBatch('cookbook', true);
+
+	 	$text .= e107::getParser()->parseTemplate($template['overview']['start'], true, $sc);
+
+		foreach($recipes as $recipe)
+		{
+			// Pass query values onto the shortcodes
+			$sc->setVars($recipe);
+			$text .= e107::getParser()->parseTemplate($template['overview']['items'], true, $sc);
+		}
+
+		$text .= e107::getParser()->parseTemplate($template['overview']['end'], true, $sc);
+
+		return $text;
+	}
+
 	private function renderCategory($data)
 	{
 		$sql 	= e107::getDb();
@@ -223,16 +248,7 @@ class cookbook_front
 			// Check if there are recipes in this category
 			if($recipes)
 			{
-			 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
-
-				foreach($recipes as $recipe)
-				{
-					// Pass query values onto the shortcodes
-					$sc->setVars($recipe);
-					$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
-				}
-
-				$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
+			 	$text .= $this->renderOverviewTable($recipes);
 			}
 			// No recipes in this category yet
 			else
@@ -281,19 +297,7 @@ class cookbook_front
 				// Check if there are recipes in this category
 				if($recipes)
 				{
-					// Load shortcode
-					$sc = e107::getScBatch('cookbook', true);
-
-				 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
-
-					foreach($recipes as $recipe)
-					{
-						// Pass query values onto the shortcodes
-						$sc->setVars($recipe);
-						$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
-					}
-
-					$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
+					$text .= $this->renderOverviewTable($recipes);
 				}
 				// No recipes for this category, display info message
 				else
@@ -344,18 +348,7 @@ class cookbook_front
 		// Check if there are recipes with this keyword
 		if($recipes)
 		{
-			$sc = e107::getScBatch('cookbook', true);
-
-		 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
-
-			foreach($recipes as $recipe)
-			{
-				// Pass query values onto the shortcodes
-				$sc->setVars($recipe);
-				$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
-			}
-
-			$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
+			$text .= $this->renderOverviewTable($recipes);
 		}
 		// No recipes with this keyword
 		else
@@ -405,18 +398,7 @@ class cookbook_front
 		// Check if there are recipes 
 		if($recipes)
 		{
-			$sc = e107::getScBatch('cookbook', true);
-
-		 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
-
-			foreach($recipes as $recipe)
-			{
-				// Pass query values onto the shortcodes
-				$sc->setVars($recipe);
-				$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
-			}
-
-			$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
+			$text .= $this->renderOverviewTable($recipes);
 		}
 		// No recipes yet
 		else
