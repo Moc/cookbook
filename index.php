@@ -20,229 +20,332 @@ if (!e107::isInstalled('cookbook'))
 	exit;
 }
 
-// Load Cookbook class
-require_once(e_PLUGIN."cookbook/cookbook_class.php");
-$cbClass = new Cookbook();
-
-// Load the LAN files
-e107::lan('cookbook', false, true);
-
-require_once(HEADERF);
-$sql = e107::getDb();
-$tp  = e107::getParser();
-
-// Load template and shortcodes
-$sc = e107::getScBatch('cookbook', true);
-$template = e107::getTemplate('cookbook');
-$template = array_change_key_case($template); // temporary fix until proper solution is found
-$text = '';
-
-/*
-	Use $_GET to determine which view we are on, either:
-	1. ID = indivual recipe (id = id)
-	2. Category = specific category (category = id)
-	3. Keyword (keyword = id)
-	4. Keyword overview (keyword = 0)
-	5. Category overview = all recipes split by category (category = 0)
-	6. Recipe overview = index (no $_GET specified)
-*/
-
-$breadcrumb_array = array(); 
-
-// Add Cookbook home to breadcrumb (default)
-$breadcrumb_array[] = array(
-	'text' 	=> LAN_CB_NAME, 
-	'url' 	=> e107::url('cookbook', 'index'),
-);
-
-// Individual recipe
-if(isset($_GET['id']))
+class cookbook_front
 {
-	// Filter recipe id
-	$rid = (int)$_GET['id'];
-
-	// Retrieve all information of the individual recipe from the database
-	if($recipe = $sql->retrieve("cookbook_recipes", "*", "r_id = '{$rid}'"))
+	protected $breadcrumb_array = array();
+	
+	function __construct()
 	{
-		// Set caption
-		$caption 		= " - ".$recipe['r_name']; 
+		// Add Cookbook home to breadcrumb (default)
+		$this->breadcrumb_array[] = array(
+			'text' 	=> LAN_CB_NAME, 
+			'url' 	=> e107::url('cookbook', 'index'),
+		);
+
+		// Initalize
+		$this->init();
+	}
+
+	function init()
+	{
+		// Individual recipe
+		if(isset($_GET['id']))
+		{
+			$rid = (int)$_GET['id']; // Filter user input 
+			$this->renderRecipe($rid); // Trigger the method to render an individual recipe 
+			return;
+		}
+
+		// Individual category
+		if(isset($_GET['category']) && $_GET['category'] != 0)
+		{
+			$data = $_GET['category']; 
+			$this->renderCategory($data); // Trigger the method to render an individual recipe 
+			return;
+		}
+
+		// Category overview
+		if(isset($_GET['category']) && $_GET['category'] == '0')
+		{
+			$this->renderCategories();
+			return;
+		}
+
+		// Individual keyword
+		if(isset($_GET['keyword']) && $_GET['keyword'] != '0')
+		{
+			$keyword = e107::getParser()->toDb($_GET['keyword']);
+			$this->renderKeyword($keyword);
+		}
+
+		// Keyword overview (tagcloud)
+		if(isset($_GET['keyword']) && $_GET['keyword'] == '0')
+		{
+			$this->renderKeywords();
+			return;
+		}
+
+		// Recipe overview (home)
+		$this->renderRecipeOverview();
+		return;
+	}
+
+	// Renders an individual recipe
+	private function renderRecipe($rid = '')
+	{
+		$text = '';
+
+		// Retrieve all information of the individual recipe from the database
+		if($data = e107::getDb()->retrieve("cookbook_recipes", "*", "r_id = '{$rid}'"))
+		{
+			// Set caption
+			$caption 		= " - ".$data['r_name']; // TODO make this customizable
+
+			// Add breadcrumb data
+			$cUrlparms = array(
+				"category_id"  => $data['r_category'],
+				"category_sef" => $this->getCategoryName($data['r_category'], true),
+			);
+
+			$this->breadcrumb_array[] = array(
+				'text' 	=> $this->getCategoryName($data['r_category']),
+				'url' 	=> e107::url('cookbook', 'category', $cUrlparms),
+			);
+
+			$rUrlparms = array(
+				"recipe_id"  => $rid,
+				"recipe_sef" => $data['r_name_sef'],
+			);
+
+			$this->breadcrumb_array[] = array(
+				'text' 	=> $data['r_name'], 
+				'url' 	=> e107::url('cookbook', 'id', $rUrlparms),
+			);
+
+			// Load shortcode
+			$sc = e107::getScBatch('cookbook', true);
+
+			// Pass database info onto the shortcodes
+			$sc->setVars($data);
+
+			// Load template
+			$LAYOUT = e107::getTemplate('cookbook', 'cookbook', 'recipe_layout');
+
+			// Render recipe content
+			$recipe_content = $this->loadRecipeContent($data);
+
+			// Render recipe info
+			$recipe_info = $this->loadRecipeInfo($data);
+
+			// Replace template placheolders with recipe content and recipe information
+			$LAYOUT = str_replace(
+				['{---RECIPE-CONTENT---}', '{---RECIPE-INFO---}'],
+				[$recipe_content, $recipe_info],
+				$LAYOUT
+			);
+
+			$text .= e107::getParser()->parseTemplate($LAYOUT, true, $sc);
+		}
+		else
+		{
+			$text .= "<div class='alert alert-danger text-center'>".LAN_CB_RECIPENOTFOUND."</div>"; // TODO notify admin?
+		}
+
+		// Send breadcrumb information
+		e107::breadcrumb($this->breadcrumb_array);
+		
+		// Render it
+		e107::getRender()->tablerender(LAN_CB_RECIPE.$caption, $text, "recipe-item");
+	}
+
+	private function loadRecipeContent($data)
+	{
+		// Load shortcodes
+		$sc = e107::getScBatch('cookbook', true);
+
+		// Pass data
+		$sc->setVars($data);
 
 		// Set wrapper
-		$sc->wrapper('cookbook/recipe_item');
+		$sc->wrapper('cookbook/recipe_content');
 
-		// Pass database info onto the shortcodes
-		$sc->setVars($recipe);
+		$RECIPE_CONTENT = e107::getTemplate('cookbook', 'cookbook', 'recipe_content');
 
-		// Display using template
-		$text .= $tp->parseTemplate($template['recipe_item'], true, $sc);
-
-		// Add breadcrumb data
-		$cUrlparms = array(
-			"category_id"  => $recipe['r_category'],
-			"category_sef" => $cbClass->getCategoryName($recipe['r_category'], true),
-		);
-
-		$breadcrumb_array[] = array(
-			'text' 	=> $cbClass->getCategoryName($recipe['r_category']),
-			'url' 	=> e107::url('cookbook', 'category', $cUrlparms),
-		);
-
-		$rUrlparms = array(
-			"recipe_id"  => $rid,
-			"recipe_sef" => $recipe['r_name_sef'],
-		);
-
-		$breadcrumb_array[] = array(
-			'text' 	=> $recipe['r_name'], 
-			'url' 	=> e107::url('cookbook', 'id', $rUrlparms),
-		);
-
+		return e107::getParser()->parseTemplate($RECIPE_CONTENT, true, $sc);
 	}
-	// Recipe ID not found
-	else
+
+	private function loadRecipeInfo($data)
 	{
-		$text .= "<div class='alert alert-danger text-center'>".LAN_CB_RECIPENOTFOUND."</div>";
-		// TODO notify admin?
+		// Load shortcodes
+		$sc = e107::getScBatch('cookbook', true);
+
+		// Pass data
+		$sc->setVars($data);
+
+		// Set wrapper
+		$sc->wrapper('cookbook/recipe_info');
+
+		$RECIPE_INFO = e107::getTemplate('cookbook', 'cookbook', 'recipe_info');
+
+		return e107::getParser()->parseTemplate($RECIPE_INFO, true, $sc);
 	}
-	
-	// Send breadcrumb information
-	e107::breadcrumb($breadcrumb_array);
 
-	// Let's render and show it all!
-	e107::getRender()->tablerender(LAN_CB_RECIPE.$caption, $text);
-}
-
-// Individual category
-elseif(isset($_GET['category']) && $_GET['category'] != 0)
-{
-	// Split and do some lookups do figure out category id and name.
-	$category_full 	= e107::getParser()->toDb($_GET['category']);
-	$category 		= explode('/', $category_full);
-	$category_id 	= $category[0];
-	$category_name 	= $sql->retrieve('cookbook_categories', 'c_name', 'c_id = '.$category_id.'');
-
-	// Retrieve all recipe entries within this category
-	$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category_id.'', true);
-
-	$breadcrumb_array[] = array(
-		'text' 	=> LAN_CATEGORIES,
-		'url' 	=> e107::url('cookbook', 'categories'),
-	);
-
-	$cUrlparms = array(
-		"category_id"  => $category_id,
-		"category_sef" => $cbClass->getCategoryName($category_id, true),
-	);
-
-	$breadcrumb_array[] = array(
-		'text' 	=> $cbClass->getCategoryName($category_id),
-		'url' 	=> e107::url('cookbook', 'category', $cUrlparms),
-	);
-
-	// Check if there are recipes in this category
-	if($recipes)
+	private function renderCategory($data)
 	{
-	 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
+		$sql 	= e107::getDb();
+		$tp 	= e107::getParser();
+		$text 	= '';
 
-		foreach($recipes as $recipe)
+		$template = e107::getTemplate('cookbook');
+		$template = array_change_key_case($template);
+
+		$this->breadcrumb_array[] = array(
+			'text' 	=> LAN_CATEGORIES,
+			'url' 	=> e107::url('cookbook', 'categories'),
+		);
+
+		// Split and do some lookups do figure out category id and name.
+		$category_full 	= e107::getParser()->toDb($data);
+		$category 		= explode('/', $category_full);
+		$category_id 	= (int)$category[0];
+		$category_name 	= e107::getDb()->retrieve('cookbook_categories', 'c_name', 'c_id = '.$category_id.'');
+		
+		if($category_name)
 		{
-			// Pass query values onto the shortcodes
-			$sc->setVars($recipe);
-			$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
+			$caption = LAN_CATEGORY." - ".$category_name;
+
+			// Retrieve all recipe entries within this category
+			$recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'r_category = '.$category_id.'', true);
+
+			$cUrlparms = array(
+				"category_id"  => $category_id,
+				"category_sef" => $this->getCategoryName($category_id, true),
+			);
+
+			$this->breadcrumb_array[] = array(
+				'text' 	=> $this->getCategoryName($category_id),
+				'url' 	=> e107::url('cookbook', 'category', $cUrlparms),
+			);
+
+			// Load shortcode
+			$sc = e107::getScBatch('cookbook', true);
+
+			// Check if there are recipes in this category
+			if($recipes)
+			{
+			 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
+
+				foreach($recipes as $recipe)
+				{
+					// Pass query values onto the shortcodes
+					$sc->setVars($recipe);
+					$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
+				}
+
+				$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
+			}
+			// No recipes in this category yet
+			else
+			{
+				$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPESINCAT."</div>";
+			}
+		}
+		else
+		{
+			$caption = LAN_CB_NAME." - ".LAN_ERROR;
+			$text .= "Category not found"; // TODO LAN
 		}
 
-		$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
+		// Send breadcrumb information
+		e107::breadcrumb($this->breadcrumb_array);
+
+		// Let's render and show it all!
+		e107::getRender()->tablerender($caption, $text);
 	}
-	// No recipes yet
-	else
+
+	private function renderCategories()
 	{
-		$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPESINCAT."</div>";
-	}
+		$sql 	= e107::getDb();
+		$tp 	= e107::getParser();
+		$text 	= '';
 
-	// Send breadcrumb information
-	e107::breadcrumb($breadcrumb_array);
+		$template = e107::getTemplate('cookbook');
+		$template = array_change_key_case($template);
 
-	// Let's render and show it all!
-	e107::getRender()->tablerender(LAN_CATEGORY." - ".$category_name, $text);
-}
+		$this->breadcrumb_array[] = array(
+			'text' 	=> LAN_CATEGORIES,
+			'url' 	=> e107::url('cookbook', 'categories'),
+		);
 
-// Keyword
-elseif(isset($_GET['keyword']) && $_GET['keyword'] != '0')
-{
-	$keyword = e107::getParser()->toDb($_GET['keyword']);
-
-	// Retrieve all recipe entries with this keyword
-	$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_keywords LIKE "%'.$keyword.'%"', TRUE);
-
-	$breadcrumb_array[] = array(
-		'text' 	=> LAN_KEYWORDS,
-		'url' 	=> e107::url('cookbook', 'keywords'),
-	);
-
-	$breadcrumb_array[] = array(
-		'text' 	=> $keyword,
-		'url' 	=> e107::url('cookbook', 'keywords'),
-	);
-
-	// Check if there are recipes with this keyword
-	if($recipes)
-	{
-	 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
-
-		foreach($recipes as $recipe)
+		// Retrieve all categories
+		if($categories = $sql->retrieve('cookbook_categories', '*', '', TRUE))
 		{
-			// Pass query values onto the shortcodes
-			$sc->setVars($recipe);
-			$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
+			// Loop through categories and display recipes for each category
+			foreach($categories as $category)
+			{
+				$text .= "<h3>".$category['c_name']."</h3>";
+
+				// Retrieve all recipe entries for this category
+				$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category["c_id"].'', TRUE);
+
+				// Check if there are recipes in this category
+				if($recipes)
+				{
+					// Load shortcode
+					$sc = e107::getScBatch('cookbook', true);
+
+				 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
+
+					foreach($recipes as $recipe)
+					{
+						// Pass query values onto the shortcodes
+						$sc->setVars($recipe);
+						$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
+					}
+
+					$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
+				}
+				// No recipes for this category, display info message
+				else
+				{
+					$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPESINCAT."</div>";
+				}
+			}
 		}
+		else
+		{
+			$text .= "<div class='alert alert-info text-center'>".LAN_CB_NOCATEGORIESYET."</div>"; // TODO LAN
+		}
+		
 
-		$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
+		// Send breadcrumb information
+		e107::breadcrumb($this->breadcrumb_array);
+
+		// Let's render and show it all!
+		e107::getRender()->tablerender(LAN_CB_CATEGORY_OVERVIEW, $text);
 	}
-	// No recipes with this keyword
-	else
+
+	public function renderKeyword($keyword)
 	{
-		$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPES."</div>";
-	}
+		$sql 	= e107::getDb();
+		$tp 	= e107::getParser();
+		$text 	= '';
 
-	// Send breadcrumb information
-	e107::breadcrumb($breadcrumb_array);
+		$template = e107::getTemplate('cookbook');
+		$template = array_change_key_case($template);
 
-	// Let's render and show it all!
-	e107::getRender()->tablerender(LAN_KEYWORDS." - ".$keyword, $text);
-}
+		// Retrieve all recipe entries with this keyword
+		$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_keywords LIKE "%'.$keyword.'%"', TRUE);
 
-// Keyword overview (tagcloud)
-elseif(isset($_GET['keyword']) && $_GET['keyword'] == '0')
-{
-	$breadcrumb_array[] = array(
-		'text' 	=> LAN_KEYWORDS,
-		'url' 	=> e107::url('cookbook', 'keywords'),
-	);
+		$this->breadcrumb_array[] = array(
+			'text' 	=> LAN_KEYWORDS,
+			'url' 	=> e107::url('cookbook', 'keywords'),
+		);
 
-	// Send breadcrumb information
-	e107::breadcrumb($breadcrumb_array);
+		$kUrlparms = array(
+			"keyword"  => $keyword,
+		);
 
-	$text .= $tp->parseTemplate($template['keyword_overview'], true, $sc);
-	e107::getRender()->tablerender(LAN_CB_KEYWORD_OVERVIEW, $text);
-}
+		$this->breadcrumb_array[] = array(
+			'text' 	=> $keyword,
+			'url' 	=> e107::url('cookbook', 'keyword', $kUrlparms),
+		);
 
-// Category overview
-elseif(isset($_GET['category']) && $_GET['category'] == '0')
-{
-	// Retrieve all categories
-	$categories = $sql->retrieve('cookbook_categories', '*', '', TRUE);
-
-	// Loop through categories and display recipes for each category
-	foreach($categories as $category)
-	{
-		$text .= "<h3>".$category['c_name']."</h3>";
-
-		// Retrieve all recipe entries for this category
-		$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category["c_id"].'', TRUE);
-
-		// Check if there are recipes in this category
+		// Check if there are recipes with this keyword
 		if($recipes)
 		{
+			$sc = e107::getScBatch('cookbook', true);
+
 		 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
 
 			foreach($recipes as $recipe)
@@ -254,51 +357,110 @@ elseif(isset($_GET['category']) && $_GET['category'] == '0')
 
 			$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
 		}
-		// No recipes for this category, display info message
+		// No recipes with this keyword
 		else
 		{
-			$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPESINCAT."</div>";
+			$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPES."</div>";
 		}
+
+		// Send breadcrumb information
+		e107::breadcrumb($this->breadcrumb_array);
+
+		// Let's render and show it all!
+		e107::getRender()->tablerender(LAN_KEYWORDS." - ".$keyword, $text);
 	}
 
-	// Send breadcrumb information
-	e107::breadcrumb($breadcrumb_array);
-
-	// Let's render and show it all!
-	e107::getRender()->tablerender(LAN_CB_CATEGORY_OVERVIEW, $text);
-}
-
-// Recipe overview
-else
-{
-	// Retrieve all recipe entries
-	$recipes = $sql->retrieve('cookbook_recipes', '*', '', TRUE);
-
-	// Check if there are recipes 
-	if($recipes)
+	public function renderKeywords()
 	{
-	 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
+		$template = e107::getTemplate('cookbook');
+		$template = array_change_key_case($template);
 
-		foreach($recipes as $recipe)
+		$sc = e107::getScBatch('cookbook', true);
+
+		$this->breadcrumb_array[] = array(
+			'text' 	=> LAN_KEYWORDS,
+			'url' 	=> e107::url('cookbook', 'keywords'),
+		);
+
+		// Send breadcrumb information
+		e107::breadcrumb($this->breadcrumb_array);
+
+		$text = e107::getParser()->parseTemplate($template['keyword_overview'], true, $sc);
+		
+		e107::getRender()->tablerender(LAN_CB_KEYWORD_OVERVIEW, $text);
+	}
+
+	public function renderRecipeOverview()
+	{
+		$sql 	= e107::getDb();
+		$tp 	= e107::getParser();
+		$text 	= '';
+
+		$template = e107::getTemplate('cookbook');
+		$template = array_change_key_case($template);
+
+		// Retrieve all recipe entries
+		$recipes = $sql->retrieve('cookbook_recipes', '*', '', TRUE);
+
+		// Check if there are recipes 
+		if($recipes)
 		{
-			// Pass query values onto the shortcodes
-			$sc->setVars($recipe);
-			$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
+			$sc = e107::getScBatch('cookbook', true);
+
+		 	$text .= $tp->parseTemplate($template['overview']['start'], true, $sc);
+
+			foreach($recipes as $recipe)
+			{
+				// Pass query values onto the shortcodes
+				$sc->setVars($recipe);
+				$text .= $tp->parseTemplate($template['overview']['items'], true, $sc);
+			}
+
+			$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
+		}
+		// No recipes yet
+		else
+		{
+			$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPES."</div>";
 		}
 
-		$text .= $tp->parseTemplate($template['overview']['end'], true, $sc);
+		// Send breadcrumb information
+		e107::breadcrumb($this->breadcrumb_array);
+
+		// Let's render and show it all!
+		e107::getRender()->tablerender(LAN_CB_RECIPE_OVERVIEW, $text);
 	}
-	// No recipes yet
-	else
+
+	public function getCategoryName($id = '', $sef = false)
 	{
-		$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPES."</div>";
+		$cid = e107::getParser()->toDb($id);
+
+		if($cdata  = e107::getDb()->retrieve('cookbook_categories', 'c_name, c_name_sef', 'c_id = '.$cid.''))
+		{
+			if($sef == false)
+			{
+				return $cdata["c_name"]; 
+			}
+			else
+			{
+				return $cdata["c_name_sef"];
+			}
+		}	
+	
+		return false; 
 	}
-
-	// Send breadcrumb information
-	e107::breadcrumb($breadcrumb_array);
-
-	// Let's render and show it all!
-	e107::getRender()->tablerender(LAN_CB_RECIPE_OVERVIEW, $text);
 }
+
+// Load the LAN files
+e107::lan('cookbook', false, true);
+
+e107::title(LAN_CB_NAME);
+e107::canonical('cookbook');
+e107::route('cookbook/index');  
+
+require_once(HEADERF);
+
+new cookbook_front;
+
 require_once(FOOTERF);
-exit;
+exit; 

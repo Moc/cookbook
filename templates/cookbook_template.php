@@ -10,7 +10,7 @@
 
 if (!defined('e107_INIT')) { exit; }
 
-// OVERVIEW TABLE OF ALL RECIPES
+// OVERVIEW TABLE OF ALL RECIPES - TODO, REWRITE USING WRAPPER
 $COOKBOOK_TEMPLATE['overview']['start'] = '
 <div align="left pull-left">
 <table class="table table-bordered text-left recipes dt-responsive" cellspacing="0" width="100%">
@@ -47,61 +47,66 @@ $COOKBOOK_TEMPLATE['overview']['end'] = '
 ';
 
 
-$COOKBOOK_WRAPPER['recipe_item']['COOKBOOK_AUTHORRATING: type=stars'] = '<li><i class="fa-li fa fa-trophy"></i><div id="rating">{---}</div></li>';
-
-
-// INDIVIDUAL RECIPE ITEM
-$COOKBOOK_TEMPLATE['recipe_item'] = '
+// RECIPE
+$COOKBOOK_TEMPLATE['recipe_layout'] = '
 <div class="row">
-        <div class="col-md-12">
-
-	        <!-- Start content left  -->
-	        <div class="col-md-8 recipe-box">
-	          <div class="recipe-box-title">{COOKBOOK_RECIPE_NAME=no_url}</div>
-	          <div class="recipe-box-content">
-	            <h3>{LAN=LAN_CB_INGREDIENTS}</h3>
-	            <img class="img-thumbnail pull-right hidden-xs" alt="{COOKBOOK_RECIPE_NAME=sef}" src="{COOKBOOK_RECIPE_THUMB=url}">
-	            {COOKBOOK_INGREDIENTS}
-	            <div class="recipe-instructions">
-	                <h3>{LAN=LAN_CB_INSTRUCTIONS}</h3>
-	                {COOKBOOK_INSTRUCTIONS}
-	            </div>
-	          </div>
-	        </div>
-	        <!-- End content left-->
-
-            <!-- Sidebar -->
-            <div class="col-md-4 recipe-sidebar">
-            	<h3>{LAN=LAN_CB_RECIPEINFO}</h3>
-        		<ul class="fa-ul">
-        			<li><i class="fa-li fa fa-cutlery"></i>{COOKBOOK_CATEGORY_NAME=no_url}</li>
-              		<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
-              		<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
-                	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_KEYWORDS}</li>
-                  	{COOKBOOK_AUTHORRATING: type=stars}
-                  	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
-                  	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
-              	</ul>
-
-              	<h3>{LAN=LAN_CB_ACTIONS}</h3>
-              	<ul class="fa-ul">
-                	{COOKBOOK_EDIT}
-                	{COOKBOOK_PRINT}
-              	</ul>
-            </div>
-            <!-- End sidebar -->
-
-        </div> <!-- col-md-12 -->
-      </div> <!-- row -->
-
+	<div class="col-md-12">
+		{---RECIPE-CONTENT---}
+		{---RECIPE-INFO---}
+	</div> <!-- col-md-12 -->
+</div> <!-- row -->
 
 <div class="row">
     <div class="col-md-12">
         {COOKBOOK_COMMENTS}
     </div>
 </div>
-
 ';
+
+$COOKBOOK_TEMPLATE['recipe_content'] = '
+<!-- Start content left  -->
+<div class="col-md-8 recipe-box">
+    <div class="recipe-box-title">{COOKBOOK_RECIPE_NAME=no_url}</div>
+    <div class="recipe-box-content">
+        <h3>{LAN=LAN_CB_INGREDIENTS}</h3>
+        <img class="img-thumbnail pull-right hidden-xs" alt="{COOKBOOK_RECIPE_NAME=sef}" src="{COOKBOOK_RECIPE_THUMB=url}">
+        {COOKBOOK_INGREDIENTS}
+        <div class="recipe-instructions">
+            <h3>{LAN=LAN_CB_INSTRUCTIONS}</h3>
+            {COOKBOOK_INSTRUCTIONS}
+        </div>
+    </div>
+</div>
+<!-- End content left-->
+';
+
+$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_AUTHORRATING: type=stars'] = '<li><i class="fa-li fa fa-trophy"></i><div id="rating">{---}</div></li>';
+
+$COOKBOOK_TEMPLATE['recipe_info'] = '
+<!-- Sidebar -->
+<div class="col-md-4 recipe-sidebar">
+    <h3>{LAN=LAN_CB_RECIPEINFO}</h3>
+    <ul class="fa-ul">
+        <li><i class="fa-li fa fa-cutlery"></i>{COOKBOOK_CATEGORY_NAME=no_url}</li>
+        <li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
+        <li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
+        <li><i class="fa-li fa fa-tags"></i>{COOKBOOK_KEYWORDS}</li>
+        {COOKBOOK_AUTHORRATING: type=stars}
+        <li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
+        <li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
+    </ul>
+
+    <h3>{LAN=LAN_CB_ACTIONS}</h3>
+    <ul class="fa-ul">
+        {COOKBOOK_EDIT}
+        {COOKBOOK_PRINT}
+    </ul>
+</div>
+<!-- End sidebar -->
+';
+
+
+
 
 
 // KEYWORD OVERVIEW (TAGCLOUD)
