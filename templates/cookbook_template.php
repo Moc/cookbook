@@ -10,13 +10,13 @@
 
 if (!defined('e107_INIT')) { exit; }
 
-// OVERVIEW TABLE OF ALL RECIPES - TODO, REWRITE USING WRAPPER
+// OVERVIEW TABLE 
 $COOKBOOK_TEMPLATE['overview']['start'] = '
 <div align="left pull-left">
 <table class="table table-bordered text-left recipes dt-responsive" cellspacing="0" width="100%">
 	<thead>
 		<tr>
-			<th></thr>
+			<th></th>
 		  	<th width="40%">{LAN=LAN_CB_RECIPE}</th>
 		  	<th><i class="fa fa-cutlery"></i></th>
 		  	<th><i class="fa fa-users"></i></th>
@@ -47,7 +47,7 @@ $COOKBOOK_TEMPLATE['overview']['end'] = '
 ';
 
 
-// RECIPE
+// INDVIDUAL RECIPE LAYOUT 
 $COOKBOOK_TEMPLATE['recipe_layout'] = '
 <div class="row">
 	<div class="col-md-12">
@@ -106,8 +106,6 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
 </div>
 <!-- End sidebar -->
 ';
-
-
 
 
 
