@@ -60,6 +60,7 @@ $COOKBOOK_TEMPLATE['recipe_layout'] = '
     <div class="col-md-12">
         {SETSTYLE=cookbook_comments}
         {COOKBOOK_COMMENTS}
+        {SETSTYLE=default}
     </div>
 </div>
 ';
