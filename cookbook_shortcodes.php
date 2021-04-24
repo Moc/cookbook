@@ -257,7 +257,7 @@ class cookbook_shortcodes extends e_shortcode
 		   $("#recipe_tagcloud").jQCloud(word_array,
 		    {removeOverflowing: false});
 		 });
-		').'<div id="recipe_tagcloud" class="container" style="width:650px; height: 350px;"></div>';
+		');
 	}
 
 	function sc_cookbook_ingredients($parm='')

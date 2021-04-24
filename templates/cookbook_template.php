@@ -106,10 +106,10 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
 ';
 
 
-
-// KEYWORD OVERVIEW (TAGCLOUD)
+// KEYWORD OVERVIEW (TAGCLOUD) (div #id should always be 'recipe_tagcloud')
 $COOKBOOK_TEMPLATE['keyword_overview'] = '
 {COOKBOOK_TAGCLOUD}
+<div id="recipe_tagcloud" class="container-fluid" style="min-height: 350px;"></div>
 ';
 
 
