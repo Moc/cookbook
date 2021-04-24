@@ -13,10 +13,9 @@ if (!defined('e107_INIT')) { exit; }
 // OVERVIEW TABLE 
 $COOKBOOK_TEMPLATE['overview']['start'] = '
 <div align="left pull-left">
-<table class="table table-bordered text-left recipes dt-responsive" cellspacing="0" width="100%">
+<table class="table table-bordered text-left recipes dt-responsive nowrap" cellspacing="0" width="100%">
 	<thead>
 		<tr>
-			<th></th>
 		  	<th width="40%">{LAN=LAN_CB_RECIPE}</th>
 		  	<th><i class="fa fa-cutlery"></i></th>
 		  	<th><i class="fa fa-users"></i></th>
@@ -30,7 +29,6 @@ $COOKBOOK_TEMPLATE['overview']['start'] = '
 
 $COOKBOOK_TEMPLATE['overview']['items'] = '
 		<tr>
-			<td></td>
 			<td>{COOKBOOK_RECIPE_NAME}</td>
 	    	<td>{COOKBOOK_CATEGORY_NAME}</td>
 	    	<td>{COOKBOOK_PERSONS}</td>
