@@ -244,13 +244,15 @@ class cookbook_recipes_ui extends e_admin_ui
 		),
 	  	'r_thumbnail' => array( 
 	  		'title' 		=> LAN_IMAGE, 			
-	  		'type' 			=> 'method', 	
+	  		'type' 			=> 'image', 
+	  		'data'			=> 'str',
 	  		'width' 		=> '110px',	
-	  		'thclass' 		=> 'center', 			
-	  		'class' 		=> "center", 		
-	  		'nosort' 		=> false, 
-	  		'readParms' 	=> 'thumb=60&thumb_urlraw=0&thumb_aw=60',
-	  		'readonly'		=> false
+	  		//'thclass' 		=> 'center', 			
+	  		//'class' 		=> "center", 		
+	  		//'nosort' 		=> false, 
+	  		//'readParms' 	=> 'thumb=60&thumb_urlraw=0&thumb_aw=60',
+	  		'readParms'		=> array('thumb' => '80x80'), 
+	  		'writeParms'	=> array('media' => 'cookbook'),
 	  	),
 	  	'r_name' => array( 
 	  		'title' 		=> LAN_TITLE, 			
@@ -445,7 +447,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	public function beforeCreate($new_data, $old_data)
 	{
 		// Process image thumbnails
-		$new_data['r_thumbnail'] = $this->processThumbs($new_data['r_thumbnail']);
+		//$new_data['r_thumbnail'] = $this->processThumbs($new_data['r_thumbnail']);
 
 		// Default recipe date is the creation date
 		if(empty($new_data['r_datestamp']))
@@ -480,7 +482,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	public function beforeUpdate($new_data, $old_data, $id)
 	{
 		// Process image thumnails
-		$new_data['r_thumbnail'] = $this->processThumbs($new_data['r_thumbnail']);
+		//$new_data['r_thumbnail'] = $this->processThumbs($new_data['r_thumbnail']);
 
 		// Default recipe date is the creation date
 		if(empty($new_data['r_datestamp']))
@@ -518,7 +520,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	}
 
 	// For future use: multiple-images
-	private function processThumbs($postedImage)
+	/*private function processThumbs($postedImage)
 	{
 		if(is_array($postedImage))
 		{
@@ -528,7 +530,7 @@ class cookbook_recipes_ui extends e_admin_ui
 		{
 			return $postedImage;
 		}
-	}
+	}*/
 
 	/*public function renderHelp()
 	{
@@ -551,6 +553,7 @@ class cookbook_recipes_ui extends e_admin_ui
 
 class cookbook_recipes_form_ui extends e_admin_form_ui
 {
+	/*
 	function r_thumbnail($curval,$mode)
 	{
 		if($mode == 'read')
@@ -603,9 +606,9 @@ class cookbook_recipes_form_ui extends e_admin_form_ui
 			$text .= $frm->imagepicker('r_thumbnail[3]', varset($thumbTmp[3]),'','media=cookbook&video=1');
 			$text .= $frm->imagepicker('r_thumbnail[4]', varset($thumbTmp[4]),'','media=cookbook&video=1');*/
 
-			return $text;
+			/*return $text;
 		}
-	}
+	}*/
 }
 
 new cookbook_adminArea();
