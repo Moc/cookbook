@@ -258,7 +258,8 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'title' 		=> LAN_TITLE, 			
 	  		'type' 			=> 'text', 		
 	  		'data' 			=> 'str', 
-	  		'width' 		=> 'auto', 
+	  		'width' 		=> 'auto',
+	  		'validate'		=> true, 
 	  		'inline' 		=> true, 
 	  		'help' 			=> '', 
 	  		'readParms' 	=> '', 
@@ -292,7 +293,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	  	),
 	  	'r_author' => array( 
 	  		'title' => LAN_AUTHOR, 			
-	  		'type' 	=> 'hidden', 	
+	  		'type' 	=> 'hidden',
 	  		'data' 	=> 'int'
 	  	),
 	  	'r_keywords' => array( 
@@ -347,6 +348,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'type' 			=> 'bbarea', 	
 	  		'data' 			=> 'str', 
 	  		'width'			=> 'auto', 
+	  		'validate'		=> true,
 	  		'help' 			=> '', 
 	  		'readParms' 	=> array(), 
 	  		'writeParms' 	=> array(), 
@@ -357,7 +359,8 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'title' 		=> LAN_CB_INSTRUCTIONS,	
 	  		'type' 			=> 'bbarea', 	
 	  		'data' 			=> 'str', 
-	  		'width' 		=> 'auto', 
+	  		'width' 		=> 'auto',
+	  		'validate'		=> true, 
 	  		'help' 			=> '', 
 	  		'readParms' 	=> array(), 
 	  		'writeParms' 	=> array(), 
