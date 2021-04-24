@@ -7,15 +7,11 @@
  *
 */
 
-// Load Cookbook class
-require_once(e_PLUGIN."cookbook/cookbook_class.php");
-$cbClass = new Cookbook();
-
-
 class cookbook_print
 {
     function render($rid)
     {
+    
         $tp     = e107::getParser(); 
         $sql    = e107::getDb();
         $text   = '';
@@ -31,8 +27,12 @@ class cookbook_print
 
         if($recipe = $sql->retrieve("cookbook_recipes", "*", "r_id = '{$rid}'"))
         {
+               // Set wrapper
+            $sc->wrapper('cookbook/print_recipe_layout');
+
             // Pass database info onto the shortcodes
             $sc->setVars($recipe);
+
 
             $text = e107::getParser()->parseTemplate($template['print_recipe_layout'], true, $sc);
         }

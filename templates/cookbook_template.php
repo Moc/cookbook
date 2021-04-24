@@ -115,6 +115,8 @@ $COOKBOOK_TEMPLATE['keyword_overview'] = '
 ';
 
 
+$COOKBOOK_WRAPPER['print_recipe_layout'] = $COOKBOOK_WRAPPER['recipe_info']; 
+
 // PRINT TEMPLATE FOR INDIVIDUAL RECIPE
 $COOKBOOK_TEMPLATE['print_recipe_layout'] = '
 <h1>{COOKBOOK_RECIPE_NAME=no_url}<h1>
@@ -131,7 +133,7 @@ $COOKBOOK_TEMPLATE['print_recipe_layout'] = '
 	<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
 	<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
 	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_KEYWORDS}</li>
-  	{COOKBOOK_AUTHORRATING: type=stars}
+    {COOKBOOK_AUTHORRATING: type=stars}
   	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
   	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
 </ul>
