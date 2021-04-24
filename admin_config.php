@@ -123,6 +123,7 @@ class cookbook_categories_ui extends e_admin_ui
 			'data' 			=> 'str', 
 			'width' 		=> 'auto', 
 			'inline' 		=> true, 
+			'validate'		=> true,
 			'help' 			=> 'Name of the category', 
 			'readParms' 	=> '', 
 			'writeParms'	=> '', 
