@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<e107Export version="2.3.1 (git)" timestamp="1619266682" >
+	<database>
+	<dbTable name="cookbook_categories">
+		<item>
+			<field name="c_id">1</field>
+			<field name="c_name">Appetizer</field>
+			<field name="c_name_sef">appetizer</field>
+		</item>
+		<item>
+			<field name="c_id">2</field>
+			<field name="c_name">Main Course</field>
+			<field name="c_name_sef">main-course</field>
+		</item>
+		<item>
+			<field name="c_id">3</field>
+			<field name="c_name">Dessert</field>
+			<field name="c_name_sef">dessert</field>
+		</item>
+	</dbTable>
+	<dbTable name="cookbook_recipes">
+		<item>
+			<field name="r_id">1</field>
+			<field name="r_author">1</field>
+			<field name="r_thumbnail">{e_PLUGIN}cookbook/images/demo_image.webp</field>
+			<field name="r_name"><![CDATA[Tomato &amp; Mozzarella Caprese Skewers]]></field>
+			<field name="r_name_sef">tomato-mozzarella-caprese-skewers</field>
+			<field name="r_datestamp">1618161786</field>
+			<field name="r_category">1</field>
+			<field name="r_keywords">easy,party,vegetarian</field>
+			<field name="r_persons">8</field>
+			<field name="r_time">30</field>
+			<field name="r_authorrating">2</field>
+			<field name="r_ingredients"><![CDATA[[html]<ul>
+<li><span>20 grape or cherry tomatoes</span></li>
+<li><span>20 fresh basil leaves</span></li>
+<li><span>20 small balls fresh mozzarella cheese</span></li>
+<li><span>½ cup balsamic vinegar</span></li>
+<li><span>¼ cup extra virgin olive oil</span></li>
+<li><span>1 tablespoon pesto (optional)</span></li>
+<li><span>20 toothpicks</span></li>
+<li><span>salt and pepper to taste</span></li>
+</ul>[/html]]]></field>
+			<field name="r_instructions"><![CDATA[[html]<ol>
+<li><span>Using a toothpick, spear a half of a tomato, a leaf of basil, a mozzarella ball, and another half of a tomato. Repeat with remaining ingredients.</span></li>
+<li><span>Place on a serving dish and sprinkle with salt and pepper.</span></li>
+<li><span>If desired, whisk the pesto with enough olive oil to form a thin sauce, and drizzle over the skewers</span></li>
+<li><span>Mix the vinegar and oil together in a small bowl to serve as a dipping sauce.</span></li>
+</ol>[/html]]]></field>
+		</item>
+	</dbTable>
+	</database>
+</e107Export>
