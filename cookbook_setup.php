@@ -23,7 +23,7 @@ if(!class_exists("cookbook_setup"))
 		 */
 		function install_post($var)
 		{
-			$ret = e107::getXml(true)->e107Import(e_PLUGIN."cookbook/demodata.xml");
+			/*$ret = e107::getXml(true)->e107Import(e_PLUGIN."cookbook/demodata.xml");
 
 			if(!empty($ret['success']))
 			{
@@ -34,7 +34,7 @@ if(!class_exists("cookbook_setup"))
 			{
 				e107::getMessage()->addError("Failed to import demo data."); // TODO LAN
 				e107::getMessage()->addDebug(print_a($ret['failed'],true));
-			}
+			}*/
 			
 		}
 
