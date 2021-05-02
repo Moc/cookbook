@@ -3,7 +3,7 @@ CREATE TABLE `cookbook_categories` (
   `c_name` varchar(255) NOT NULL,
   `c_name_sef` varchar(255) NOT NULL default '',
   PRIMARY KEY (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 CREATE TABLE `cookbook_recipes` (
   `r_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
@@ -20,4 +20,4 @@ CREATE TABLE `cookbook_recipes` (
   `r_ingredients` text NOT NULL,
   `r_instructions` text NOT NULL,
   PRIMARY KEY (r_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
