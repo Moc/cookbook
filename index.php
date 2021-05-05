@@ -32,12 +32,6 @@ class cookbook_front
 			'url' 	=> e107::url('cookbook', 'index'),
 		);
 
-		// Initalize
-		$this->init();
-	}
-
-	function init()
-	{
 		// Individual recipe
 		if(isset($_GET['id']))
 		{
