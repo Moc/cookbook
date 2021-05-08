@@ -55,8 +55,8 @@ class cookbook_shortcodes extends e_shortcode
         if($parm == 'sef') { return $this->var["r_name_sef"]; }
 
         $urlparms = array(
-            'recipe_id'    => $this->var["r_id"],
-            'recipe_sef'  => $this->var['r_name_sef'],
+            'r_id'          => $this->var["r_id"],
+            'r_name_sef'    => $this->var['r_name_sef'],
         );
 
         $url = e107::url('cookbook', 'id', $urlparms);
@@ -74,8 +74,8 @@ class cookbook_shortcodes extends e_shortcode
         }
 
         $urlparms = array(
-            'category_id'	  => $category['c_id'],
-            'category_sef'  => $category['c_name_sef'],
+            'c_id'	      => $category['c_id'],
+            'c_name_sef'  => $category['c_name_sef'],
         );
 
         $url = e107::url('cookbook', 'category', $urlparms);
@@ -131,6 +131,11 @@ class cookbook_shortcodes extends e_shortcode
         {
             return $this->var["r_authorrating"];
         }
+    }
+
+    function sc_cookbook_userrating($parm = array())
+    {
+        return e107::getForm()->rate("cookbook", $this->var["r_id"]);
     }
 
     /**

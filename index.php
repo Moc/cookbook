@@ -88,8 +88,8 @@ class cookbook_front
 
 			// Add breadcrumb data
 			$cUrlparms = array(
-				"category_id"  => $data['r_category'],
-				"category_sef" => $this->getCategoryName($data['r_category'], true),
+				"c_id"  	 => $data['r_category'],
+				"c_name_sef" => $this->getCategoryName($data['r_category'], true),
 			);
 
 			$this->breadcrumb_array[] = array(
@@ -98,8 +98,8 @@ class cookbook_front
 			);
 
 			$rUrlparms = array(
-				"recipe_id"  => $rid,
-				"recipe_sef" => $data['r_name_sef'],
+				"r_id"  => $rid,
+				"r_name_sef" => $data['r_name_sef'],
 			);
 
 			$this->breadcrumb_array[] = array(
@@ -228,8 +228,8 @@ class cookbook_front
 			$recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'r_category = '.$category_id.'', true);
 
 			$cUrlparms = array(
-				"category_id"  => $category_id,
-				"category_sef" => $this->getCategoryName($category_id, true),
+				"c_id"  => $category_id,
+				"c_name_sef" => $this->getCategoryName($category_id, true),
 			);
 
 			$this->breadcrumb_array[] = array(
