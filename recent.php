@@ -34,7 +34,7 @@ $template = array_change_key_case($template); // temporary fix until proper solu
 $text = '';
 
 // Retrieve the 10 most recently added recipes 
-$recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp LIMIT 0,10', true);
+$recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp DESC LIMIT 0,10', true);
 
 // Check if there are recipes in this category
 if($recipes)
