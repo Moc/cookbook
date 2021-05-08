@@ -239,7 +239,7 @@ class cookbook_recipes_ui extends e_admin_ui
 			'data' 			=> 'int', 
 			'width' 		=> '5%', 
 			'help' 			=> '', 
-			'readParms' 	=> array(), 
+			'readParms' 	=> array('link' => true, 'target' => 'blank', 'url' => 'id'),
 			'writeParms' 	=> array(), 
 			'class' 		=> 'left', 
 			'thclass' 		=> 'left',  
