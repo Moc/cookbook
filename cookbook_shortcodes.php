@@ -318,4 +318,29 @@ class cookbook_shortcodes extends e_shortcode
 
         return e107::getComment()->render($plugin, $id, $subject, $rate);
     }
+
+    /**
+    *
+    * @param array $parm
+    * @param string $parm['types']
+    * @param int $parm['limit']
+    * @example {COOKBOOK_RELATED: types=cookbook,news&limit=3}
+    * @return string
+    */
+    function sc_cookbook_related($parm = array())
+    {
+        if(!varset($parm['types']))
+        {
+            $parm['types'] = 'cookbook';
+        }
+
+        if(!varset($parm['limit']))
+        {
+            $parm['limit'] = '5';
+        }
+
+        $template = e107::getTemplate('cookbook', 'cookbook', 'related');
+
+        return e107::getForm()->renderRelated($parm, $this->var['r_keywords'], array('cookbook' => $this->var['r_id']), $template);
+    }
 }

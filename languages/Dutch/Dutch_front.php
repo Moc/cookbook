@@ -19,6 +19,9 @@ define("LAN_CB_RECIPE_RECENT", "Meest recente recepten");
 define("LAN_CB_RECIPEINFO", "Recept info");
 define("LAN_CB_ACTIONS", "Acties"); 
 
+// Related
+define("LAN_CB_RELATEDRECIPES", "Gerelateerde recepten");
+
 // Error
 define("LAN_CB_NORECIPES", 		"Nog geen recepten.");
 define("LAN_CB_NORECIPESINCAT", "Nog geen recepten in deze categorie.");

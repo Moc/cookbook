@@ -19,6 +19,9 @@ define("LAN_CB_RECIPE_RECENT", "Most recent recipes");
 define("LAN_CB_RECIPEINFO", "Recipe information");
 define("LAN_CB_ACTIONS", "Actions"); 
 
+// Related
+define("LAN_CB_RELATEDRECIPES", "Related recipes");
+
 // Error
 define("LAN_CB_NORECIPES", 		"No recipes yet");
 define("LAN_CB_NORECIPESINCAT",	"No recipes in this category yet");

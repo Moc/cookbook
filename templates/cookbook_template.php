@@ -61,6 +61,14 @@ $COOKBOOK_TEMPLATE['recipe_layout'] = '
         {SETSTYLE=default}
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-12">  
+        {SETSTYLE=cookbook_related}   
+        {COOKBOOK_RELATED}
+        {SETSTYLE=default}
+    </div>
+</div>
 ';
 
 $COOKBOOK_TEMPLATE['recipe_content'] = '
@@ -136,3 +144,11 @@ $COOKBOOK_TEMPLATE['print_recipe_layout'] = '
   	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
 </ul>
 ';
+
+$COOKBOOK_TEMPLATE['related']['caption']    = '{LAN=LAN_CB_RELATEDRECIPES}';
+$COOKBOOK_TEMPLATE['related']['start']      = '{SETIMAGE: w=150&h=150&crop=1}<div class="row">';
+$COOKBOOK_TEMPLATE['related']['item']       = '<div class="col-md-4">
+                                                 <a href="{RELATED_URL}">{RELATED_IMAGE}</a>
+                                                 <h4><a href="{RELATED_URL}">{RELATED_TITLE}</a></h4>
+                                                </div>';
+$COOKBOOK_TEMPLATE['related']['end']        = '</div>';
