@@ -51,7 +51,7 @@ if(USER_AREA && $cookbook_page)
 
 	if(e_ROUTE === "cookbook/recent")
 	{
-		unset($order);
+		$order = "order: [],";
 	}
 	
 
