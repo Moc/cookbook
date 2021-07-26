@@ -175,7 +175,8 @@ class cookbook_shortcodes extends e_shortcode
             // Check if the last keyword consists of just one just one keyword or if it's combined of more keywords (see above)
             // If the latter, strip everything after the first separator (comma)
             // Then replace the cleaned last keyword with the combined last keyword.
-            if(count($all_keywords >= $real_limit))
+
+            if(is_countable($all_keywords) && is_countable($real_limit) && count($all_keywords >= $real_limit))
             {
                 $last_keyword = $all_keywords[$real_limit];
                 list($part1, $part2) = explode(',', $last_keyword);
