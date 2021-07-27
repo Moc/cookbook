@@ -20,6 +20,73 @@ if (!e107::isInstalled('cookbook'))
 	exit;
 }
 
+// Check if AJAX calls were made
+if(e_AJAX_REQUEST)
+{	
+	// Check if 'bookmark' button was pressed
+	if(varset($_POST['action']) == 'bookmark')
+	{
+		$sql = e107::getDb();
+		
+		$recipe_id 	= e107::getParser()->filter($_POST["rid"]);
+		$user_id 	= USERID; 
+	
+		$result 	= "error";
+
+		
+		// Check if user has already bookmarked this recipe 
+		if($sql->count("cookbook_bookmarks", "(*)", "WHERE user_id =".USERID." AND recipe_id = ".$recipe_id.""))
+		{	
+			// Already bookmarked, so unbookmark (remove from database)
+			if(!$sql->delete("cookbook_bookmarks", "user_id = ".USERID." AND recipe_id = ".$recipe_id.""))
+			{
+				$result ="error";
+
+				// TODO LOG
+				error_log("COOKBOOK - SQL ERROR"); 
+				error_log('SQL Error #'.$sql->getLastErrorNumber().': '.$sql->getLastErrorText());
+				error_log('$SQL Query'.print_r($sql->getLastQuery(),true));
+
+			}				
+			else
+			{
+				$result = "deleted"; 
+			}
+		}
+		// Not yet bookmarked, so insert into database
+		else
+		{
+			// Setup data
+			$insert_data = array(
+				'user_id' 				=> USERID,
+				'recipe_id' 			=> $recipe_id,
+				'bookmark_datestamp' 	=> time(),
+			);
+
+			// Insert into db and catch errors
+			if(!$sql->insert("cookbook_bookmarks", $insert_data))
+			{
+				$result = "error"; 
+
+				// TODO LOG
+				error_log("COOKBOOK - SQL ERROR"); 
+				error_log('SQL Error #'.$sql->getLastErrorNumber().': '.$sql->getLastErrorText());
+				error_log('$SQL Query'.print_r($sql->getLastQuery(),true));
+
+			}
+			else
+			{
+				$result = "added"; 
+			}
+			
+		}
+
+		echo json_encode($result);
+		return;
+	}	
+}
+
+
 class cookbook_front
 {
 	protected $breadcrumb_array = array();
@@ -433,11 +500,16 @@ e107::lan('cookbook', false, true);
 
 e107::title(LAN_CB_NAME);
 e107::canonical('cookbook');
-e107::route('cookbook/index');  
+e107::route('cookbook/index'); 
+
+
+// Include JQuery / Ajax code
+e107::js('cookbook','js/cookbook.js', 'jquery', 5);
+
 
 require_once(HEADERF);
 
-new cookbook_front;
+$cookbook_class = new cookbook_front;
 
 require_once(FOOTERF);
 exit; 

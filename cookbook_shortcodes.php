@@ -286,6 +286,31 @@ class cookbook_shortcodes extends e_shortcode
 		return;
 	}
 
+    function sc_cookbook_bookmark($parm = '')
+    {
+        if(!USERID)
+        {
+            return; 
+        }
+
+        // check if recipe is already bookmarked by user
+        $bookmarked = e107::getDb()->count("cookbook_bookmarks", "(*)", "WHERE user_id =".USERID." AND recipe_id = ".$this->var['r_id'].""); 
+   
+        // Not bookmarked yet, display 'empty' bookmark icon
+        if(!$bookmarked)
+        {
+            $text = '<i class="fa-li far fa-bookmark"></i> Add to bookmarks';
+             
+        }
+        // Already bookmarked, display 'full' bookmark icon
+        else
+        {
+            $text = '<i class="fa-li fas fa-bookmark"></i> Remove from bookmarks';
+        }
+
+        return '<li><span data-cookbook-action="bookmark" data-cookbook-recipeid="'.$this->var['r_id'].'">'.$text.'</span></li>';
+    }
+
     /**
     * Renders a print icon and/or link that redirects to a printer-friendly page of the recipe
     *
