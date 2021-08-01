@@ -19,6 +19,10 @@ define("LAN_CB_RECIPE_RECENT", "Meest recente recepten");
 define("LAN_CB_RECIPEINFO", "Recept info");
 define("LAN_CB_ACTIONS", "Acties"); 
 
+// Bookmarks
+define("LAN_CB_BOOKMARKS", "Bladwijzers"); 
+define("LAN_CB_NOBOOKMARKS", "Nog geen recepten met een bladwijzer."); 
+
 // Related
 define("LAN_CB_RELATEDRECIPES", "Gerelateerde recepten");
 

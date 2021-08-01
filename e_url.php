@@ -72,6 +72,14 @@ class cookbook_url
 			'redirect'		=> '{e_PLUGIN}cookbook/recent.php',
 		);
 
+		// Recently added recipes
+		$config['bookmarks'] = array(
+			'alias'         => 'cookbook',
+			'regex'			=> '^{alias}/bookmarks(.*)$',
+			'sef'			=> '{alias}/bookmarks/',
+			'redirect'		=> '{e_PLUGIN}cookbook/bookmarks.php',
+		);
+
 		return $config;
 	}
 }
