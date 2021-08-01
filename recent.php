@@ -5,7 +5,7 @@
  * Released under the terms and conditions of the
  * Apache License 2.0 (see LICENSE file or http://www.apache.org/licenses/LICENSE-2.0)
  *
- * Main frontend
+ * Recently added recipes
 */
 
 if (!defined('e107_INIT'))
@@ -16,7 +16,7 @@ if (!defined('e107_INIT'))
 // Make this page inaccessible when plugin is not installed.
 if (!e107::isInstalled('cookbook'))
 {
-	header('location:'.e_BASE.'index.php');
+	e107::redirect();
 	exit;
 }
 
