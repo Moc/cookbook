@@ -24,7 +24,6 @@ var e107 = e107 || {'settings': {}, 'behaviors': {}};
 					var action 		= $this.attr('data-cookbook-action');
 					var recipeID 	= $this.attr('data-cookbook-recipeid');			
 
-
 					$.ajax({  
 					    type: 'post',
 					    dataType: 'JSON',       
@@ -35,22 +34,16 @@ var e107 = e107 || {'settings': {}, 'behaviors': {}};
 
 			        	success: function(response)
 			        	{
- 
-							switch(response) 
+							if(response.status == 'ok')
 							{
-							  case 'added':
-							    var newIcon = '<i class="fa-li fas fa-bookmark"></i> Remove from bookmarks'; 
-							    break;
-							  case 'deleted':
-							    var newIcon = '<i class="fa-li far fa-bookmark"></i> Add to bookmarks'; 
-							    break;
-							  default:
-							    var newIcon = 'ERROR updating bookmark'; 
+								var newText = response.msg; 
+								$('span[data-cookbook-recipeid='+recipeID+']').html(newText);
 							}
-			        		
-			        		$('span[data-cookbook-recipeid='+recipeID+']').html(newIcon);
-					       		
-							
+							else
+							{
+								alert(response.msg); 
+								return;
+							}	
 			            },
 			            error: function(jqXHR, textStatus, errorThrown) 
 			            {

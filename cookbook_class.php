@@ -1,5 +1,8 @@
 <?php
 
+// Load the LAN files
+e107::lan('cookbook', false, true);
+
 class cookbook
 {
 	protected $breadcrumb_array = array();
@@ -21,9 +24,14 @@ class cookbook
 		
 		$recipe_id 	= e107::getParser()->filter($_POST["rid"], 'int');
 		$user_id 	= USERID; 
-	
-		$result 	= "error";
 
+		$log_error = array();
+
+		$ret = array(
+			'action' 	=> 'unknown', 
+			'msg' 		=> 'unkown', 
+			'status' 	=> 'error'
+		);
 		
 		// Check if user has already bookmarked this recipe 
 		if($sql->count("cookbook_bookmarks", "(*)", "WHERE user_id =".USERID." AND recipe_id = ".$recipe_id.""))
@@ -31,17 +39,18 @@ class cookbook
 			// Already bookmarked, so unbookmark (remove from database)
 			if(!$sql->delete("cookbook_bookmarks", "user_id = ".USERID." AND recipe_id = ".$recipe_id.""))
 			{
-				$result ="error";
-
-				// TODO LOG
-				error_log("COOKBOOK - SQL ERROR"); 
-				error_log('SQL Error #'.$sql->getLastErrorNumber().': '.$sql->getLastErrorText());
-				error_log('$SQL Query'.print_r($sql->getLastQuery(),true));
-
+				$ret['status'] 	= "error";
+				$ret['msg'] 	= "Unable to remove bookmark";
+		
+				$log_error[] = 'SQL Error #'.$sql->getLastErrorNumber().': '.$sql->getLastErrorText();
+				$log_error[] = $sql->getLastQuery();
+				e107::getLog()->add("Cookbook - Unable to remove bookmark", $log_error, E_LOG_WARNING);
 			}				
 			else
 			{
-				$result = "deleted"; 
+				$ret['status'] 	= "ok";
+				$ret['action']  = "removed";
+				$ret['msg'] 	= "<i class='fa-li far fa-bookmark'></i> ".LAN_CB_ADDTOBOOKMARKS;
 			}
 		}
 		// Not yet bookmarked, so insert into database
@@ -57,22 +66,23 @@ class cookbook
 			// Insert into db and catch errors
 			if(!$sql->insert("cookbook_bookmarks", $insert_data))
 			{
-				$result = "error"; 
-
-				// TODO LOG
-				error_log("COOKBOOK - SQL ERROR"); 
-				error_log('SQL Error #'.$sql->getLastErrorNumber().': '.$sql->getLastErrorText());
-				error_log('$SQL Query'.print_r($sql->getLastQuery(),true));
-
+				$ret['status'] 	= "error";
+				$ret['msg'] 	= "Unable to add bookmark";
+		
+				$log_error[] = 'SQL Error #'.$sql->getLastErrorNumber().': '.$sql->getLastErrorText();
+				$log_error[] = $sql->getLastQuery();
+				e107::getLog()->add("Cookbook - Unable to add bookmark", $log_error, E_LOG_WARNING);
 			}
 			else
 			{
-				$result = "added"; 
+				$ret['status'] 	= "ok";
+				$ret['action']  = "added";
+				$ret['msg'] 	= "<i class='fa-li fas fa-bookmark'></i> ".LAN_CB_REMOVEFROMBOOKMARKS;
 			}
 			
 		}
 
-		echo json_encode($result);
+		echo json_encode($ret);
 		exit;
 	}
 	

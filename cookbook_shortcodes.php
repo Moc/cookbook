@@ -299,13 +299,13 @@ class cookbook_shortcodes extends e_shortcode
         // Not bookmarked yet, display 'empty' bookmark icon
         if(!$bookmarked)
         {
-            $text = '<i class="fa-li far fa-bookmark"></i> Add to bookmarks';
+            $text = '<i class="fa-li far fa-bookmark"></i> '.LAN_CB_ADDTOBOOKMARKS;
              
         }
         // Already bookmarked, display 'full' bookmark icon
         else
         {
-            $text = '<i class="fa-li fas fa-bookmark"></i> Remove from bookmarks';
+            $text = '<i class="fa-li fas fa-bookmark"></i> '.LAN_CB_REMOVEFROMBOOKMARKS;
         }
 
         return '<li><span data-cookbook-action="bookmark" data-cookbook-recipeid="'.$this->var['r_id'].'">'.$text.'</span></li>';

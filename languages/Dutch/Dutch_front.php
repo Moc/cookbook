@@ -20,8 +20,10 @@ define("LAN_CB_RECIPEINFO", "Recept info");
 define("LAN_CB_ACTIONS", "Acties"); 
 
 // Bookmarks
-define("LAN_CB_BOOKMARKS", "Bladwijzers"); 
-define("LAN_CB_NOBOOKMARKS", "Nog geen recepten met een bladwijzer."); 
+define("LAN_CB_BOOKMARKS",              "Bladwijzers"); 
+define("LAN_CB_NOBOOKMARKS",            "Nog geen recepten met een bladwijzer.");
+define("LAN_CB_ADDTOBOOKMARKS",         "Voeg toe aan bladwijzers"); 
+define("LAN_CB_REMOVEFROMBOOKMARKS",    "Verwijder van bladwijders");  
 
 // Related
 define("LAN_CB_RELATEDRECIPES", "Gerelateerde recepten");
