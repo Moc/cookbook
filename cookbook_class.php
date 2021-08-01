@@ -19,7 +19,7 @@ class cookbook
 	{
 		$sql = e107::getDb();
 		
-		$recipe_id 	= e107::getParser()->filter($_POST["rid"]);
+		$recipe_id 	= e107::getParser()->filter($_POST["rid"], 'int');
 		$user_id 	= USERID; 
 	
 		$result 	= "error";
