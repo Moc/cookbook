@@ -32,3 +32,4 @@ define("LAN_CB_RELATEDRECIPES", "Gerelateerde recepten");
 define("LAN_CB_NORECIPES", 		"Nog geen recepten.");
 define("LAN_CB_NORECIPESINCAT", "Nog geen recepten in deze categorie.");
 define("LAN_CB_RECIPENOTFOUND", "Recept niet gevonden!");
+define("LAN_CB_CATNOTFOUND",    "Categorie niet gevonden!");

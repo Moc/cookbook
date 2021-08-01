@@ -264,7 +264,7 @@ class cookbook
 		else
 		{
 			$caption = LAN_CB_NAME." - ".LAN_ERROR;
-			$text .= "Category not found"; // TODO LAN
+			$text .= LAN_CB_CATNOTFOUND;
 		}
 
 		// Send breadcrumb information
@@ -312,7 +312,7 @@ class cookbook
 		}
 		else
 		{
-			$text .= "<div class='alert alert-info text-center'>".LAN_CB_NOCATEGORIESYET."</div>"; // TODO LAN
+			$text .= "<div class='alert alert-info text-center'>".LAN_CB_NOCATEGORIESYET."</div>";
 		}
 		
 

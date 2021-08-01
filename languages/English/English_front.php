@@ -32,3 +32,4 @@ define("LAN_CB_RELATEDRECIPES", "Related recipes");
 define("LAN_CB_NORECIPES", 		"No recipes yet");
 define("LAN_CB_NORECIPESINCAT",	"No recipes in this category yet");
 define("LAN_CB_RECIPENOTFOUND", "Recipe not found!");
+define("LAN_CB_CATNOTFOUND",    "Category not found!");
