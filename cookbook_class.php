@@ -50,7 +50,7 @@ class cookbook
 			{
 				$ret['status'] 	= "ok";
 				$ret['action']  = "removed";
-				$ret['msg'] 	= "<i class='fa-li far fa-bookmark'></i> ".LAN_CB_ADDTOBOOKMARKS;
+				$ret['msg'] 	= "<i class='fa-li far fa-bookmark'></i> <a href='#'>".LAN_CB_ADDTOBOOKMARKS."</a>";
 			}
 		}
 		// Not yet bookmarked, so insert into database
@@ -77,7 +77,7 @@ class cookbook
 			{
 				$ret['status'] 	= "ok";
 				$ret['action']  = "added";
-				$ret['msg'] 	= "<i class='fa-li fas fa-bookmark'></i> ".LAN_CB_REMOVEFROMBOOKMARKS;
+				$ret['msg'] 	= "<i class='fa-li fas fa-bookmark'></i> <a href='#'>".LAN_CB_REMOVEFROMBOOKMARKS."</a>";
 			}
 			
 		}

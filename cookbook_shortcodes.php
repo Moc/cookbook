@@ -308,7 +308,7 @@ class cookbook_shortcodes extends e_shortcode
             $text = '<i class="fa-li fas fa-bookmark"></i> '.LAN_CB_REMOVEFROMBOOKMARKS;
         }
 
-        return '<li><span data-cookbook-action="bookmark" data-cookbook-recipeid="'.$this->var['r_id'].'">'.$text.'</span></li>';
+        return '<li><span data-cookbook-action="bookmark" data-cookbook-recipeid="'.$this->var['r_id'].'"><a href="#">'.$text.'</a></span></li>';
     }
 
     /**
