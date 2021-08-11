@@ -40,6 +40,16 @@ e107::title(LAN_CB_NAME);
 e107::canonical('cookbook');
 e107::route('cookbook/index'); 
 
+// Set caption
+if(isset($_GET['id']))
+{
+	$id = (int)$_GET['id']; 
+	$title = $cookbook_class->getTitle($id);
+}
+
+$caption = empty($title) ? LAN_CB_NAME : $title; 
+define('e_PAGETITLE', $caption); 
+
 
 // Include JQuery / Ajax code
 e107::js('cookbook','js/cookbook.js', 'jquery', 5);

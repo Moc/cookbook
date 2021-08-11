@@ -85,7 +85,14 @@ class cookbook
 		echo json_encode($ret);
 		exit;
 	}
-	
+
+	public function getTitle($id)
+	{
+		$id = (int) $id; 
+		$title = e107::getDb()->retrieve('cookbook_recipes', 'r_name', 'r_id='.$id);
+		return $title;
+	}
+
 	// Renders an individual recipe
 	public function renderRecipe($rid = '')
 	{
@@ -95,7 +102,7 @@ class cookbook
 		if($data = e107::getDb()->retrieve("cookbook_recipes", "*", "r_id = '{$rid}'"))
 		{
 			// Set caption
-			$this->caption 		= " - ".$data['r_name']; // TODO make this customizable
+			$this->caption = " - ".$data['r_name']; // TODO make this customizable
 
 			// Add breadcrumb data
 			$cUrlparms = array(
