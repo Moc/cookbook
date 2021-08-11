@@ -47,7 +47,7 @@ if(USER_AREA && $cookbook_page)
 	$default_lan 	= e_PLUGIN_ABS."cookbook/plugins/datatables/languages/English.json";
 	$dt_lan_file 	= (file_exists($system_lan) ? $system_lan : $default_lan);
 
-	$order = "order: [[5, 'desc']],";
+	$order = "order: [[4, 'desc']],";
 
 	if(e_ROUTE === "cookbook/recent")
 	{
