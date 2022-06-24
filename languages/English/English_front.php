@@ -18,9 +18,20 @@ define("LAN_CB_RECIPE_RECENT", "Most recent recipes");
 // Individual recipe
 define("LAN_CB_RECIPEINFO", "Recipe information");
 define("LAN_CB_ACTIONS", "Actions"); 
-define("LAN_CB_PRINTRECIPE", "Print recipe");
+
+// Bookmarks
+define("LAN_CB_BOOKMARKS",              "Bookmarks"); 
+define("LAN_CB_NOBOOKMARKS",            "No recipes bookmarked yet."); 
+define("LAN_CB_ADDTOBOOKMARKS",         "Add to bookmarks"); 
+define("LAN_CB_REMOVEFROMBOOKMARKS",    "Remove from bookmarks"); 
+define("LAN_CB_PRINTRECIPE",            "Print recipe");
+
+
+// Related
+define("LAN_CB_RELATEDRECIPES", "Related recipes");
 
 // Error
-define("LAN_CB_NORECIPES", 		"No recipes yet");
-define("LAN_CB_NORECIPESINCAT",	"No recipes in this category yet");
+define("LAN_CB_NORECIPES",      "No recipes yet");
+define("LAN_CB_NORECIPESINCAT", "No recipes in this category yet");
 define("LAN_CB_RECIPENOTFOUND", "Recipe not found!");
+define("LAN_CB_CATNOTFOUND",    "Category not found!");
