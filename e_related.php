@@ -22,14 +22,19 @@ class cookbook_related
 		$query = "SELECT * FROM `#cookbook_recipes` WHERE r_id != ".$parm['current']." AND r_keywords REGEXP ".$tag_regexp."  ORDER BY r_datestamp DESC LIMIT ".$parm['limit'];
 			
 		if($sql->gen($query))
-		{		
+		{	
+
+			$default_img = "{e_PLUGIN}cookbook/images/default_image.webp";
+
 			while($row = $sql->fetch())
 			{
+				$img = (!empty($row['r_thumbnail']) ? $row['r_thumbnail'] : $default_img);
+
 				$items[] = array(
 					'title'			=> varset($row['r_name']),
 					'url'			=> e107::url('cookbook', 'id', $row), 
 					'summary'		=> "summary?", // varset($row['blank_summary']),
-					'image'			=> varset($row['r_thumbnail']),
+					'image'			=> $img, //varset($row['r_thumbnail']),
 				);
 			}
 
