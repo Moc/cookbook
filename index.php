@@ -37,14 +37,22 @@ if(e_AJAX_REQUEST)
 e107::lan('cookbook', false, true);
 
 e107::title(LAN_CB_NAME);
-e107::canonical('cookbook');
+//e107::canonical('cookbook');
 e107::route('cookbook/index'); 
 
-// Set caption
+// Set caption and metatags
 if(isset($_GET['id']))
 {
-	$id = (int)$_GET['id']; 
-	$title = $cookbook_class->getTitle($id);
+	$id 	= (int)$_GET['id']; 
+	$title 	= $cookbook_class->getTitle($id);
+	$recipedata = $cookbook_class->getRecipeData($id); 
+
+	e107::meta('og:title', $title);
+	e107::meta('og:url', e_SELF);
+	e107::meta('twitter:url', e_SELF);
+
+	$mimg = $tp->thumbUrl($recipedata["r_thumbnail"],'w=1200', false, true);
+  	e107::meta('og:image',$mimg);
 }
 
 $caption = empty($title) ? LAN_CB_NAME : $title; 

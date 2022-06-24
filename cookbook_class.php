@@ -89,13 +89,33 @@ class cookbook
 	public function getTitle($id)
 	{
 		$id = (int) $id; 
-		$title = e107::getDb()->retrieve('cookbook_recipes', 'r_name', 'r_id='.$id);
-		return $title;
+
+		if($title = e107::getDb()->retrieve('cookbook_recipes', 'r_name', 'r_id='.$id))
+		{
+			return $title;
+		}
+
+		return LAN_ERROR; 
+	}
+
+	public function getRecipeData($id)
+	{
+		$id = (int) $id; 
+
+		// Retrieve all information of the individual recipe from the database
+		if($data = e107::getDb()->retrieve("cookbook_recipes", "*", "r_id = '{$id}'"))
+		{
+			return $data; 
+		}
+
+		return false; 
 	}
 
 	// Renders an individual recipe
 	public function renderRecipe($rid = '')
 	{
+		$id = (int) $id;
+
 		$text = '';
 
 		// Retrieve all information of the individual recipe from the database
