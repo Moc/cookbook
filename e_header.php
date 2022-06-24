@@ -49,7 +49,7 @@ if(USER_AREA && $cookbook_page)
 
 	$order = "order: [[4, 'desc']],";
 
-	if(e_ROUTE === "cookbook/recent")
+	if(defset('e_ROUTE') === "cookbook/recent")
 	{
 		$order = "order: [],";
 	}
