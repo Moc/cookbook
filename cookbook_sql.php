@@ -26,6 +26,6 @@ CREATE TABLE `cookbook_bookmarks` (
   `bookmark_id` tinyint(3) NOT NULL AUTO_INCREMENT,
   `user_id` tinyint(3) NOT NULL,
   `recipe_id` tinyint(3) NOT NULL,
-  `bookmark_datestamp` int(10) NOT NULL
+  `bookmark_datestamp` int(10) NOT NULL,
   PRIMARY KEY (`bookmark_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
