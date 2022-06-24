@@ -330,7 +330,7 @@ class cookbook_shortcodes extends e_shortcode
             return $url; 
         }
 
-        return '<li><i class="fa-li fa fa-print"></i> <a href="'.$url.'">Print recipe</a></li>';
+        return '<li><i class="fa-li fa fa-print"></i> <a href="'.$url.'">'.LAN_CB_PRINTRECIPE.'</a></li>';
     }
 
     function sc_cookbook_comments($parm = '')
