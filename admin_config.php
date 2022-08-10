@@ -341,6 +341,17 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left',  
 	  	),
+	  	'r_summary' => array( 
+	  		'title' 		=> LAN_SUMMARY,	
+	  		'type' 			=> 'bbarea', 	
+	  		'data' 			=> 'str', 
+	  		'width'			=> 'auto', 
+	  		'help' 			=> LAN_CB_HELP_SUMMARY,  
+	  		'readParms' 	=> array(), 
+	  		'writeParms' 	=> array('size' => 'small'), 
+	  		'class' 		=> 'left', 
+	  		'thclass' 		=> 'left',  
+	  	),
 	  	'r_ingredients' => array( 
 	  		'title' 		=> LAN_CB_INGREDIENTS,	
 	  		'type' 			=> 'bbarea', 	

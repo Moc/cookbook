@@ -17,6 +17,7 @@ CREATE TABLE `cookbook_recipes` (
   `r_persons` tinyint(3) DEFAULT NULL,
   `r_time` int(3) DEFAULT NULL,
   `r_authorrating` tinyint(3) DEFAULT NULL,
+  `r_summary` text,
   `r_ingredients` text NOT NULL,
   `r_instructions` text NOT NULL,
   PRIMARY KEY (r_id)

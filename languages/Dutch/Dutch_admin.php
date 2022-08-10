@@ -18,3 +18,4 @@ define("LAN_CB_HELP_TIME", 			"Bereidingstijd in minuten.");
 define("LAN_CB_HELP_PERSONS", 		"Aantal personen");
 define("LAN_CB_HELP_KEYWORDS", 		"Keywords die bij dit recept passen");
 define("LAN_CB_HELP_AUTHORRATING",	"Beoordeling van het recept door de auteur. Tussen de 1 en 3 sterren.");
+define("LAN_CB_HELP_SUMMARY",       "Samenvatten van het recept.");

@@ -266,6 +266,11 @@ class cookbook_shortcodes extends e_shortcode
 		');
 	}
 
+    function sc_cookbook_summary($parm='')
+    {
+        return e107::getParser()->toHTML($this->var["r_summary"], TRUE);
+    }
+
 	function sc_cookbook_ingredients($parm='')
    	{
 		return e107::getParser()->toHTML($this->var["r_ingredients"], TRUE);
