@@ -27,7 +27,7 @@ class cookbook_shortcodes extends e_shortcode
     		$thumbImage = "{e_PLUGIN}cookbook/images/default_image.webp";
     	}
 
-        $thumbUrl = e107::getParser()->thumbUrl($thumbImage, 'aw=180');
+        $thumbUrl = e107::getParser()->thumbUrl($thumbImage);
 
         if($parm == 'url')
         {
