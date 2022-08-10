@@ -30,16 +30,17 @@ class cookbook_latestmenu
 
     public function render($parm = null)
     {
+        $text = '';
         $limit  = 10; // Number of recipes to display // TODO PREF
 
         // Retrieve the most recently added recipes 
         if($recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp DESC LIMIT 0,'.$limit, true))
         {
+            // Load shortcodes
+            $sc = e107::getScBatch('cookbook', TRUE);
+
             foreach($recipes as $recipe)
             {
-                // Load shortcodes
-                $sc = e107::getScBatch('cookbook', TRUE);
-
                 // Pass vars to shortcodes
                 $sc->setVars($recipe);
                 
