@@ -20,9 +20,6 @@
 		<pref name='date_format'>short</pref>
 		<pref name='caching'>1</pref>
 	</pluginPrefs>
-	<extendedFields>
-		<field name="recipe_favorites" type='EUF_TEXTAREA' default='0' active="true" />
-	</extendedFields>
 	<mediaCategories>
 		<category type="image">Cookbook</category>
 	</mediaCategories>
