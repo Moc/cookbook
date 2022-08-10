@@ -16,7 +16,7 @@ if(defset('e_CURRENT_PLUGIN') == "cookbook" && e107::isInstalled('cookbook'))
 }
 
 // Code is only needed on frontend cookbook pages
-if(USER_AREA && $cookbook_page)
+if(USER_AREA && varsettrue($cookbook_page))
 {
 	// Raty plugin
 	e107::js('cookbook', 'plugins/raty/jquery.raty.js', 'jquery');
