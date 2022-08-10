@@ -83,6 +83,11 @@ class cookbook_shortcodes extends e_shortcode
         return '<a href="'.$url.'">'.$category['c_name'].'</a>';
     }
 
+    function sc_cookbook_recipes_in_category($parm = '')
+    {
+        return e107::getDb()->count('cookbook_recipes', '(*)', 'WHERE r_category = '.$this->var["r_category"]);
+    }
+
     function sc_cookbook_persons($parm='')
     {
         return $this->var["r_persons"];

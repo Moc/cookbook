@@ -33,6 +33,11 @@ class cookbook_menu
 			$fields['caption'] 	= array('title'=> LAN_CAPTION, 'type'=>'text', 'multilan'=>true, 'writeParms'=>array('size'=>'xxlarge'));
 			$fields['limit'] 	= array('title'=> LAN_LIMIT, 'type'=>'number');
 		}
+
+		if($menu == "cookbook_categories")
+		{
+			$fields['caption'] 	= array('title'=> LAN_CAPTION, 'type'=>'text', 'multilan'=>true, 'writeParms'=>array('size'=>'xxlarge'));
+		}
 		
         return $fields;
 	}

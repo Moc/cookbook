@@ -26,7 +26,6 @@ define("LAN_CB_ADDTOBOOKMARKS",         "Add to bookmarks");
 define("LAN_CB_REMOVEFROMBOOKMARKS",    "Remove from bookmarks"); 
 define("LAN_CB_PRINTRECIPE",            "Print recipe");
 
-
 // Related
 define("LAN_CB_RELATEDRECIPES", "Related recipes");
 
@@ -35,3 +34,4 @@ define("LAN_CB_NORECIPES",      "No recipes yet");
 define("LAN_CB_NORECIPESINCAT", "No recipes in this category yet");
 define("LAN_CB_RECIPENOTFOUND", "Recipe not found!");
 define("LAN_CB_CATNOTFOUND",    "Category not found!");
+define("LAN_CB_NOCATS",         "There are no categories yet!");
