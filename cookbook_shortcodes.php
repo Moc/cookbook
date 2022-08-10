@@ -17,6 +17,7 @@ class cookbook_shortcodes extends e_shortcode
         return $this->var['r_id'];
     }
 
+	/* {COOKBOOK_RECIPE_THUMB} */
     function sc_cookbook_recipe_thumb($parm='')
     {
     	$thumbImage = $this->var['r_thumbnail']; 
@@ -34,7 +35,7 @@ class cookbook_shortcodes extends e_shortcode
            return $thumbUrl; 
         }
 
-        return '<img class="img-responsive" src="'.$thumbUrl.'" alt="" />';
+        return '<img class="img-responsive" src="'.$thumbUrl.'" alt="'.$this->sc_cookbook_recipe_name('no_url').'" />';
     }
 
     function sc_cookbook_date($parm='')
