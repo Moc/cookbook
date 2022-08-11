@@ -30,13 +30,28 @@ class cookbook_menu
 
 		if($menu == "cookbook_latest")
 		{
-			$fields['caption'] 	= array('title'=> LAN_CAPTION, 'type'=>'text', 'multilan'=>true, 'writeParms'=>array('size'=>'xxlarge'));
-			$fields['limit'] 	= array('title'=> LAN_LIMIT, 'type'=>'number');
+			$fields['caption'] 	= array(
+				'title' 		=> LAN_CAPTION, 
+				'type' 			=> 'text', 
+				'multilan' 		=> true, 
+				'writeParms' 	=> array('size' => 'xxlarge')
+			);
+
+			$fields['limit'] = array(
+				'title' 		=> LAN_LIMIT, 
+				'type' 			=> 'number', 
+				'writeParms' 	=> array('default' => 10)
+			);
 		}
 
 		if($menu == "cookbook_categories")
 		{
-			$fields['caption'] 	= array('title'=> LAN_CAPTION, 'type'=>'text', 'multilan'=>true, 'writeParms'=>array('size'=>'xxlarge'));
+			$fields['caption'] 	= array(
+				'title' 	 => LAN_CAPTION, 
+				'type' 		 => 'text', 
+				'multilan' 	 => true, 
+				'writeParms' => array('size' => 'xxlarge')
+			);
 		}
 		
         return $fields;

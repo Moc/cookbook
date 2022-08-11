@@ -31,7 +31,14 @@ class cookbook_latestmenu
     public function render($parm = null)
     {
         $text = '';
-        $limit  = 10; // Number of recipes to display // TODO PREF
+
+        // Number of recipes to display 
+        $limit = 10;
+        
+        if(isset($parm['limit']))
+        {
+            $limit = (int) $parm['limit'];
+        }
 
         // Retrieve the most recently added recipes 
         if($recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp DESC LIMIT 0,'.$limit, true))
