@@ -34,7 +34,7 @@ class cookbook_shortcodes extends e_shortcode
            return $thumbUrl; 
         }
 
-        return '<img class="img-responsive" src="'.$thumbUrl.'" alt="" />';
+        return '<img class="img-responsive" src="'.$thumbUrl.'" alt="'.$this->sc_cookbook_recipe_name('no_url').'" />';
     }
 
     function sc_cookbook_date($parm='')
