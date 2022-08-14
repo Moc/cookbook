@@ -14,5 +14,5 @@ $COOKBOOK_CATEGORIESMENU_TEMPLATE = array();
           
 $COOKBOOK_CATEGORIESMENU_TEMPLATE['default']['caption'] = '{COOKBOOK_CATEGORIESMENU_CAPTION}';
 $COOKBOOK_CATEGORIESMENU_TEMPLATE['default']['start']   = '<div class="cookbook_categories_menu">';
-$COOKBOOK_CATEGORIESMENU_TEMPLATE['default']['item']    = "{COOKBOOK_CATEGORY_NAME} ({COOKBOOK_RECIPES_IN_CATEGORY})<br>";
+$COOKBOOK_CATEGORIESMENU_TEMPLATE['default']['item']    = "{COOKBOOK_CATEGORY_NAME} <span class='badge text-right'>{COOKBOOK_RECIPES_IN_CATEGORY}</span><br>";
 $COOKBOOK_CATEGORIESMENU_TEMPLATE['default']['end']     = '</div>';

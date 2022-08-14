@@ -47,8 +47,13 @@ if(isset($_GET['id']))
 	$title 		= $cookbook_class->getTitle($id);
 	$recipedata = $cookbook_class->getRecipeData($id); 
 
+	$description = e107::getParser()->toText($recipedata['r_summary']); 
+	$description = e107::getParser()->truncate($description, 150);
+	
 	e107::meta('og:title', $title);
 	e107::meta('og:url', e_SELF);
+	e107::meta('og:description', $description);
+	e107::meta('description', $description);
 	e107::meta('twitter:url', e_SELF);
 
 	$default_img 	= "{e_PLUGIN}cookbook/images/default_image.webp";
