@@ -12,12 +12,12 @@ if (!defined('e107_INIT')) { exit; }
     
 class cookbook_shortcodes extends e_shortcode
 {
-    function sc_cookbook_id($parm='')
+    function sc_cookbook_id($parm = array())
     {
         return $this->var['r_id'];
     }
 
-    function sc_cookbook_recipe_thumb($parm='')
+    function sc_cookbook_recipe_thumb($parm = array())
     {
     	$thumbImage = $this->var['r_thumbnail']; 
 
@@ -37,19 +37,19 @@ class cookbook_shortcodes extends e_shortcode
         return '<img class="img-responsive" src="'.$thumbUrl.'" alt="'.$this->sc_cookbook_recipe_name('no_url').'" />';
     }
 
-    function sc_cookbook_date($parm='')
+    function sc_cookbook_date($parm = array())
     {
         $date_format = e107::getPlugPref('cookbook', 'date_format', 'short'); 
         return e107::getDate()->convert_date($this->var["r_datestamp"], $date_format);
     }
 
-    function sc_cookbook_author($parm='')
+    function sc_cookbook_author($parm = array())
     {
         $username = e107::getDb()->retrieve('user', 'user_name', 'user_id = '.$this->var["r_author"].'');
         return $username;
     }
 
-    function sc_cookbook_recipe_name($parm='')
+    function sc_cookbook_recipe_name($parm = array())
     {
         if($parm == 'no_url') { return $this->var["r_name"]; }
         if($parm == 'sef') { return $this->var["r_name_sef"]; }
@@ -64,7 +64,7 @@ class cookbook_shortcodes extends e_shortcode
         return '<a href="'.$url.'">'.$this->var["r_name"].'</a>';
     }
 
-    function sc_cookbook_category_name($parm='')
+    function sc_cookbook_category_name($parm = array())
     {
         $category = e107::getDb()->retrieve('cookbook_categories', 'c_id, c_name, c_name_sef', 'c_id = '.$this->var['r_category']);
 
@@ -88,12 +88,12 @@ class cookbook_shortcodes extends e_shortcode
         return e107::getDb()->count('cookbook_recipes', '(*)', 'WHERE r_category = '.$this->var["r_category"]);
     }
 
-    function sc_cookbook_persons($parm='')
+    function sc_cookbook_persons($parm = array())
     {
         return $this->var["r_persons"];
     }
 
-    function sc_cookbook_time($parm='')
+    function sc_cookbook_time($parm = array())
     {
         return $this->var["r_time"];
     }
@@ -107,7 +107,7 @@ class cookbook_shortcodes extends e_shortcode
     * @example {COOKBOOK_AUTHORRATING} // returns numeric value, e.g. "1" 
     * @example {COOKBOOK_AUTHORRATING: type=stars} // returns star images of the rating
     */
-    function sc_cookbook_authorrating($parm = null)
+    function sc_cookbook_authorrating($parm = array())
     {
         $type = varset($parm['type']);
        
@@ -154,7 +154,7 @@ class cookbook_shortcodes extends e_shortcode
     * @example {COOKBOOK_KEYWORDS: class=btn btn-default pull-right&limit=2} 
     *
     */
-    function sc_cookbook_keywords($parm='')
+    function sc_cookbook_keywords($parm = array())
     {
         // Retrieve keywords from db. Stop when no keywords are present.
         $keywords = $this->var['r_keywords'];
@@ -202,7 +202,7 @@ class cookbook_shortcodes extends e_shortcode
         return implode(' ', $ret);
     }
 
-	function sc_cookbook_tagcloud($parm='')
+	function sc_cookbook_tagcloud($parm = array())
    	{
     	$cache_name = 'cookbook_recipe_tagcloud'; // name of cache file
       	$cache_time = '60'; // set to one hour (60 minutes)
@@ -271,22 +271,22 @@ class cookbook_shortcodes extends e_shortcode
 		');
 	}
 
-    function sc_cookbook_summary($parm='')
+    function sc_cookbook_summary($parm = array())
     {
         return e107::getParser()->toHTML($this->var["r_summary"], TRUE);
     }
 
-	function sc_cookbook_ingredients($parm='')
+	function sc_cookbook_ingredients($parm = array())
    	{
 		return e107::getParser()->toHTML($this->var["r_ingredients"], TRUE);
 	}
 
-	function sc_cookbook_instructions($parm='')
+	function sc_cookbook_instructions($parm = array())
 	{
 		return  e107::getParser()->toHTML($this->var["r_instructions"], TRUE);
 	}
 
-	function sc_cookbook_edit($parm='')
+	function sc_cookbook_edit($parm = array())
 	{
 		if(check_class(e107::getPlugPref('cookbook', 'submission_userclass')))
 		{
@@ -330,7 +330,7 @@ class cookbook_shortcodes extends e_shortcode
     * @example {COOKBOOK_PRINT} renders FA print icon and URL. 
     *
     */
-    function sc_cookbook_print($parm='')
+    function sc_cookbook_print($parm = array())
     {
         $rid = $this->var["r_id"];
         $url = e_HTTP.'print.php?plugin:cookbook.'.$rid;
@@ -343,7 +343,7 @@ class cookbook_shortcodes extends e_shortcode
         return '<li><i class="fa-li fa fa-print"></i> <a href="'.$url.'">'.LAN_CB_PRINTRECIPE.'</a></li>';
     }
 
-    function sc_cookbook_comments($parm = '')
+    function sc_cookbook_comments($parm = array())
     {
         // TODO Add check if comments are enabled
 
