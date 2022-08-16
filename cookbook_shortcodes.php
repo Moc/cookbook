@@ -298,6 +298,7 @@ class cookbook_shortcodes extends e_shortcode
     * @example {COOKBOOK_EDIT} // returns <a class='' href="url to recipe">Edit</a>
     * @example {COOKBOOK_EDIT: type=icon} // returns <a class='' href="url to recipe">pencil icon</a> 
     * @example {COOKBOOK_EDIT: type=icon&icon=fa gears} // returns <a class='' href="url to recipe">gears icon icon</a>
+    * @example {COOKBOOK_EDIT: type=url} // retuns just the URL: e_PLUGIN_ABS.'cookbook/admin_config.php?action=edit&id='.$this->var["r_id"]
     * @example {COOKBOOK_EDIT: class=btn btn-default} // returns <a class='btn btn-default' href="url to recipe">Edit</a>
     *
     */
@@ -328,6 +329,7 @@ class cookbook_shortcodes extends e_shortcode
 
 		return '<a class="'.$class.'" href="'.$url.'">'.LAN_EDIT.'</a>';
 	}
+    
 
     function sc_cookbook_bookmark($parm = '')
     {
