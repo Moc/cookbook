@@ -288,16 +288,17 @@ class cookbook_shortcodes extends e_shortcode
 
 
     /**
-    * Renders edit link for a specific recipe
+    * Renders edit link and/or icon for a specific recipe
     *
     * @param string $class - a custom class for the <a> tag
     * @param string $icon - FontAwesome icon to use
-    * @param string $type - link or icon (default is 'link')
+    * @param string $type - url, link, icon (default is 'link')
     * 
     *
-    * @example {COOKBOOK_EDIT: class=btn btn-default} 
-    * @example {COOKBOOK_EDIT: type=icon} 
-    * @example {COOKBOOK_EDIT: type=icon&icon=fa pencil} 
+    * @example {COOKBOOK_EDIT} // returns <a class='' href="url to recipe">Edit</a>
+    * @example {COOKBOOK_EDIT: type=icon} // returns <a class='' href="url to recipe">pencil icon</a> 
+    * @example {COOKBOOK_EDIT: type=icon&icon=fa gears} // returns <a class='' href="url to recipe">gears icon icon</a>
+    * @example {COOKBOOK_EDIT: class=btn btn-default} // returns <a class='btn btn-default' href="url to recipe">Edit</a>
     *
     */
 	function sc_cookbook_edit($parm = array())
@@ -311,9 +312,8 @@ class cookbook_shortcodes extends e_shortcode
         // Set class
         $class = (!empty($parm['class'])) ? $parm['class'] : '';
 
-
         // Set icon
-        $icon = (!empty($parm['icon'])) ? $parm['icon'] : '';
+        $icon = (!empty($parm['icon'])) ? $parm['icon'] : 'fa-pencil';
 
         // Set type
         $type = (!empty($parm['type'])) ? $parm['type'] : 'link';
