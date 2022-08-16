@@ -48,6 +48,7 @@ if(isset($_GET['id']))
 	$recipedata = $cookbook_class->getRecipeData($id); 
 
 	$description = e107::getParser()->toText($recipedata['r_summary']); 
+	$description = str_replace("\n", ' ', $description);
 	$description = e107::getParser()->truncate($description, 150);
 	
 	e107::meta('og:title', $title);
