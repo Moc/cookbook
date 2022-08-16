@@ -286,14 +286,47 @@ class cookbook_shortcodes extends e_shortcode
 		return  e107::getParser()->toHTML($this->var["r_instructions"], TRUE);
 	}
 
+
+    /**
+    * Renders edit link for a specific recipe
+    *
+    * @param string $class - a custom class for the <a> tag
+    * @param string $icon - FontAwesome icon to use
+    * @param string $type - link or icon (default is 'link')
+    * 
+    *
+    * @example {COOKBOOK_EDIT: class=btn btn-default} 
+    * @example {COOKBOOK_EDIT: type=icon} 
+    * @example {COOKBOOK_EDIT: type=icon&icon=fa pencil} 
+    *
+    */
 	function sc_cookbook_edit($parm = array())
 	{
-		if(check_class(e107::getPlugPref('cookbook', 'submission_userclass')))
-		{
-			$link = e_PLUGIN_ABS.'cookbook/admin_config.php?action=edit&id='.$this->var["r_id"].'';
-			return '<li><i class="fa-li fa fa-pencil"></i> <a href="'.$link.'">'.LAN_EDIT.'</a></li>';
-		}
-		return;
+        // Check permissions 
+        if(!check_class(e107::getPlugPref('cookbook', 'submission_userclass')))
+        {
+            return;
+        }
+
+        // Set class
+        $class = (!empty($parm['class'])) ? $parm['class'] : '';
+
+
+        // Set icon
+        $icon = (!empty($parm['icon'])) ? $parm['icon'] : '';
+
+        // Set type
+        $type = (!empty($parm['type'])) ? $parm['type'] : 'link';
+
+		
+        $url = e_PLUGIN_ABS.'cookbook/admin_config.php?action=edit&id='.$this->var["r_id"].'';
+
+        if($parm['type'] == "icon" && !empty($icon))
+        { 
+            return '<a class="'.$class.'" href="'.$url.'">'.e107::getParser()->toGlyph($icon).'</a>';
+        }
+
+		return '<a class="'.$class.'" href="'.$url.'">'.LAN_EDIT.'</a>';
 	}
 
     function sc_cookbook_bookmark($parm = '')

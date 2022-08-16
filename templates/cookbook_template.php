@@ -108,7 +108,7 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
     <h3>{LAN=LAN_CB_ACTIONS}</h3>
     <ul class="fa-ul">
         {COOKBOOK_BOOKMARK}
-        {COOKBOOK_EDIT}
+        <li><i class="fa-li fa fa-pencil"></i> {COOKBOOK_EDIT}</li>
         {COOKBOOK_PRINT}
     </ul>
 </div>
