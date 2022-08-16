@@ -327,9 +327,14 @@ class cookbook_shortcodes extends e_shortcode
             return '<a class="'.$class.'" href="'.$url.'">'.e107::getParser()->toGlyph($icon).'</a>';
         }
 
+        if($parm['type'] == "url")
+        { 
+            return $url;
+        }
+
 		return '<a class="'.$class.'" href="'.$url.'">'.LAN_EDIT.'</a>';
 	}
-    
+
 
     function sc_cookbook_bookmark($parm = '')
     {
