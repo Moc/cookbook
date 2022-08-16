@@ -361,27 +361,49 @@ class cookbook_shortcodes extends e_shortcode
         return '<li><span data-cookbook-action="bookmark" data-cookbook-recipeid="'.$this->var['r_id'].'"><a href="#">'.$text.'</a></span></li>';
     }
 
+
     /**
     * Renders a print icon and/or link that redirects to a printer-friendly page of the recipe
     *
-    * @param string $url - if set to url, it wil only return the URL (without print icon)
+    * @param string $class - a custom class for the <a> tag
+    * @param string $icon - FontAwesome icon to use
+    * @param string $type - url, link, icon (default is 'link')
     *
-    * @example {COOKBOOK_PRINT=url} returns url e_HTTP.'print.php?plugin:cookbook.{$recipe_id}
-    * @example {COOKBOOK_PRINT} renders FA print icon and URL. 
-    *
+    *  
+    * @example {COOKBOOK_PRINT} // returns <a class='' href="url to print-friendly recipe">Print recipe</a>
+    * @example {COOKBOOK_PRINT: type=icon} // returns <a class='' href="url to print-friendly recipe">print icon</a> 
+    * @example {COOKBOOK_PRINT: type=icon&icon=fa gears} // returns <a class='' href="url to print-friendly recipe">gears icon icon</a>
+    * @example {COOKBOOK_PRINT: type=url} // retuns just the URL: e_HTTP.'print.php?plugin:cookbook.'.$this->var["r_id"];
+    * @example {COOKBOOK_PRINT: class=btn btn-default} // returns <a class='btn btn-default' href="url to print-friendly recipe">Print recipe</a>
+    * 
     */
     function sc_cookbook_print($parm = array())
     {
         $rid = $this->var["r_id"];
         $url = e_HTTP.'print.php?plugin:cookbook.'.$rid;
-    
-        if($parm == 'url')
-        {
-            return $url; 
+
+        // Set class
+        $class = (!empty($parm['class'])) ? $parm['class'] : '';
+
+        // Set icon
+        $icon = (!empty($parm['icon'])) ? $parm['icon'] : 'fa-print';
+
+        // Set type
+        $type = (!empty($parm['type'])) ? $parm['type'] : 'link';
+
+        if($parm['type'] == "icon" && !empty($icon))
+        { 
+            return '<a class="'.$class.'" href="'.$url.'">'.e107::getParser()->toGlyph($icon).'</a>';
         }
 
-        return '<li><i class="fa-li fa fa-print"></i> <a href="'.$url.'">'.LAN_CB_PRINTRECIPE.'</a></li>';
+        if($parm['type'] == "url")
+        { 
+            return $url;
+        }
+
+        return '<a href="'.$url.'">'.LAN_CB_PRINTRECIPE.'</a>';
     }
+
 
     function sc_cookbook_comments($parm = array())
     {

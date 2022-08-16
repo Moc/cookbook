@@ -109,7 +109,7 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
     <ul class="fa-ul">
         {COOKBOOK_BOOKMARK}
         <li><i class="fa-li fa fa-pencil"></i> {COOKBOOK_EDIT}</li>
-        {COOKBOOK_PRINT}
+        <li><i class="fa-li fa fa-print"></i> {COOKBOOK_PRINT}</li>
     </ul>
 </div>
 <!-- End sidebar -->
