@@ -8,12 +8,15 @@
  * Latest recipes menu
 */
 
-if (!defined('e107_INIT'))
+if(!defined('e107_INIT'))
 {
     require_once("../../class2.php");
 }
 
-// TODO Make menu inaccessible when plugin is not installed.
+if(!e107::isInstalled('cookbook'))
+{
+    return '';
+}
 
 // Load the LAN files
 e107::lan('cookbook', false, true);
@@ -74,7 +77,6 @@ if(!class_exists('cookbook_categoriesmenu'))
         }
     }
 }
-
 
 
 $class = new cookbook_categoriesmenu;
