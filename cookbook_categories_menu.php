@@ -36,12 +36,14 @@ if(!class_exists('cookbook_categoriesmenu'))
         public function render($parm = null)
         {
             $text = '';
+            $sql  = e107::getDb();
+
             //$limit  = 10; // Number of categories to display // Unused for now
 
             // Retrieve the categories
-            if($count = e107::getDb()->count('cookbook_categories'))
+            if($count = $sql->count('cookbook_categories'))
             {
-                if($categories = e107::getDb()->retrieve('cookbook_categories', 'c_id', '', true))
+                if($categories = $sql->retrieve('cookbook_categories', 'c_id', '', true))
                 {
                     // Load shortcodes
                     $sc = e107::getScBatch('cookbook', TRUE);
@@ -61,16 +63,20 @@ if(!class_exists('cookbook_categoriesmenu'))
                 else
                 {
                     $text = LAN_ERROR; 
-                    // TODO check for SQL error 
+                    
+                    // If SQL error, show to admins. 
+                    if(ADMIN && $sql->getLastErrorNumber())
+                    {
+                        $text = 'SQL Error #'.$sql->getLastErrorNumber().': '.$sql->getLastErrorText();
+                    }
                 }
 
                 return $text; 
             }
-            // Query invalid or no categories
+            // No categories
             else
             {
-                $text = LAN_CB_NOCATS;
-                // TODO check for SQL error 
+                $text = LAN_CB_NOCATS; 
             }
 
             return $text;

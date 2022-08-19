@@ -36,6 +36,7 @@ if(!class_exists('cookbook_latestmenu'))
         public function render($parm = null)
         {
             $text = '';
+            $sql  = e107::getDb();
 
             // Number of recipes to display 
             $limit = 10;
@@ -46,7 +47,7 @@ if(!class_exists('cookbook_latestmenu'))
             }
 
             // Retrieve the most recently added recipes 
-            if($recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp DESC LIMIT 0,'.$limit, true))
+            if($recipes = $sql->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp DESC LIMIT 0,'.$limit, true))
             {
                 // Load shortcodes
                 $sc = e107::getScBatch('cookbook', TRUE);
@@ -66,7 +67,11 @@ if(!class_exists('cookbook_latestmenu'))
             else
             {
                 $text = LAN_CB_NORECIPES;
-                // TODO check for SQL error 
+
+                if(ADMIN && $sql->getLastErrorNumber())
+                {
+                    $text = 'SQL Error #'.$sql->getLastErrorNumber().': '.$sql->getLastErrorText();
+                }
             }
 
             return $text;
