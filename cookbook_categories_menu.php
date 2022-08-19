@@ -18,57 +18,60 @@ if (!defined('e107_INIT'))
 // Load the LAN files
 e107::lan('cookbook', false, true);
 
-class cookbook_categoriesmenu
+if(!class_exists('cookbook_categoriesmenu'))
 {
-
-    public $template = array();
-
-    function __construct()
+    class cookbook_categoriesmenu
     {
-        $this->template = e107::getTemplate('cookbook', 'cookbook_categoriesmenu', 'default');
-    }
 
-    public function render($parm = null)
-    {
-        $text = '';
-        //$limit  = 10; // Number of categories to display // Unused for now
+        public $template = array();
 
-        // Retrieve the categories
-        if($count = e107::getDb()->count('cookbook_categories'))
+        function __construct()
         {
-            if($categories = e107::getDb()->retrieve('cookbook_categories', 'c_id', '', true))
+            $this->template = e107::getTemplate('cookbook', 'cookbook_categoriesmenu', 'default');
+        }
+
+        public function render($parm = null)
+        {
+            $text = '';
+            //$limit  = 10; // Number of categories to display // Unused for now
+
+            // Retrieve the categories
+            if($count = e107::getDb()->count('cookbook_categories'))
             {
-                // Load shortcodes
-                $sc = e107::getScBatch('cookbook', TRUE);
-
-                foreach($categories as $category)
+                if($categories = e107::getDb()->retrieve('cookbook_categories', 'c_id', '', true))
                 {
-                    // Convert to vars used in shortcodes:
-                    $category['r_category'] = $category['c_id'];
+                    // Load shortcodes
+                    $sc = e107::getScBatch('cookbook', TRUE);
 
-                    // Pass vars to shortcodes
-                    $sc->setVars($category);
-                    
-                    // Return render item from template
-                    $text .= e107::getParser()->parseTemplate($this->template['item'], false, $sc);
+                    foreach($categories as $category)
+                    {
+                        // Convert to vars used in shortcodes:
+                        $category['r_category'] = $category['c_id'];
+
+                        // Pass vars to shortcodes
+                        $sc->setVars($category);
+                        
+                        // Return render item from template
+                        $text .= e107::getParser()->parseTemplate($this->template['item'], false, $sc);
+                    }
                 }
+                else
+                {
+                    $text = LAN_ERROR; 
+                    // TODO check for SQL error 
+                }
+
+                return $text; 
             }
+            // Query invalid or no categories
             else
             {
-                $text = LAN_ERROR; 
+                $text = LAN_CB_NOCATS;
                 // TODO check for SQL error 
             }
 
-            return $text; 
+            return $text;
         }
-        // Query invalid or no categories
-        else
-        {
-            $text = LAN_CB_NOCATS;
-            // TODO check for SQL error 
-        }
-
-        return $text;
     }
 }
 

@@ -18,53 +18,56 @@ if (!defined('e107_INIT'))
 // Load the LAN files
 e107::lan('cookbook', false, true);
 
-class cookbook_latestmenu
+if(!class_exists('cookbook_latestmenu'))
 {
-
-    public $template = array();
-
-    function __construct()
+    class cookbook_latestmenu
     {
-        $this->template = e107::getTemplate('cookbook', 'cookbook_latestmenu', 'default');
-    }
 
-    public function render($parm = null)
-    {
-        $text = '';
+        public $template = array();
 
-        // Number of recipes to display 
-        $limit = 10;
-        
-        if(isset($parm['limit']))
+        function __construct()
         {
-            $limit = (int) $parm['limit'];
+            $this->template = e107::getTemplate('cookbook', 'cookbook_latestmenu', 'default');
         }
 
-        // Retrieve the most recently added recipes 
-        if($recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp DESC LIMIT 0,'.$limit, true))
+        public function render($parm = null)
         {
-            // Load shortcodes
-            $sc = e107::getScBatch('cookbook', TRUE);
+            $text = '';
 
-            foreach($recipes as $recipe)
+            // Number of recipes to display 
+            $limit = 10;
+            
+            if(isset($parm['limit']))
             {
-                // Pass vars to shortcodes
-                $sc->setVars($recipe);
-                
-                // Return render item from template
-                $text .= e107::getParser()->parseTemplate($this->template['item'], false, $sc);
+                $limit = (int) $parm['limit'];
             }
 
-            return $text; 
-        }
-        // Query invalid or no recipes
-        else
-        {
-            $text = LAN_CB_NORECIPES;
-            // TODO check for SQL error 
-        }
+            // Retrieve the most recently added recipes 
+            if($recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp DESC LIMIT 0,'.$limit, true))
+            {
+                // Load shortcodes
+                $sc = e107::getScBatch('cookbook', TRUE);
 
-        return $text;
+                foreach($recipes as $recipe)
+                {
+                    // Pass vars to shortcodes
+                    $sc->setVars($recipe);
+                    
+                    // Return render item from template
+                    $text .= e107::getParser()->parseTemplate($this->template['item'], false, $sc);
+                }
+
+                return $text; 
+            }
+            // Query invalid or no recipes
+            else
+            {
+                $text = LAN_CB_NORECIPES;
+                // TODO check for SQL error 
+            }
+
+            return $text;
+        }
     }
 }
 
