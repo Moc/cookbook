@@ -401,7 +401,7 @@ class cookbook_shortcodes extends e_shortcode
             return $url;
         }
 
-        return '<a href="'.$url.'">'.LAN_CB_PRINTRECIPE.'</a>';
+        return '<a class="'.$class.'" href="'.$url.'">'.LAN_CB_PRINTRECIPE.'</a>';
     }
 
 
