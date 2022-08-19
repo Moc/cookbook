@@ -81,7 +81,7 @@ class cookbook_categories_ui extends e_admin_ui
 {
 	protected $pluginTitle		= LAN_CB_NAME;
 	protected $pluginName		= 'cookbook';
-//	protected $eventName		= 'cookbook-cookbook_categories'; // remove comment to enable event triggers in admin.
+	protected $eventName		= 'cookbook_categories'; // remove comment to enable event triggers in admin.
 	protected $table			= 'cookbook_categories';
 	protected $pid				= 'c_id';
 	protected $perPage			= 10;
@@ -207,7 +207,7 @@ class cookbook_recipes_ui extends e_admin_ui
 
 	protected $pluginTitle		= LAN_CB_NAME;
 	protected $pluginName		= 'cookbook';
-//	protected $eventName		= 'cookbook-cookbook_recipes'; // remove comment to enable event triggers in admin.
+	protected $eventName		= 'cookbook_recipes'; // remove comment to enable event triggers in admin.
 	protected $table			= 'cookbook_recipes';
 	protected $pid				= 'r_id';
 	protected $perPage			= 20;
