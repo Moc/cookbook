@@ -68,6 +68,7 @@ if(!class_exists('cookbook_latestmenu'))
             {
                 $text = LAN_CB_NORECIPES;
 
+                // If SQL error, show to admins. 
                 if(ADMIN && $sql->getLastErrorNumber())
                 {
                     $text = 'SQL Error #'.$sql->getLastErrorNumber().': '.$sql->getLastErrorText();
