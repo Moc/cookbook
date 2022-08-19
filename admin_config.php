@@ -389,6 +389,34 @@ class cookbook_recipes_ui extends e_admin_ui
 
 	protected $fieldpref = array('r_id', 'r_thumbnail', 'r_name', 'r_category', 'r_persons', 'r_time');
 
+	// Preferences
+	//protected $preftabs = array('Display options', 'Posting options', 'Recipe features');
+
+	/* NOTES:
+	Display options:
+		General:
+		- Datatables or Grid view
+		- In case of grid view: number of recipes per page
+		- Sort order?
+
+		Actions:
+		- Show print
+		- Show bookmark
+		- Show sharing
+		
+	Posting options:
+		- Submission userc lass
+		- Auto approve class
+		- Comments enabled
+		- Comments class? 
+
+
+	Recipe features:
+		- Difficulty level 
+		- preparation time?
+	
+	*/
+
 
 	protected $prefs = array(
 		'submission_userclass'	=> array(
