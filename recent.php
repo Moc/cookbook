@@ -27,10 +27,14 @@ require_once(HEADERF);
 $sql = e107::getDb();
 $tp  = e107::getParser();
 
-// Load template and shortcodes
+// Load shortcodes
 $sc = e107::getScBatch('cookbook', TRUE);
-$template = e107::getTemplate('cookbook');
-$template = array_change_key_case($template); // temporary fix until proper solution is found
+
+// Load template
+$key = e107::getPlugPref('cookbook', 'overview_format', 'overview_grid'); 
+$template = e107::getTemplate('cookbook', null, $key);
+$template = array_change_key_case($template);
+
 $text = '';
 
 // Retrieve the 10 most recently added recipes 
@@ -39,16 +43,16 @@ $recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestam
 // Check if there are recipes in this category
 if($recipes)
 {
- 	$text .= $tp->parseTemplate($template['overview']['start'], false, $sc);
+ 	$text .= $tp->parseTemplate($template['start'], true, $sc);
 
 	foreach($recipes as $recipe)
 	{
 		// Pass query values onto the shortcodes
 		$sc->setVars($recipe);
-		$text .= $tp->parseTemplate($template['overview']['items'], false, $sc);
+		$text .= $tp->parseTemplate($template['items'], true, $sc);
 	}
 
-	$text .= $tp->parseTemplate($template['overview']['end'], false, $sc);
+	$text .= $tp->parseTemplate($template['end'], true, $sc);
 }
 	
 e107::getRender()->tablerender(LAN_CB_RECIPE_RECENT, $text);
