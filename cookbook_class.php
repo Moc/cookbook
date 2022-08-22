@@ -461,4 +461,52 @@ class cookbook
 	
 		return false; 
 	}
+
+	public function compileTagsFile()
+	{
+		$cache_name = 'cookbook_recipe_tags'; // name of cache file
+      	$cache_time = '60'; // set to one hour (60 minutes) // TODO set way longer and then clear when recipes added/tags modified
+      	$caching = e107::pref('cookbook', 'caching'); // preference which checks if cache is enabled (1) or disabled (0)
+      	$vals = ''; // this will be the list of all the tags and their count
+
+      	// Check if the tagcloud has been cached and is not older than cache_time
+      	if( /*$caching == true &&*/ e107::getCache()->retrieve($cache_name, $cache_time))
+      	{
+          	$vals_cache = e107::getCache()->retrieve($cache_name);
+          	$vals = e107::unserialize($vals_cache);
+      	}
+     	// Tagcloud is not cached or older than cache_time
+     	else
+      	{
+        	// Retrieve tags from database
+        	$all_tags = e107::getDb()->retrieve('cookbook_recipes', 'r_keywords', '', TRUE);
+
+        	// Loop through the results and form simpler array
+         	$values = array();
+        	foreach($all_tags as $tag)
+         	{
+           		$values[] = $tag['r_keywords'];
+         	}
+
+         	// Loop through the array and split all the comma separated tags into separate array values
+         	// Each tag now has its own array key
+         	$new_array = array();
+         	foreach($values as $value)
+         	{
+            	//$tag_names = explode(", ", $value);
+                $tag_names = preg_split( "/(, |,)/", $value); // split by , or , (space)
+            	$new_array = array_merge($new_array, $tag_names);
+         	}
+
+         	// Generate the tag names and their respective count
+         	$vals = array_count_values($new_array);
+
+        	// Cache the results
+            $vals_cache = e107::serialize($vals);
+        	e107::getCache()->set($cache_name, $vals_cache);
+      	}
+
+      	// Return the values and weights
+      	return $vals;
+	}
 }
