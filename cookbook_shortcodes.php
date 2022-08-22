@@ -384,11 +384,21 @@ class cookbook_shortcodes extends e_shortcode
         return '<a class="'.$class.'" href="'.$url.'">'.LAN_CB_PRINTRECIPE.'</a>';
     }
 
-
+    /**
+    * Shows a comments form on a recipe
+    * 
+    * @example {COOKBOOK_COMMENTS}
+    * 
+    */
     function sc_cookbook_comments($parm = array())
     {
-        // TODO Add check if comments are enabled
+        $comments_pref = e107::getPlugPref('cookbook', 'comments_enabled', 1);
 
+        if(!$comments_pref)
+        {
+            return;
+        }
+        
         $plugin   = 'cookbook';
         $id       = $this->var['r_id'];
         $subject  = $this->var["r_name"];

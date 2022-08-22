@@ -403,7 +403,7 @@ class cookbook_recipes_ui extends e_admin_ui
 		- Submission class
 		- Auto approve class
 		- Comments enabled
-		- Comments class? 
+		- Comments class? - can only be on/off and 'anonymous' in core? See Admin Area > Comments Manager > Preferences // TODO; see if we can override this. 
 
 	2 - Recipe options:
 		- Difficulty level 
@@ -437,14 +437,20 @@ class cookbook_recipes_ui extends e_admin_ui
 		),
 
 		//1 - Posting options
-		'submission_userclass'	=> array(
+		/*'submission_userclass'	=> array(
 			'title'	=> 'Submission userclass',
 			'type'	=> 'userclass',
 			'data' 	=> 'str',
 			'help'	=> 'Userclass that is allowed to submit new recipes',
 			'tab'	=> 1,
+		'comments_enabled' => array(
+			'title'	=> 'Comments on recipes',
+			'type'	=> 'boolean',
+			'data'	=> 'int',
+			'help'	=> 'If enabled, users can comment on recipes',
+			'tab'	=> 1,
 		),
-
+	
 		// 2 - Recipe options:
 		'recipe_showrelated' => array(
 			'title'	=> 'Show related recipes',
