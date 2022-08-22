@@ -439,6 +439,52 @@ class cookbook
 		return $text; 
 	}
 
+	public function renderBookmarks()
+	{
+		// If not logged in, redirect to Cookbook index
+		if(!USERID)
+		{
+			$url = e107::url('cookbook', 'index');
+			e107::redirect($url);
+			return;
+		}
+
+		$text 	= '';
+
+		$this->caption = LAN_CB_BOOKMARKS;
+
+		$this->breadcrumb_array[] = array(
+			'text' 	=> LAN_CB_BOOKMARKS, 
+			'url' 	=> e107::url('cookbook', 'bookmarks'),
+		);
+
+		// Retrieve bookmarks from database 
+		$bookmarks = e107::getDb()->retrieve('cookbook_bookmarks', '*', 'user_id = '.USERID.' ORDER BY bookmark_datestamp DESC', true);
+
+		// Check if there are bookmarks for this user
+		if($bookmarks)
+		{
+			$recipes = array(); 
+
+			foreach($bookmarks as $bookmark)
+			{
+				$r_id 		= $bookmark[ 'recipe_id']; 
+				$recipes[] 	= e107::getDb()->retrieve('cookbook_recipes', '*', 'r_id = '.$r_id);
+			}
+
+			$text = $cookbook_class->renderOverviewTable($recipes);
+		}
+		else
+		{
+			$text .= "<div class='alert alert-info text-center'>".LAN_CB_NOBOOKMARKS."</div>";
+		}	
+
+		// Send breadcrumb information
+		e107::breadcrumb($this->breadcrumb_array);
+
+		return $text;
+	}
+
 	public function renderRecipeOverview()
 	{
 		$sql 	= e107::getDb();

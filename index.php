@@ -125,6 +125,14 @@ elseif(isset($_GET['p']) && $_GET['p'] == 'latest')
 
 	e107::getRender()->tablerender(LAN_CB_RECIPE_LATEST, $text);
 }
+// Bookmarks
+elseif(isset($_GET['p']) && $_GET['p'] == 'bookmarks')
+{
+	e107::route('cookbook/bookmarks'); 
+	$text = $cookbook_class->renderBookmarks();
+
+	e107::getRender()->tablerender(LAN_CB_BOOKMARKS, $text);
+}
 // Recipe overview (home)
 else
 {
