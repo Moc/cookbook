@@ -264,7 +264,7 @@ class cookbook
 		// No recipes in this category yet
 		else
 		{
-			$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPESINCAT."</div>";
+			$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPES."</div>";
 		}
 
 		// Send breadcrumb information
