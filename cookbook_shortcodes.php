@@ -407,6 +407,13 @@ class cookbook_shortcodes extends e_shortcode
     */
     function sc_cookbook_related($parm = array())
     {
+        $related_pref = e107::getPlugPref('cookbook', 'recipe_showrelated', 1);
+
+        if(!$related_pref)
+        {
+            return;
+        }
+
         if(!varset($parm['types']))
         {
             $parm['types'] = 'cookbook';

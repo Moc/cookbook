@@ -446,6 +446,14 @@ class cookbook_recipes_ui extends e_admin_ui
 		),
 
 		// 2 - Recipe options:
+		'recipe_showrelated' => array(
+			'title'	=> 'Show related recipes',
+			'type'	=> 'boolean',
+			'data'	=> 'int',
+			'help'	=> 'If enabled, other recipes related to the recipe that is being viewed will appear.',
+			'tab'	=> 2,
+		),
+
 		'author_rating' => array(
 			'title'	=> 'Author rating',
 			'type'	=> 'boolean',
