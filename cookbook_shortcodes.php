@@ -318,6 +318,13 @@ class cookbook_shortcodes extends e_shortcode
 
     function sc_cookbook_bookmark($parm = '')
     {
+        $bookmark_pref = e107::getPlugPref('cookbook', 'recipe_showbookmark', 1);
+
+        if(!$bookmark_pref)
+        {
+            return;
+        }
+
         if(!USERID)
         {
             return; 
@@ -359,6 +366,13 @@ class cookbook_shortcodes extends e_shortcode
     */
     function sc_cookbook_print($parm = array())
     {
+        $print_pref = e107::getPlugPref('cookbook', 'recipe_showprint', 1);
+
+        if(!$print_pref)
+        {
+            return;
+        }
+
         $rid = $this->var["r_id"];
         $url = e_HTTP.'print.php?plugin:cookbook.'.$rid;
 

@@ -458,6 +458,20 @@ class cookbook_recipes_ui extends e_admin_ui
 			'help'	=> 'If enabled, other recipes related to the recipe that is being viewed will appear.',
 			'tab'	=> 2,
 		),
+		'recipe_showprint' => array(
+			'title'	=> 'Show print option',
+			'type'	=> 'boolean',
+			'data'	=> 'int',
+			'help'	=> 'If enabled, users will have the option to print a print-friendly version of the recipe',
+			'tab'	=> 2,
+		),
+		'recipe_showbookmark' => array(
+			'title'	=> 'Show bookmark option',
+			'type'	=> 'boolean',
+			'data'	=> 'int',
+			'help'	=> 'If enabled, users will have the option to bookmark specific recipes',
+			'tab'	=> 2,
+		),
 
 		'author_rating' => array(
 			'title'	=> 'Author rating',
