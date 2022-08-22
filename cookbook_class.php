@@ -287,14 +287,14 @@ class cookbook
 		$category_full 	= e107::getParser()->toDb($data);
 		$category 		= explode('/', $category_full);
 		$category_id 	= (int)$category[0];
-		$category_name 	= e107::getDb()->retrieve('cookbook_categories', 'c_name', 'c_id = '.$category_id.'');
+		$category_name 	= $sql->retrieve('cookbook_categories', 'c_name', 'c_id = '.$category_id.'');
 		
 		if($category_name)
 		{
 			$this->caption = LAN_CATEGORY." - ".$category_name;
 
 			// Retrieve all recipe entries within this category
-			$recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'r_category = '.$category_id.'', true);
+			$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category_id.'', true);
 
 			$cUrlparms = array(
 				"c_id"  => $category_id,
@@ -323,7 +323,7 @@ class cookbook
 		else
 		{
 			$caption = LAN_CB_NAME." - ".LAN_ERROR;
-			$text .= LAN_CB_CATNOTFOUND;
+			$text .= "<div class='alert alert-danger text-center'>".LAN_CB_CATNOTFOUND."</div>";
 		}
 
 		// Send breadcrumb information
@@ -334,12 +334,10 @@ class cookbook
 
 	public function renderCategories()
 	{
-		$sql 	= e107::getDb();
-		$tp 	= e107::getParser();
-		$text 	= '';
+		// TODO Make a separate template for this?
 
-		$template = e107::getTemplate('cookbook');
-		$template = array_change_key_case($template);
+		$sql 	= e107::getDb();
+		$text 	= '';
 
 		$this->breadcrumb_array[] = array(
 			'text' 	=> LAN_CATEGORIES,
@@ -352,7 +350,7 @@ class cookbook
 			// Loop through categories and display recipes for each category
 			foreach($categories as $category)
 			{
-				$text .= "<h3>".$category['c_name']."</h3>";
+				$text .= "<h3>".$category['c_name']."</h3>"; // TODO get rid of hardcoded styling
 
 				// Retrieve all recipe entries for this category
 				$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category["c_id"].'', TRUE);
@@ -386,9 +384,6 @@ class cookbook
 		$sql 	= e107::getDb();
 		$tp 	= e107::getParser();
 		$text 	= '';
-
-		$template = e107::getTemplate('cookbook');
-		$template = array_change_key_case($template);
 
 		// Retrieve all recipe entries with this keyword
 		$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_keywords LIKE "%'.$keyword.'%"', TRUE);

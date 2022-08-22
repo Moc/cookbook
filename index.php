@@ -87,8 +87,8 @@ if(isset($_GET['id']))
 elseif(isset($_GET['category']) && $_GET['category'] != 0)
 {
 	e107::route('cookbook/category'); 
-	$data = $_GET['category']; 
-	$text = $cookbook_class->renderCategory($data); // Trigger the method to render an individual recipe 
+	$categoryid = (int) $_GET['category']; 
+	$text = $cookbook_class->renderCategory($categoryid);
 	
 	e107::getRender()->tablerender($cookbook_class->caption, $text);
 }
