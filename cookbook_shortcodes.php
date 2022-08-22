@@ -271,8 +271,25 @@ class cookbook_shortcodes extends e_shortcode
 		');
 	}
 
+    /**
+    * Renders the summary of a recipe
+    *
+    * @param int $max - Limits the summary to a maximum amount of characters
+    * 
+    * @example {COOKBOOK_SUMMARY: max=150} // returns the summary limited to 150 characters. 
+    * 
+    */
     function sc_cookbook_summary($parm = array())
     {
+        if($parm['max'])
+        {
+            $summary = e107::getParser()->toText($this->var["r_summary"]); 
+            $summary = str_replace("\n", ' ', $summary);
+            $summary = e107::getParser()->truncate($summary, $parm['max']);
+
+            return $summary;
+        }
+
         return e107::getParser()->toHTML($this->var["r_summary"], TRUE);
     }
 
