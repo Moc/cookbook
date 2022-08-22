@@ -393,34 +393,34 @@ class cookbook_recipes_ui extends e_admin_ui
 	protected $preftabs = array('Display options', 'Posting options', 'Recipe options', 'Other');
 
 	/* NOTES:
-	Display options:
-		General:
+	0 - Display options:
 		- Datatables or Grid view 
 		- In case of grid view: number of recipes per page
 		- Sort order?
 		- Date/time format
 
-		Actions:
-		- Show print
-		- Show bookmark
-		- Show sharing
-		
-	Posting options:
+	1 - Posting options:
 		- Submission class
 		- Auto approve class
 		- Comments enabled
 		- Comments class? 
 
-
-	Recipe options:
+	2 - Recipe options:
 		- Difficulty level 
 		- preparation time?
-	
+		- Show related recipes
+		- Show print
+		- Show bookmark
+		- Show sharing
+
+	3 - Other
+		- Caching (may be removed soon)
 	*/
 
 
 	protected $prefs = array(
 
+		//0 - Display options
 		'overview_format'	=> array(
 			'title'	=> 'Overview format',
 			'type'	=> 'dropdown',
@@ -436,6 +436,7 @@ class cookbook_recipes_ui extends e_admin_ui
 			'tab'	=> 0,
 		),
 
+		//1 - Posting options
 		'submission_userclass'	=> array(
 			'title'	=> 'Submission userclass',
 			'type'	=> 'userclass',
@@ -443,6 +444,8 @@ class cookbook_recipes_ui extends e_admin_ui
 			'help'	=> 'Userclass that is allowed to submit new recipes',
 			'tab'	=> 1,
 		),
+
+		// 2 - Recipe options:
 		'author_rating' => array(
 			'title'	=> 'Author rating',
 			'type'	=> 'boolean',
@@ -451,10 +454,11 @@ class cookbook_recipes_ui extends e_admin_ui
 			'tab'	=> 2,
 		),
 
+		// 3 - Other
 		'caching' => array(
 			'title'	=> 'Caching',
 			'type'	=> 'boolean',
-			'data'	=> 'str',
+			'data'	=> 'int',
 			'help'	=> 'Choose whether to enable caching on this plugin (increases performance)',
 			'tab'	=> 3,
 		),
