@@ -472,6 +472,13 @@ class cookbook_recipes_ui extends e_admin_ui
 			'help'	=> 'If enabled, users will have the option to bookmark specific recipes',
 			'tab'	=> 2,
 		),
+		'recipe_showsharing' => array(
+			'title'	=> 'Show sharing options',
+			'type'	=> 'boolean',
+			'data'	=> 'int',
+			'help'	=> 'If enabled, users will have the option to share a recipe on several (social) media.',
+			'tab'	=> 2,
+		),
 
 		'author_rating' => array(
 			'title'	=> 'Author rating',
