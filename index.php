@@ -38,7 +38,7 @@ e107::lan('cookbook', false, true);
 
 e107::title(LAN_CB_NAME);
 //e107::canonical('cookbook');
-e107::route('cookbook/index'); 
+
 
 // Individual recipe - Set caption and metatags
 if(isset($_GET['id']))
@@ -77,6 +77,7 @@ require_once(HEADERF);
 // Individual recipe
 if(isset($_GET['id']))
 {
+	e107::route('cookbook/recipe'); 
 	$rid 	= (int)$_GET['id']; // Filter user input 
 	$text 	= $cookbook_class->renderRecipe($rid); 
 
@@ -85,6 +86,7 @@ if(isset($_GET['id']))
 // Individual category
 elseif(isset($_GET['category']) && $_GET['category'] != 0)
 {
+	e107::route('cookbook/category'); 
 	$data = $_GET['category']; 
 	$text = $cookbook_class->renderCategory($data); // Trigger the method to render an individual recipe 
 	
@@ -93,6 +95,7 @@ elseif(isset($_GET['category']) && $_GET['category'] != 0)
 // Category overview
 elseif(isset($_GET['category']) && $_GET['category'] == '0')
 {
+	e107::route('cookbook/categories'); 
 	$text = $cookbook_class->renderCategories();
 	
 	e107::getRender()->tablerender(LAN_CB_CATEGORY_OVERVIEW, $text);
@@ -100,6 +103,7 @@ elseif(isset($_GET['category']) && $_GET['category'] == '0')
 // Individual keyword
 elseif(isset($_GET['keyword']) && $_GET['keyword'] != '0')
 {
+	e107::route('cookbook/keyword'); 
 	$keyword 	= e107::getParser()->toDb($_GET['keyword']);
 	$text 		= $cookbook_class->renderKeyword($keyword);
 		
@@ -108,6 +112,7 @@ elseif(isset($_GET['keyword']) && $_GET['keyword'] != '0')
 // Keyword overview (tagcloud)
 elseif(isset($_GET['keyword']) && $_GET['keyword'] == '0')
 {
+	e107::route('cookbook/keywords'); 
 	$text = $cookbook_class->renderKeywordOverview();
 	e107::getRender()->tablerender(LAN_CB_KEYWORD_OVERVIEW, $text);
 	
@@ -115,6 +120,7 @@ elseif(isset($_GET['keyword']) && $_GET['keyword'] == '0')
 // Recipe overview (home)
 else
 {
+	e107::route('cookbook/index'); 
 	$text = $cookbook_class->renderRecipeOverview();
 
 	e107::getRender()->tablerender(LAN_CB_RECIPE_OVERVIEW, $text);
