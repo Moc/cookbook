@@ -10,8 +10,34 @@
 
 if (!defined('e107_INIT')) { exit; }
 
+// OVERVIEW GRID
+$COOKBOOK_TEMPLATE['overview_grid']['start'] = '
+<div class="row">';
+
+$COOKBOOK_TEMPLATE['overview_grid']['items'] = '
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            {SETIMAGE: w=240}
+            {COOKBOOK_RECIPE_THUMB}
+            <div class="caption text-center">
+                <h3>{COOKBOOK_RECIPE_NAME}</h3>
+                <p>{COOKBOOK_RECIPE_SUMMARY}</p>
+
+                <ul class="list-inline text-center">
+                    <li>{GLYPH=fa-clock} {COOKBOOK_TIME}</li>
+                    <li>{GLYPH=fa-user} {COOKBOOK_AUTHOR}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+';
+
+$COOKBOOK_TEMPLATE['overview_grid']['end'] = '
+</div>';   
+
+
 // OVERVIEW TABLE 
-$COOKBOOK_TEMPLATE['overview']['start'] = '
+$COOKBOOK_TEMPLATE['overview_datatable']['start'] = '
 <div align="left pull-left">
 <table class="table table-bordered text-left recipes dt-responsive nowrap" cellspacing="0" width="100%">
 	<thead>
@@ -27,7 +53,7 @@ $COOKBOOK_TEMPLATE['overview']['start'] = '
     <tbody>
 ';
 
-$COOKBOOK_TEMPLATE['overview']['items'] = '
+$COOKBOOK_TEMPLATE['overview_datatable']['items'] = '
 		<tr>
 			<td>{COOKBOOK_RECIPE_NAME}</td>
 	    	<td>{COOKBOOK_CATEGORY_NAME}</td>
@@ -38,7 +64,7 @@ $COOKBOOK_TEMPLATE['overview']['items'] = '
     	</tr>
 ';
 
-$COOKBOOK_TEMPLATE['overview']['end'] = '
+$COOKBOOK_TEMPLATE['overview_datatable']['end'] = '
 	</tbody>
 </table>
 </div>

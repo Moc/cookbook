@@ -216,23 +216,25 @@ class cookbook
 	{
 		$text = '';
 
+		$key = e107::getPlugPref('cookbook', 'overview_format', 'overview_grid'); 
+
 		// Load template
-		$template = e107::getTemplate('cookbook');
+		$template = e107::getTemplate('cookbook', null, $key);
 		$template = array_change_key_case($template);
 
 		// Load shortcode
 		$sc = e107::getScBatch('cookbook', true);
 
-	 	$text .= e107::getParser()->parseTemplate($template['overview']['start'], true, $sc);
+	 	$text .= e107::getParser()->parseTemplate($template['start'], true, $sc);
 
 		foreach($recipes as $recipe)
 		{
 			// Pass query values onto the shortcodes
 			$sc->setVars($recipe);
-			$text .= e107::getParser()->parseTemplate($template['overview']['items'], true, $sc);
+			$text .= e107::getParser()->parseTemplate($template['items'], true, $sc);
 		}
 
-		$text .= e107::getParser()->parseTemplate($template['overview']['end'], true, $sc);
+		$text .= e107::getParser()->parseTemplate($template['end'], true, $sc);
 
 		return $text;
 	}

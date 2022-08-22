@@ -421,6 +421,13 @@ class cookbook_recipes_ui extends e_admin_ui
 
 	protected $prefs = array(
 
+		'overview_format'	=> array(
+			'title'	=> 'Overview format',
+			'type'	=> 'dropdown',
+			'data' 	=> 'str',
+			'help'	=> 'Grid view or Datatables',
+			'tab'	=> 0,
+		),
 		'date_format' => array(
 			'title'	=> 'Date format',
 			'type'	=> 'dropdown',
@@ -487,6 +494,12 @@ class cookbook_recipes_ui extends e_admin_ui
 				"long" 		=> "long", 
 				"short" 	=> "short", 
 				"relative" 	=> "relative"
+			); 
+
+			// Overview format: allow to choose between a Grid overview or Datatables
+			$this->prefs['overview_format']['writeParms'] = array(
+				"overview_grid"			=> "Grid overview", 
+				"overview_datatable" 	=> "Datatable overview", 
 			); 
 
 	}

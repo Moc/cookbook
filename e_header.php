@@ -15,9 +15,14 @@ if(defset('e_CURRENT_PLUGIN') == "cookbook" && e107::isInstalled('cookbook'))
     $cookbook_page = true;
 }
 
+$key = e107::getPlugPref('cookbook', 'overview_format', 'overview_grid'); 
+
 // Code is only needed on frontend cookbook pages
 if(USER_AREA && varsettrue($cookbook_page))
 {
+	// General CSS styling
+	e107::css('cookbook', 'cookbook_style.css');
+
 	// Raty plugin
 	e107::js('cookbook', 'plugins/raty/jquery.raty.js', 'jquery');
 
@@ -26,51 +31,52 @@ if(USER_AREA && varsettrue($cookbook_page))
 	e107::js('cookbook', 'plugins/tagcloud/jqcloud-1.0.4.min.js', 'jquery');
 
 	// Datatables plugin
-	if(defined('BOOTSTRAP') && BOOTSTRAP === 3)
+	if($key == "overview_datatable")
 	{
-		e107::css('cookbook', 'plugins/datatables/css/datatables-bs3.min.css');
-		e107::js('cookbook', 'plugins/datatables/js/datatables-bs3.min.js');
+
+		if(defined('BOOTSTRAP') && BOOTSTRAP === 3)
+		{
+			e107::css('cookbook', 'plugins/datatables/css/datatables-bs3.min.css');
+			e107::js('cookbook', 'plugins/datatables/js/datatables-bs3.min.js');
+		}
+		elseif(defined('BOOTSTRAP') && BOOTSTRAP === 4)
+		{
+			e107::css('cookbook', 'plugins/datatables/css/datatables-bs4.min.css');
+			e107::js('cookbook', 'plugins/datatables/js/datatables-bs4.min.js');
+		}
+		else
+		{
+			e107::css('cookbook', 'plugins/datatables/css/datatables.min.css');
+			e107::js('cookbook', 'plugins/datatables/js/datatables.min.js');
+		}
+
+		// DataTables language files
+		$system_lan		= e_PLUGIN."cookbook/plugins/datatables/languages/".e_LANGUAGE.".json";
+		$default_lan 	= e_PLUGIN_ABS."cookbook/plugins/datatables/languages/English.json";
+		$dt_lan_file 	= (file_exists($system_lan) ? $system_lan : $default_lan);
+
+		$order = "order: [[4, 'desc']],";
+
+		if(defset('e_ROUTE') === "cookbook/recent")
+		{
+			$order = "order: [],";
+		}
+		
+
+		e107::js('inline',
+		"
+			$(document).ready(function() {
+			    $('table.recipes').dataTable( {
+			    	".$order."
+			        columnDefs: [
+			        	{orderable: false, targets: 0},
+					   	{orderable: false, targets: 5},
+					],
+					language: {
+	        			url: '".$dt_lan_file."'
+	   				}
+			    });
+			});
+		");
 	}
-	elseif(defined('BOOTSTRAP') && BOOTSTRAP === 4)
-	{
-		e107::css('cookbook', 'plugins/datatables/css/datatables-bs4.min.css');
-		e107::js('cookbook', 'plugins/datatables/js/datatables-bs4.min.js');
-	}
-	else
-	{
-		e107::css('cookbook', 'plugins/datatables/css/datatables.min.css');
-		e107::js('cookbook', 'plugins/datatables/js/datatables.min.js');
-	}
-
-	// DataTables language files
-	$system_lan		= e_PLUGIN."cookbook/plugins/datatables/languages/".e_LANGUAGE.".json";
-	$default_lan 	= e_PLUGIN_ABS."cookbook/plugins/datatables/languages/English.json";
-	$dt_lan_file 	= (file_exists($system_lan) ? $system_lan : $default_lan);
-
-	$order = "order: [[4, 'desc']],";
-
-	if(defset('e_ROUTE') === "cookbook/recent")
-	{
-		$order = "order: [],";
-	}
-	
-
-	e107::js('inline',
-	"
-		$(document).ready(function() {
-		    $('table.recipes').dataTable( {
-		    	".$order."
-		        columnDefs: [
-		        	{orderable: false, targets: 0},
-				   	{orderable: false, targets: 5},
-				],
-				language: {
-        			url: '".$dt_lan_file."'
-   				}
-		    });
-		});
-	");
-
-	// General CSS styling
-	e107::css('cookbook', 'cookbook_style.css');
 }
