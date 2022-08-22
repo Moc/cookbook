@@ -390,14 +390,15 @@ class cookbook_recipes_ui extends e_admin_ui
 	protected $fieldpref = array('r_id', 'r_thumbnail', 'r_name', 'r_category', 'r_persons', 'r_time');
 
 	// Preferences
-	//protected $preftabs = array('Display options', 'Posting options', 'Recipe features');
+	protected $preftabs = array('Display options', 'Posting options', 'Recipe options', 'Other');
 
 	/* NOTES:
 	Display options:
 		General:
-		- Datatables or Grid view
+		- Datatables or Grid view 
 		- In case of grid view: number of recipes per page
 		- Sort order?
+		- Date/time format
 
 		Actions:
 		- Show print
@@ -405,13 +406,13 @@ class cookbook_recipes_ui extends e_admin_ui
 		- Show sharing
 		
 	Posting options:
-		- Submission userc lass
+		- Submission class
 		- Auto approve class
 		- Comments enabled
 		- Comments class? 
 
 
-	Recipe features:
+	Recipe options:
 		- Difficulty level 
 		- preparation time?
 	
@@ -419,29 +420,36 @@ class cookbook_recipes_ui extends e_admin_ui
 
 
 	protected $prefs = array(
+
+		'date_format' => array(
+			'title'	=> 'Date format',
+			'type'	=> 'dropdown',
+			'data'	=> 'str',
+			'help'	=> 'Uses the format defined in Admin Area > Preferences > Date Display options',
+			'tab'	=> 0,
+		),
+
 		'submission_userclass'	=> array(
 			'title'	=> 'Submission userclass',
 			'type'	=> 'userclass',
 			'data' 	=> 'str',
-			'help'	=> 'Userclass that is allowed to submit new recipes'
+			'help'	=> 'Userclass that is allowed to submit new recipes',
+			'tab'	=> 1,
 		),
 		'author_rating' => array(
 			'title'	=> 'Author rating',
 			'type'	=> 'boolean',
 			'data' 	=> 'str',
-			'help'	=> 'When enabled, recipe authors can rate their own recipes'
+			'help'	=> 'When enabled, recipe authors can rate their own recipes',
+			'tab'	=> 2,
 		),
-		'date_format' => array(
-			'title'	=> 'Date format',
-			'type'	=> 'dropdown',
-			'data'	=> 'str',
-			'help'	=> 'Uses the format defined in Preferences > Date Display options'
-		),
+
 		'caching' => array(
 			'title'	=> 'Caching',
 			'type'	=> 'boolean',
 			'data'	=> 'str',
-			'help'	=> 'Choose whether to enable caching on this plugin (increases performance)'
+			'help'	=> 'Choose whether to enable caching on this plugin (increases performance)',
+			'tab'	=> 3,
 		),
 	);
 
