@@ -398,12 +398,14 @@ class cookbook_shortcodes extends e_shortcode
     }
 
     /**
-    *
+    * Shows other recipes that are related to the current recipe (based on tags)
+    * 
     * @param array $parm
-    * @param string $parm['types']
+    * @param string $parm['types'] // Allows to cross-check with other areas (e.g. news) for similar tags
     * @param int $parm['limit']
-    * @example {COOKBOOK_RELATED: types=cookbook,news&limit=3}
-    * @return string
+    * 
+    * @example {COOKBOOK_RELATED: types=cookbook,news&limit=3} // Shows maximum of 3 related items, which could be cookbook recipes or news items
+    * 
     */
     function sc_cookbook_related($parm = array())
     {
