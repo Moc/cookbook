@@ -390,7 +390,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	protected $fieldpref = array('r_id', 'r_thumbnail', 'r_name', 'r_category', 'r_persons', 'r_time');
 
 	// Preferences
-	protected $preftabs = array('Display options', 'Posting options', 'Recipe options', 'Other');
+	protected $preftabs = array('Display options', 'Posting options', 'Recipe options');
 
 	/* NOTES:
 	0 - Display options:
@@ -413,8 +413,6 @@ class cookbook_recipes_ui extends e_admin_ui
 		- Show bookmark
 		- Show sharing
 
-	3 - Other
-		- Caching (may be removed soon)
 	*/
 
 
@@ -467,15 +465,6 @@ class cookbook_recipes_ui extends e_admin_ui
 			'data' 	=> 'str',
 			'help'	=> 'When enabled, recipe authors can rate their own recipes',
 			'tab'	=> 2,
-		),
-
-		// 3 - Other
-		'caching' => array(
-			'title'	=> 'Caching',
-			'type'	=> 'boolean',
-			'data'	=> 'int',
-			'help'	=> 'Choose whether to enable caching on this plugin (increases performance)',
-			'tab'	=> 3,
 		),
 	);
 
@@ -555,7 +544,7 @@ class cookbook_recipes_ui extends e_admin_ui
 
 	public function afterCreate($new_data, $old_data, $id)
 	{
-		e107::getCache()->clear('cookbook_recipe_tagcloud');
+		e107::getCache()->clear('cookbook_recipe_tags');
 	}
 
 	// Make some adjustments before storing the updated data into the database
@@ -591,7 +580,7 @@ class cookbook_recipes_ui extends e_admin_ui
 
 	public function afterUpdate($new_data, $old_data, $id)
 	{
-		e107::getCache()->clear('cookbook_recipe_tagcloud');
+		e107::getCache()->clear('cookbook_recipe_tags');
 	}
 
 	public function onUpdateError($new_data, $old_data, $id)

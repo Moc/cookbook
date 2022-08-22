@@ -464,13 +464,11 @@ class cookbook
 
 	public function compileTagsFile()
 	{
-		$cache_name = 'cookbook_recipe_tags'; // name of cache file
-      	$cache_time = '60'; // set to one hour (60 minutes) // TODO set way longer and then clear when recipes added/tags modified
-      	$caching = e107::pref('cookbook', 'caching'); // preference which checks if cache is enabled (1) or disabled (0)
+		$cache_name = 'cookbook_recipe_tags'; // name of cache file 
       	$vals = ''; // this will be the list of all the tags and their count
 
       	// Check if the tagcloud has been cached and is not older than cache_time
-      	if( /*$caching == true &&*/ e107::getCache()->retrieve($cache_name, $cache_time))
+      	if( e107::getCache()->retrieve($cache_name))
       	{
           	$vals_cache = e107::getCache()->retrieve($cache_name);
           	$vals = e107::unserialize($vals_cache);
