@@ -77,7 +77,7 @@ class cookbook_url
 			'alias'         => 'cookbook',
 			'regex'			=> '^{alias}/bookmarks(.*)$',
 			'sef'			=> '{alias}/bookmarks/',
-			'redirect'		=> '{e_PLUGIN}cookbook/bookmarks.php',
+			'redirect'		=> '{e_PLUGIN}cookbook/index.php?p=bookmarks',
 		);
 
 		return $config;

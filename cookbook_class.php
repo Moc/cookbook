@@ -472,7 +472,7 @@ class cookbook
 				$recipes[] 	= e107::getDb()->retrieve('cookbook_recipes', '*', 'r_id = '.$r_id);
 			}
 
-			$text = $cookbook_class->renderOverviewTable($recipes);
+			$text = $this->renderOverviewTable($recipes);
 		}
 		else
 		{
