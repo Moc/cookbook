@@ -13,7 +13,7 @@ define("PAGE_NAME", "Recepten");
 define("LAN_CB_KEYWORD_OVERVIEW", "Overzicht van alle trefwoorden");
 define("LAN_CB_RECIPE_OVERVIEW", "Overzicht van alle recepten");
 define("LAN_CB_CATEGORY_OVERVIEW", "Overzicht van alle recepten per categorie");
-define("LAN_CB_RECIPE_RECENT", "Meest recente recepten");
+define("LAN_CB_RECIPE_LATEST", "Meest recente recepten");
 
 // Individueel recept
 define("LAN_CB_RECIPEINFO", "Recept info");

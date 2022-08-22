@@ -13,7 +13,7 @@ define("PAGE_NAME", "Recipes");
 define("LAN_CB_KEYWORD_OVERVIEW", "Overview of all keywords");
 define("LAN_CB_RECIPE_OVERVIEW", "Overview of all recipes");
 define("LAN_CB_CATEGORY_OVERVIEW", "Overview of all recipes split by category");
-define("LAN_CB_RECIPE_RECENT", "Most recent recipes");
+define("LAN_CB_RECIPE_LATEST", "Latest recipes");
 
 // Individual recipe
 define("LAN_CB_RECIPEINFO", "Recipe information");

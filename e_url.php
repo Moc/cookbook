@@ -65,11 +65,11 @@ class cookbook_url
 		);
 
 		// Recently added recipes
-		$config['recent'] = array(
+		$config['latest'] = array(
 			'alias'         => 'cookbook',
-			'regex'			=> '^{alias}/recent(.*)$',
-			'sef'			=> '{alias}/recent/',
-			'redirect'		=> '{e_PLUGIN}cookbook/recent.php',
+			'regex'			=> '^{alias}/latest(.*)$',
+			'sef'			=> '{alias}/latest/',
+			'redirect'		=> '{e_PLUGIN}cookbook/index.php?p=latest',
 		);
 
 		// Recently added recipes

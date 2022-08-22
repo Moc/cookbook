@@ -239,14 +239,44 @@ class cookbook
 		return $text;
 	}
 
+	public function renderLatestRecipes()
+	{
+		$sql 	= e107::getDb();
+		$text 	= '';
+
+		$this->caption = LAN_CB_RECIPE_LATEST;
+
+		$this->breadcrumb_array[] = array(
+			'text' 	=> LAN_CB_RECIPE_LATEST,
+			'url' 	=> e107::url('cookbook', 'latest'),
+		);
+
+		// TODO add pref for number of latest recipes to show?
+		// Retrieve the 10 most recently added recipes 
+		$recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp DESC LIMIT 0,10', true);
+
+	
+		// Check if there are recipes in this category
+		if($recipes)
+		{
+		 	$text .= $this->renderOverviewTable($recipes);
+		}
+		// No recipes in this category yet
+		else
+		{
+			$text .= "<div class='alert alert-info text-center'>".LAN_CB_NORECIPESINCAT."</div>";
+		}
+
+		// Send breadcrumb information
+		e107::breadcrumb($this->breadcrumb_array);
+
+		return $text;
+	}
+
 	public function renderCategory($data)
 	{
 		$sql 	= e107::getDb();
-		$tp 	= e107::getParser();
 		$text 	= '';
-
-		$template = e107::getTemplate('cookbook');
-		$template = array_change_key_case($template);
 
 		$this->breadcrumb_array[] = array(
 			'text' 	=> LAN_CATEGORIES,

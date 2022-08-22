@@ -117,6 +117,13 @@ elseif(isset($_GET['keyword']) && $_GET['keyword'] == '0')
 	e107::getRender()->tablerender(LAN_CB_KEYWORD_OVERVIEW, $text);
 	
 }
+// Latest recipes
+elseif(isset($_GET['p']) && $_GET['p'] == 'latest')
+{
+	e107::route('cookbook/latest'); 
+	$text = $cookbook_class->renderLatestRecipes();
+	e107::getRender()->tablerender(LAN_CB_RECIPE_LATEST, $text);
+}
 // Recipe overview (home)
 else
 {
