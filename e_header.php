@@ -15,7 +15,10 @@ if(defset('e_CURRENT_PLUGIN') == "cookbook" && e107::isInstalled('cookbook'))
     $cookbook_page = true;
 }
 
-$key = e107::getPlugPref('cookbook', 'overview_format', 'overview_grid'); 
+$route = e107::route();
+//print_a($route);
+
+$overview_pref = e107::getPlugPref('cookbook', 'overview_format', 'overview_grid'); 
 
 // Code is only needed on frontend cookbook pages
 if(USER_AREA && varsettrue($cookbook_page))
@@ -27,11 +30,14 @@ if(USER_AREA && varsettrue($cookbook_page))
 	e107::js('cookbook', 'plugins/raty/jquery.raty.js', 'jquery');
 
 	// Tagcloud plugin
-	e107::css('cookbook', 'plugins/tagcloud/jqcloud.css');
-	e107::js('cookbook', 'plugins/tagcloud/jqcloud-1.0.4.min.js', 'jquery');
+	if($route == "cookbook/keywords")
+	{
+		e107::css('cookbook', 'plugins/tagcloud/jqcloud.css');
+		e107::js('cookbook', 'plugins/tagcloud/jqcloud-1.0.4.min.js', 'jquery');
+	}
 
 	// Datatables plugin
-	if($key == "overview_datatable")
+	if($overview_pref == "overview_datatable")
 	{
 
 		if(defined('BOOTSTRAP') && BOOTSTRAP === 3)
