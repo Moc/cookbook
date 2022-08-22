@@ -443,6 +443,7 @@ class cookbook_recipes_ui extends e_admin_ui
 			'data' 	=> 'str',
 			'help'	=> 'Userclass that is allowed to submit new recipes',
 			'tab'	=> 1,
+		),*/
 		'comments_enabled' => array(
 			'title'	=> 'Comments on recipes',
 			'type'	=> 'boolean',
