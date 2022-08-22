@@ -38,6 +38,8 @@ var e107 = e107 || {'settings': {}, 'behaviors': {}};
 							{
 								var newText = response.msg; 
 								$('span[data-cookbook-recipeid='+recipeID+']').html(newText);
+								//console.log("going to reload")
+								//location.reload();
 							}
 							else
 							{
