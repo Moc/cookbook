@@ -17,7 +17,7 @@ $COOKBOOK_TEMPLATE['overview_grid']['start'] = '
 $COOKBOOK_TEMPLATE['overview_grid']['items'] = '
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-            {SETIMAGE: w=240}
+            {SETIMAGE: w=200&h=150&crop=1}
             {COOKBOOK_RECIPE_THUMB}
             <div class="caption text-center">
                 <h3>{COOKBOOK_RECIPE_NAME}</h3>
