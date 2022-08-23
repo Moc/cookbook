@@ -50,6 +50,11 @@ if(USER_AREA && varsettrue($cookbook_page))
 			e107::css('cookbook', 'plugins/datatables/css/datatables-bs4.min.css');
 			e107::js('cookbook', 'plugins/datatables/js/datatables-bs4.min.js');
 		}
+		elseif(defined('BOOTSTRAP') && BOOTSTRAP === 5)
+		{
+			e107::css('cookbook', 'plugins/datatables/css/datatables-bs5.min.css');
+			e107::js('cookbook', 'plugins/datatables/js/datatables-bs5.min.js');
+		}
 		else
 		{
 			e107::css('cookbook', 'plugins/datatables/css/datatables.min.css');
