@@ -91,7 +91,7 @@ $text = $class->render($parm);
 
 
 // Set default caption
-$caption = LAN_CB_RECIPE_RECENT;
+$caption = LAN_CB_RECIPE_LATEST;
 
 
 // Allow for custom caption through shortcode parm 
@@ -99,7 +99,7 @@ if (!empty($parm))
 {
     if(isset($parm['caption'][e_LANGUAGE]))
     {
-        $caption = empty($parm['caption'][e_LANGUAGE]) ? LAN_CB_RECIPE_RECENT : $parm['caption'][e_LANGUAGE];
+        $caption = empty($parm['caption'][e_LANGUAGE]) ? LAN_CB_RECIPE_LATEST : $parm['caption'][e_LANGUAGE];
     }
 }
 
