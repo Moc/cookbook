@@ -29,7 +29,7 @@ class cookbook_url
 			'alias'         => 'cookbook',
 			'regex'			=> '^{alias}/id/(.*)$',
 			'sef'			=> '{alias}/id/{r_id}/{r_name_sef}',
-			'redirect'		=> '{e_PLUGIN}cookbook/index.php?id=$1',
+			'redirect'		=> '{e_PLUGIN}cookbook/index.php?p=id&id=$1',
 		);
 		
 		// All recipes in a specific category

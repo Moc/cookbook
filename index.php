@@ -41,27 +41,10 @@ e107::title(LAN_CB_NAME);
 
 
 // Individual recipe - Set caption and metatags
-if(isset($_GET['id']))
-{
-	$id 		= (int)$_GET['id']; 
-	$title 		= $cookbook_class->getTitle($id);
-	$recipedata = $cookbook_class->getRecipeData($id); 
-
-	$description = e107::getParser()->toText($recipedata['r_summary']); 
-	$description = str_replace("\n", ' ', $description);
-	$description = e107::getParser()->truncate($description, 150);
-	
-	e107::meta('og:title', $title);
-	e107::meta('og:url', e_SELF);
-	e107::meta('og:description', $description);
-	e107::meta('description', $description);
-	e107::meta('twitter:url', e_SELF);
-
-	$default_img 	= "{e_PLUGIN}cookbook/images/default_image.webp";
-	$img 			= (!empty($recipedata['r_thumbnail']) ? $recipedata['r_thumbnail'] : $default_img);
-	$mimg 			= $tp->thumbUrl($img, array('w' => 1200), false, true);
-
-  	e107::meta('og:image', $mimg);
+if(isset($_GET['p']) && $_GET['p'] == 'id' && $_GET['id'])
+{	
+	$id = (int)$_GET['id']; 
+	$cookbook_class->setRecipeMeta($id); 
 }
 
 $caption = empty($title) ? LAN_CB_NAME : $title; 
@@ -75,7 +58,7 @@ e107::js('cookbook','js/cookbook.js', 'jquery', 5);
 require_once(HEADERF);
 
 // Individual recipe
-if(isset($_GET['id']))
+if(isset($_GET['p']) && $_GET['p'] == 'id' && $_GET['id'])
 {
 	e107::route('cookbook/recipe'); 
 	$rid 	= (int)$_GET['id']; // Filter user input 

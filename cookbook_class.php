@@ -18,6 +18,28 @@ class cookbook
 		);
 	}
 
+	public function setRecipeMeta($id)
+	{
+		$title 		= $this->getTitle($id);
+		$recipedata = $this->getRecipeData($id); 
+
+		$description = e107::getParser()->toText($recipedata['r_summary']); 
+		$description = str_replace("\n", ' ', $description);
+		$description = e107::getParser()->truncate($description, 150);
+		
+		e107::meta('og:title', $title);
+		e107::meta('og:url', e_SELF);
+		e107::meta('og:description', $description);
+		e107::meta('description', $description);
+		e107::meta('twitter:url', e_SELF);
+
+		$default_img 	= "{e_PLUGIN}cookbook/images/default_image.webp";
+		$img 			= (!empty($recipedata['r_thumbnail']) ? $recipedata['r_thumbnail'] : $default_img);
+		$mimg 			= e107::getParser()->thumbUrl($img, array('w' => 1200), false, true);
+
+	  	e107::meta('og:image', $mimg);
+	}
+
 	public function bookmarkRecipe()
 	{
 		$sql = e107::getDb();
