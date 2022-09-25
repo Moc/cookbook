@@ -117,29 +117,29 @@ $COOKBOOK_TEMPLATE['recipe_content'] = '
 <!-- End content left-->
 ';
 
-$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_AUTHORRATING: type=stars'] = '<li><i class="fa-li fa fa-trophy"></i><div id="rating">{---}</div></li>';
-$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_DIFFICULTY: type=stars'] = '<li>{GLYPH: type=rectangle-list&class=fa-li}</i><div id="difficulty">{---}</div></li>';
+$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_AUTHORRATING: type=stars']   = '<div id="rating">{---}</div>';
+$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_DIFFICULTY: type=stars']     = '<div id="difficulty">{---}</div>';
 
 $COOKBOOK_TEMPLATE['recipe_info'] = '
 <!-- Sidebar -->
 <div class="col-md-4 recipe-sidebar">
     <h3>{LAN=LAN_CB_RECIPEINFO}</h3>
     <ul class="fa-ul">
-        <li><i class="fa-li fa fa-cutlery"></i>{COOKBOOK_CATEGORY_NAME=no_url}</li>
-        <li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
-        <li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
-        <li><i class="fa-li fa fa-tags"></i>{COOKBOOK_KEYWORDS}</li>
-        {COOKBOOK_AUTHORRATING: type=stars}
-        {COOKBOOK_DIFFICULTY: type=stars}
-        <li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
-        <li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
+        <li>{GLYPH: type=fa-cutlery&class=fa-li} {COOKBOOK_CATEGORY_NAME=no_url}</li>
+        <li>{GLYPH: type=fa-users&class=fa-li} {COOKBOOK_PERSONS}</li>
+        <li>{GLYPH: type=fa-clock-o&class=fa-li} {COOKBOOK_TIME}</li>
+        <li>{GLYPH: type=fa-tags&class=fa-li} {COOKBOOK_KEYWORDS}</li>
+        <li>{GLYPH: type=fa-trophy&class=fa-li} {COOKBOOK_AUTHORRATING: type=stars}</li>
+        <li>{GLYPH: type=fa-toolbox&class=fa-li} {COOKBOOK_DIFFICULTY: type=stars}</li>
+        <li>{GLYPH: type=fa-user&class=fa-li} {COOKBOOK_AUTHOR}</li>
+        <li>{GLYPH: type=fa-calendar-alt&class=fa-li} {COOKBOOK_DATE}</li>
     </ul>
 
     <h3>{LAN=LAN_CB_ACTIONS}</h3>
     <ul class="fa-ul">
         {COOKBOOK_BOOKMARK}
-        <li><i class="fa-li fa fa-pencil"></i> {COOKBOOK_EDIT}</li>
-        <li><i class="fa-li fa fa-print"></i> {COOKBOOK_PRINT}</li>
+        <li>{GLYPH: type=fa-pencil&class=fa-li} {COOKBOOK_EDIT}</li>
+        <li>{GLYPH: type=fa-print&class=fa-li} {COOKBOOK_PRINT}</li>
     </ul>
 </div>
 <!-- End sidebar -->
@@ -167,13 +167,14 @@ $COOKBOOK_TEMPLATE['print_recipe_layout'] = '
 	           
 <h3>{LAN=LAN_CB_RECIPEINFO}</h3>
 <ul class="fa-ul">
-	<li><i class="fa-li fa fa-cutlery"></i>{COOKBOOK_CATEGORY_NAME=no_url}</li>
-	<li><i class="fa-li fa fa-users"></i> {COOKBOOK_PERSONS}</li>
-	<li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
-	<li><i class="fa-li fa fa-tags"></i>{COOKBOOK_KEYWORDS}</li>
-    {COOKBOOK_AUTHORRATING: type=stars}
-  	<li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
-  	<li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
+	<li>{GLYPH: type=fa-cutlery&class=fa-li} {COOKBOOK_CATEGORY_NAME=no_url}</li>
+	<li>{GLYPH: type=fa-users&class=fa-li} {COOKBOOK_PERSONS}</li>
+	<li>{GLYPH: type=fa-clock-o&class=fa-li} {COOKBOOK_TIME}</li>
+	<li>{GLYPH: type=fa-tags&class=fa-li} {COOKBOOK_KEYWORDS}</li>
+    <li>{GLYPH: type=fa-trophy&class=fa-li} {COOKBOOK_AUTHORRATING: type=stars}</li>
+    <li>{GLYPH: type=fa-toolbox&class=fa-li} {COOKBOOK_DIFFICULTY: type=stars}</li>
+    <li>{GLYPH: type=fa-user&class=fa-li} {COOKBOOK_AUTHOR}</li>
+    <li>{GLYPH: type=fa-calendar-alt&class=fa-li} {COOKBOOK_DATE}</li>
 </ul>
 ';
 
