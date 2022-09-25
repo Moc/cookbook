@@ -325,7 +325,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'inline' 		=> true, 
 	  		'help' 			=> LAN_CB_HELP_TIME, 
 	  		'readParms' 	=> array(), 
-	  		'writeParms' 	=> array(), 
+	  		'writeParms' 	=> array(),
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left',  
 	  	),
@@ -552,15 +552,15 @@ class cookbook_recipes_ui extends e_admin_ui
 		// Preferences 
 			// Date format: choose between 'long|short|relative', as defined in Preferences > Date Display options
 			$this->prefs['date_format']['writeParms'] = array(
-				"long" 		=> "long", 
-				"short" 	=> "short", 
-				"relative" 	=> "relative"
+				"long" 		=> "long", // TODO LAN
+				"short" 	=> "short", // TODO LAN
+				"relative" 	=> "relative" // TODO LAN
 			); 
 
 			// Overview format: allow to choose between a Grid overview or Datatables
 			$this->prefs['overview_format']['writeParms'] = array(
-				"overview_grid"			=> "Grid overview", 
-				"overview_datatable" 	=> "Datatable overview", 
+				"overview_grid"			=> "Grid overview",  // TODO LAN
+				"overview_datatable" 	=> "Datatable overview",  // TODO LAN
 			); 
 
 	}
