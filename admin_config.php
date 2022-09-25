@@ -341,6 +341,18 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left',  
 	  	),
+	  	'r_difficulty' => array( 
+	  		'title' 		=> LAN_CB_DIFFICULTY, 		
+	  		'type' 			=> 'hidden', 	
+	  		'data' 			=> 'int', 
+	  		'width' 		=> 'auto', 
+	  		'inline' 		=> true, 
+	  		'help' 			=> LAN_CB_HELP_DIFFICULTY, 
+	  		'readParms' 	=> array(), 
+	  		'writeParms' 	=> array(),
+	  		'class' 		=> 'left', 
+	  		'thclass' 		=> 'left',  
+	  	),
 	  	'r_summary' => array( 
 	  		'title' 		=> LAN_SUMMARY,	
 	  		'type' 			=> 'bbarea', 	
@@ -451,6 +463,20 @@ class cookbook_recipes_ui extends e_admin_ui
 		),
 	
 		// 2 - Recipe options:
+		'recipe_authorrating' => array(
+			'title'	=> 'Use author rating',
+			'type'	=> 'boolean',
+			'data' 	=> 'str',
+			'help'	=> 'When enabled, recipe authors can rate their own recipes',
+			'tab'	=> 2,
+		),
+		'recipe_difficulty' => array(
+			'title'	=> 'Use difficulty levels',
+			'type'	=> 'boolean',
+			'data'	=> 'int',
+			'help'	=> 'If enabled, recipes can have three difficulty levels: easy, moderate, hard',
+			'tab'	=> 2,
+		),
 		'recipe_showrelated' => array(
 			'title'	=> 'Show related recipes',
 			'type'	=> 'boolean',
@@ -479,14 +505,6 @@ class cookbook_recipes_ui extends e_admin_ui
 			'help'	=> 'If enabled, users will have the option to share a recipe on several (social) media.',
 			'tab'	=> 2,
 		),
-
-		'author_rating' => array(
-			'title'	=> 'Author rating',
-			'type'	=> 'boolean',
-			'data' 	=> 'str',
-			'help'	=> 'When enabled, recipe authors can rate their own recipes',
-			'tab'	=> 2,
-		),
 	);
 
 	public function init()
@@ -507,13 +525,27 @@ class cookbook_recipes_ui extends e_admin_ui
 
 
 		// Author rating
-		if($pref['author_rating'])
+		if($pref['recipe_authorrating'])
 		{
 			// Change type from 'hidden' to 'number'
 			$this->fields['r_authorrating']['type'] = 'number';
 
 			// If enabled, default author rating is 1
 			$this->fields['r_authorrating']['writeParms'] = '1';
+		}
+
+
+		// Recipe difficulty 
+		if($pref['recipe_difficulty'])
+		{
+			// Change type from 'hidden' to 'number'
+			$this->fields['r_difficulty']['type'] = 'dropdown';
+
+			$this->fields['r_difficulty']['writeParms'] = array(
+				"1" 	=> LAN_CB_COMPLEX_EASY, 
+				"2" 	=> LAN_CB_COMPLEX_MODERATE, 
+				"3" 	=> LAN_CB_COMPLEX_HARD, 
+			); 
 		}
 
 

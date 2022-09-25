@@ -111,7 +111,7 @@ class cookbook_shortcodes extends e_shortcode
     {
         $type = varset($parm['type']);
        
-        if(e107::getPlugPref('cookbook', 'author_rating') == false)
+        if(e107::getPlugPref('cookbook', 'recipe_authorrating') == false)
         {
             return false;
         }
@@ -135,6 +135,62 @@ class cookbook_shortcodes extends e_shortcode
         else
         {
             return $this->var["r_authorrating"];
+        }
+    }
+
+
+    /**
+    * Renders the diffulty level of a recipe
+    *
+    * @param string $stars - determines whether star images are displayed or just the textual value
+    * 
+    * @example {COOKBOOK_DIFFICULTY} // returns textual value, e.g. "Easy" (value in DB is 1)
+    * @example {COOKBOOK_DIFFICULTY: type=stars} // returns star images of the rating
+    */
+    function sc_cookbook_difficulty($parm = array())
+    {
+        $type = varset($parm['type']);
+       
+        if(e107::getPlugPref('cookbook', 'recipe_difficulty') == false)
+        {
+            return false;
+        }
+
+        // Check if we want to display the stars
+        if($type == "stars")
+        {
+
+            return e107::js('footer-inline', '
+                $(function() {
+                    $("#difficulty").raty({
+                        readOnly: true,
+                        number: 3,
+                        score: '.$this->var["r_difficulty"].',
+                        path: "'.e_PLUGIN_ABS.'cookbook/images/stars"
+                    });
+                });
+            ')."<!-- -->";
+        }
+        // Just the textual value 
+        else
+        {
+            switch ($this->var["r_difficulty"]) 
+            {
+                case 1:
+                    $text = LAN_CB_COMPLEX_EASY; 
+                    break;
+                case 2:
+                    $text = LAN_CB_COMPLEX_MODERATE; 
+                    break;
+                case 3:
+                    $text = LAN_CB_COMPLEX_HARD; 
+                    break;
+                default:
+                    $text = LAN_ERROR; 
+                    break;
+            }
+
+            return $text;
         }
     }
 

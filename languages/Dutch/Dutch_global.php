@@ -14,6 +14,11 @@ define("LAN_CB_RECIPE", 			"Recept");
 define("LAN_CB_RECIPES", 			"Recepten");
 define("LAN_CB_PERSONS",			"Personen");
 define("LAN_CB_TIME", 				"Tijdsduur");
-define("LAN_CB_AUTHORRATING", 		"Beoordeling door auteur");
+define("LAN_CB_AUTHORRATING",       "Beoordeling door auteur");
+define("LAN_CB_DIFFICULTY", 		"Complexiteit");
 define("LAN_CB_INGREDIENTS",		"Ingrediënten");
 define("LAN_CB_INSTRUCTIONS",		"Instructies");
+
+define("LAN_CB_COMPLEX_EASY",       "Eenvoudig");
+define("LAN_CB_COMPLEX_MODERATE",   "Gemiddeld");
+define("LAN_CB_COMPLEX_HARD",       "Moeilijk");

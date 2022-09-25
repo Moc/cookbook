@@ -116,6 +116,7 @@ $COOKBOOK_TEMPLATE['recipe_content'] = '
 ';
 
 $COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_AUTHORRATING: type=stars'] = '<li><i class="fa-li fa fa-trophy"></i><div id="rating">{---}</div></li>';
+$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_DIFFICULTY: type=stars'] = '<li>{GLYPH: type=rectangle-list&class=fa-li}</i><div id="difficulty">{---}</div></li>';
 
 $COOKBOOK_TEMPLATE['recipe_info'] = '
 <!-- Sidebar -->
@@ -127,6 +128,7 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
         <li><i class="fa-li fa fa-clock-o"></i> {COOKBOOK_TIME}</li>
         <li><i class="fa-li fa fa-tags"></i>{COOKBOOK_KEYWORDS}</li>
         {COOKBOOK_AUTHORRATING: type=stars}
+        {COOKBOOK_DIFFICULTY: type=stars}
         <li><i class="fa-li fa fa-user"></i>{COOKBOOK_AUTHOR}</li>
         <li><i class="fa-li fa fa-calendar-alt"></i>{COOKBOOK_DATE}</li>
     </ul>

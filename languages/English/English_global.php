@@ -17,6 +17,11 @@ define("LAN_CB_RECIPE", 			"Recipe");
 define("LAN_CB_RECIPES", 			"Recipes");
 define("LAN_CB_PERSONS",			"Persons");
 define("LAN_CB_TIME", 				"Time");
-define("LAN_CB_AUTHORRATING", 		"Author rating");
+define("LAN_CB_AUTHORRATING",       "Author rating");
+define("LAN_CB_DIFFICULTY", 		"Difficulty");
 define("LAN_CB_INGREDIENTS",		"Ingredients");
 define("LAN_CB_INSTRUCTIONS",		"Instructions");
+
+define("LAN_CB_COMPLEX_EASY",       "Easy");
+define("LAN_CB_COMPLEX_MODERATE",   "Moderate");
+define("LAN_CB_COMPLEX_HARD",       "Hard");

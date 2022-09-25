@@ -18,12 +18,13 @@
 		<pref name='overview_format'>overview_grid</pref>
 		<pref name='date_format'>short</pref>
 		<pref name='comments_enabled'>1</pref>
+		<pref name='recipe_authorrating'>0</pref>
+		<pref name='recipe_difficulty'>1</pref>
 		<pref name='recipe_showrelated'>1</pref>
 		<pref name='recipe_showprint'>1</pref>
 		<pref name='recipe_showbookmark'>1</pref>
 		<pref name='recipe_showsharing'>1</pref>
 		<pref name='submission_userclass'>254</pref>
-		<pref name='author_rating'>1</pref>
 	</pluginPrefs>
 	<mediaCategories>
 		<category type="image">Cookbook</category>
