@@ -45,6 +45,7 @@ if(isset($_GET['p']) && $_GET['p'] == 'id' && $_GET['id'])
 {	
 	$id = (int)$_GET['id']; 
 	$cookbook_class->setRecipeMeta($id); 
+	$title = $cookbook_class->getTitle($id);
 }
 
 $caption = empty($title) ? LAN_CB_NAME : $title; 
