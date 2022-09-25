@@ -33,6 +33,9 @@ $COOKBOOK_TEMPLATE['overview_grid']['items'] = '
 ';
 
 $COOKBOOK_TEMPLATE['overview_grid']['end'] = '
+</div>
+<div class="row"> 
+   {GRID_NEXTPREV}
 </div>';   
 
 

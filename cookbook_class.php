@@ -234,9 +234,10 @@ class cookbook
 		return e107::getParser()->parseTemplate($RECIPE_INFO, true, $sc);
 	}
 
-	public function renderOverviewTable($recipes)
+	public function renderOverviewTable($recipes, $parm = array())
 	{
 		$text = '';
+		$vars = array();
 
 		$key = e107::getPlugPref('cookbook', 'overview_format', 'overview_grid'); 
 
@@ -249,6 +250,20 @@ class cookbook
 
 	 	$text .= e107::getParser()->parseTemplate($template['start'], true, $sc);
 
+	 	// Nextprev when using Grid overview
+	 	if($key == 'overview_grid' && isset($parm['from']))
+		{		
+			$count   = count($recipes); 
+			$page	 = $parm['from'];
+			$perPage = e107::getPlugPref('cookbook', 'gridview_itemspp', 10);
+			$from 	 = ($page - 1) * $perPage;
+			$total   = ceil($count / $perPage); 
+			
+			$recipes = array_slice($recipes, $from, $perPage);
+
+			$vars['recipecount'] = $count;
+		}
+
 		foreach($recipes as $recipe)
 		{
 			// Pass query values onto the shortcodes
@@ -256,12 +271,14 @@ class cookbook
 			$text .= e107::getParser()->parseTemplate($template['items'], true, $sc);
 		}
 
+		// Pass 'recipecount' to nextprev shortcode
+		$sc->setVars($vars);
 		$text .= e107::getParser()->parseTemplate($template['end'], true, $sc);
 
 		return $text;
 	}
 
-	public function renderLatestRecipes()
+	public function renderLatestRecipes($parm = array())
 	{
 		$sql 	= e107::getDb();
 		$text 	= '';
@@ -281,7 +298,7 @@ class cookbook
 		// Check if there are recipes in this category
 		if($recipes)
 		{
-		 	$text .= $this->renderOverviewTable($recipes);
+		 	$text .= $this->renderOverviewTable($recipes, $parm);
 		}
 		// No recipes in this category yet
 		else
@@ -295,7 +312,7 @@ class cookbook
 		return $text;
 	}
 
-	public function renderCategory($data)
+	public function renderCategory($data, $parm = array())
 	{
 		$sql 	= e107::getDb();
 		$text 	= '';
@@ -334,7 +351,7 @@ class cookbook
 			// Check if there are recipes in this category
 			if($recipes)
 			{
-			 	$text .= $this->renderOverviewTable($recipes);
+			 	$text .= $this->renderOverviewTable($recipes, $parm);
 			}
 			// No recipes in this category yet
 			else
@@ -401,7 +418,7 @@ class cookbook
 		return $text;
 	}
 
-	public function renderKeyword($keyword)
+	public function renderKeyword($keyword, $parm = array())
 	{
 		$sql 	= e107::getDb();
 		$tp 	= e107::getParser();
@@ -427,7 +444,7 @@ class cookbook
 		// Check if there are recipes with this keyword
 		if($recipes)
 		{
-			$text .= $this->renderOverviewTable($recipes);
+			$text .= $this->renderOverviewTable($recipes, $parm);
 		}
 		// No recipes with this keyword
 		else
@@ -461,7 +478,7 @@ class cookbook
 		return $text; 
 	}
 
-	public function renderBookmarks()
+	public function renderBookmarks($parm = array())
 	{
 		// If not logged in, redirect to Cookbook index
 		if(!USERID)
@@ -494,7 +511,7 @@ class cookbook
 				$recipes[] 	= e107::getDb()->retrieve('cookbook_recipes', '*', 'r_id = '.$r_id);
 			}
 
-			$text = $this->renderOverviewTable($recipes);
+			$text = $this->renderOverviewTable($recipes, $parm);
 		}
 		else
 		{
@@ -507,7 +524,7 @@ class cookbook
 		return $text;
 	}
 
-	public function renderRecipeOverview()
+	public function renderRecipeOverview($parm = array())
 	{
 		$sql 	= e107::getDb();
 		$tp 	= e107::getParser();
@@ -522,7 +539,7 @@ class cookbook
 		// Check if there are recipes 
 		if($recipes)
 		{
-			$text .= $this->renderOverviewTable($recipes);
+			$text .= $this->renderOverviewTable($recipes, $parm);
 		}
 		// No recipes yet
 		else

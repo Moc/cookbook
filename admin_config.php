@@ -438,6 +438,13 @@ class cookbook_recipes_ui extends e_admin_ui
 			'help'	=> 'Grid view or Datatables',
 			'tab'	=> 0,
 		),
+		'gridview_itemspp'	=> array(
+			'title'	=> 'Grid overview: items per page',
+			'type'	=> 'hidden',
+			'data' 	=> 'int',
+			'help'	=> 'Number of recipes that are shown per page (when using Grid view)',
+			'tab'	=> 0,
+		),
 		'date_format' => array(
 			'title'	=> 'Date format',
 			'type'	=> 'dropdown',
@@ -562,6 +569,13 @@ class cookbook_recipes_ui extends e_admin_ui
 				"overview_grid"			=> "Grid overview",  // TODO LAN
 				"overview_datatable" 	=> "Datatable overview",  // TODO LAN
 			); 
+
+			// Grid overview: items per page
+			if($pref['overview_format'] == "overview_grid")
+			{
+				// Change type from 'hidden' to 'number'
+				$this->prefs['gridview_itemspp']['type'] = 'number';
+			}
 
 	}
 

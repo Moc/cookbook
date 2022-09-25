@@ -510,4 +510,18 @@ class cookbook_shortcodes extends e_shortcode
 
         return e107::getForm()->renderRelated($parm, $this->var['r_keywords'], array('cookbook' => $this->var['r_id']), $template);
     }
+
+    function sc_grid_nextprev($parm = array())
+    {
+        $count      = $this->var['recipecount'];
+
+        $page       = empty($_GET['from']) ? 1 : (int) $_GET['from'];
+        $perPage    = e107::getPlugPref('cookbook', 'gridview_itemspp', 10);
+
+        $from       = ($page - 1) * $perPage;
+        $total      = ceil($count / $perPage); 
+        $options    = array('type' => 'page', 'navcount' => 4);
+
+        return e107::getForm()->pagination(e_REQUEST_SELF.'?from=[FROM]', $total, $page, $perPage, $options); 
+    }
 }

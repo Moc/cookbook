@@ -58,6 +58,17 @@ e107::js('cookbook','js/cookbook.js', 'jquery', 5);
 
 require_once(HEADERF);
 
+// NEXTPREV - SET "FROM" to 1 IF NOT SET
+// TODO CLEAN THIS UP
+$overview_format = e107::getPlugPref('cookbook', 'overview_format', 'overview_grid'); 
+if($overview_format == "overview_grid")
+{
+	$parm = array();
+	$from = empty($_GET['from']) ? 1 : (int) $_GET['from'];
+	
+	$parm['from'] = $from; 
+}
+
 // Individual recipe
 if(isset($_GET['p']) && $_GET['p'] == 'id' && $_GET['id'])
 {
@@ -68,11 +79,11 @@ if(isset($_GET['p']) && $_GET['p'] == 'id' && $_GET['id'])
 	e107::getRender()->tablerender(LAN_CB_RECIPE.$cookbook_class->caption, $text, "recipe-item");
 }
 // Individual category
-elseif(isset($_GET['p']) && $_GET['p'] == 'category' && $_GET['category'])
+elseif(isset($_GET['p']) && $_GET['p'] == 'category' && isset($_GET['category']))
 {
 	e107::route('cookbook/category'); 
-	$categoryid = (int) $_GET['category']; 
-	$text = $cookbook_class->renderCategory($categoryid);
+	$category = (int) $_GET['category']; 
+	$text = $cookbook_class->renderCategory($category, $parm);
 	
 	e107::getRender()->tablerender($cookbook_class->caption, $text);
 }
@@ -88,10 +99,11 @@ elseif(isset($_GET['p']) && $_GET['p'] == 'categories')
 elseif(isset($_GET['p']) && $_GET['p'] == 'keyword' && $_GET['keyword'])
 {
 	e107::route('cookbook/keyword'); 
-	$keyword 	= e107::getParser()->toDb($_GET['keyword']);
-	$text 		= $cookbook_class->renderKeyword($keyword);
+	$keyword 	= e107::getParser()->filter($_GET['keyword']);
+	$keyword 	= preg_split("#/#", $keyword); 
+	$text 		= $cookbook_class->renderKeyword($keyword[0], $parm);
 		
-	e107::getRender()->tablerender(LAN_KEYWORDS." - ".$keyword, $text);
+	e107::getRender()->tablerender(LAN_KEYWORDS." - ".$keyword[0], $text);
 }
 // Keyword overview (tagcloud)
 elseif(isset($_GET['p']) && $_GET['p'] == 'keywords')
@@ -105,7 +117,7 @@ elseif(isset($_GET['p']) && $_GET['p'] == 'keywords')
 elseif(isset($_GET['p']) && $_GET['p'] == 'latest')
 {
 	e107::route('cookbook/latest'); 
-	$text = $cookbook_class->renderLatestRecipes();
+	$text = $cookbook_class->renderLatestRecipes($parm);
 
 	e107::getRender()->tablerender(LAN_CB_RECIPE_LATEST, $text);
 }
@@ -113,7 +125,7 @@ elseif(isset($_GET['p']) && $_GET['p'] == 'latest')
 elseif(isset($_GET['p']) && $_GET['p'] == 'bookmarks')
 {
 	e107::route('cookbook/bookmarks'); 
-	$text = $cookbook_class->renderBookmarks();
+	$text = $cookbook_class->renderBookmarks($parm);
 
 	e107::getRender()->tablerender(LAN_CB_BOOKMARKS, $text);
 }
@@ -121,7 +133,7 @@ elseif(isset($_GET['p']) && $_GET['p'] == 'bookmarks')
 else
 {
 	e107::route('cookbook/index'); 
-	$text = $cookbook_class->renderRecipeOverview();
+	$text = $cookbook_class->renderRecipeOverview($parm);
 
 	e107::getRender()->tablerender(LAN_CB_RECIPE_OVERVIEW, $text);
 }
