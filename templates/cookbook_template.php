@@ -48,6 +48,7 @@ $COOKBOOK_TEMPLATE['overview_datatable']['start'] = '
 	  	 	<th><i class="fa fa-clock-o"></i></th>
 	  	 	<th><i class="fa fa-star"></i></th>
 	  	 	<th><i class="fa fa-tags"></i></th>
+	  	 	<th>{GLYPH=fa-toolbox}</th>
 		</tr>
 	</thead>
     <tbody>
@@ -59,6 +60,7 @@ $COOKBOOK_TEMPLATE['overview_datatable']['items'] = '
 	    	<td>{COOKBOOK_CATEGORY_NAME}</td>
 	    	<td>{COOKBOOK_PERSONS}</td>
 	    	<td>{COOKBOOK_TIME}</td>
+            <td>{COOKBOOK_DIFFICULTY}</td>
 	    	<td>{COOKBOOK_AUTHORRATING}</td>
 	    	<td>{COOKBOOK_KEYWORDS: limit=5}</td>
     	</tr>
