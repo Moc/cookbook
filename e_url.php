@@ -37,7 +37,7 @@ class cookbook_url
 			'alias'         => 'cookbook',
 			'regex'			=> '^{alias}/category/(.*)$',
 			'sef'			=> '{alias}/category/{c_id}/{c_name_sef}',
-			'redirect'		=> '{e_PLUGIN}cookbook/index.php?category=$1',
+			'redirect'		=> '{e_PLUGIN}cookbook/index.php?p=category&category=$1',
 		);
 
 		// Overview of all recipes split by category
@@ -45,7 +45,7 @@ class cookbook_url
 			'alias'         => 'cookbook',
 			'regex'			=> '^{alias}/categories(.*)$',
 			'sef'			=> '{alias}/categories/',
-			'redirect'		=> '{e_PLUGIN}cookbook/index.php?category=0',
+			'redirect'		=> '{e_PLUGIN}cookbook/index.php?p=categories',
 		);
 
 		// Individual keyword
@@ -53,7 +53,7 @@ class cookbook_url
 			'alias'         => 'cookbook',
 			'regex'			=> '^{alias}/keyword/(.*)$',
 			'sef'			=> '{alias}/keyword/{keyword}',
-			'redirect'		=> '{e_PLUGIN}cookbook/index.php?keyword=$1',
+			'redirect'		=> '{e_PLUGIN}cookbook/index.php?p=keyword&keyword=$1',
 		);
 
 		// Overview of all keywords (tagcloud)
@@ -61,7 +61,7 @@ class cookbook_url
 			'alias'         => 'cookbook',
 			'regex'			=> '^{alias}/keywords(.*)$',
 			'sef'			=> '{alias}/keywords/',
-			'redirect'		=> '{e_PLUGIN}cookbook/index.php?keyword=0',
+			'redirect'		=> '{e_PLUGIN}cookbook/index.php?p=keywords',
 		);
 
 		// Recently added recipes
