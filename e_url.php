@@ -16,14 +16,6 @@ class cookbook_url
 	{
 		$config = array();
 
-		// Overview of all recipes
-		$config['index'] = array(
-			'alias'         => 'cookbook',
-			'regex'			=> '^{alias}/?$',
-			'sef'			=> '{alias}',
-			'redirect'		=> '{e_PLUGIN}cookbook/index.php',
-		);
-
 		// Individual recipe
 		$config['id'] = array(
 			'alias'         => 'cookbook',
@@ -31,7 +23,7 @@ class cookbook_url
 			'sef'			=> '{alias}/id/{r_id}/{r_name_sef}',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?p=id&id=$1',
 		);
-		
+
 		// All recipes in a specific category
 		$config['category'] = array(
 			'alias'         => 'cookbook',
@@ -78,6 +70,14 @@ class cookbook_url
 			'regex'			=> '^{alias}/bookmarks(.*)$',
 			'sef'			=> '{alias}/bookmarks/',
 			'redirect'		=> '{e_PLUGIN}cookbook/index.php?p=bookmarks',
+		);
+
+		// Overview of all recipes
+		$config['index'] = array(
+			'alias'         => 'cookbook',
+			'regex'			=> '^{alias}/?(.*)$',
+			'sef'			=> '{alias}/',
+			'redirect'		=> '{e_PLUGIN}cookbook/index.php',
 		);
 
 		return $config;
