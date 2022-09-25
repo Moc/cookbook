@@ -43,12 +43,12 @@ $COOKBOOK_TEMPLATE['overview_datatable']['start'] = '
 	<thead>
 		<tr>
 		  	<th width="40%">{LAN=LAN_CB_RECIPE}</th>
-		  	<th><i class="fa fa-cutlery"></i></th>
-		  	<th><i class="fa fa-users"></i></th>
-	  	 	<th><i class="fa fa-clock-o"></i></th>
-	  	 	<th><i class="fa fa-star"></i></th>
-	  	 	<th><i class="fa fa-tags"></i></th>
+		  	<th>{GLYPH=fa-cutlery}</th>
+		  	<th>{GLYPH=fa-users}</th>
+	  	 	<th>{GLYPH=fa-clock-o}</th>
 	  	 	<th>{GLYPH=fa-toolbox}</th>
+            <th>{GLYPH=fa-star}</th>
+	  	 	<th>{GLYPH=fa-tags}</th>
 		</tr>
 	</thead>
     <tbody>
