@@ -515,13 +515,13 @@ class cookbook_shortcodes extends e_shortcode
     {
         $count      = $this->var['recipecount'];
 
-        $page       = empty($_GET['from']) ? 1 : (int) $_GET['from'];
+        $page       = empty($_GET['page']) ? 1 : (int) $_GET['page'];
         $perPage    = e107::getPlugPref('cookbook', 'gridview_itemspp', 10);
 
         $from       = ($page - 1) * $perPage;
         $total      = ceil($count / $perPage); 
         $options    = array('type' => 'page', 'navcount' => 4);
 
-        return e107::getForm()->pagination(e_REQUEST_SELF.'?from=[FROM]', $total, $page, $perPage, $options); 
+        return e107::getForm()->pagination(e_REQUEST_SELF.'?page=[FROM]', $total, $page, $perPage, $options); 
     }
 }

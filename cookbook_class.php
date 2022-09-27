@@ -251,10 +251,10 @@ class cookbook
 	 	$text .= e107::getParser()->parseTemplate($template['start'], true, $sc);
 
 	 	// Nextprev when using Grid overview
-	 	if($key == 'overview_grid' && isset($parm['from']))
+	 	if($key == 'overview_grid' && isset($parm['page']))
 		{		
 			$count   = count($recipes); 
-			$page	 = $parm['from'];
+			$page	 = $parm['page'];
 			$perPage = e107::getPlugPref('cookbook', 'gridview_itemspp', 10);
 			$from 	 = ($page - 1) * $perPage;
 			$total   = ceil($count / $perPage); 

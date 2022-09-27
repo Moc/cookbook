@@ -64,9 +64,9 @@ $overview_format = e107::getPlugPref('cookbook', 'overview_format', 'overview_gr
 if($overview_format == "overview_grid")
 {
 	$parm = array();
-	$from = empty($_GET['from']) ? 1 : (int) $_GET['from'];
+	$page = empty($_GET['page']) ? 1 : (int) $_GET['page'];
 	
-	$parm['from'] = $from; 
+	$parm['page'] = $page; 
 }
 
 // Individual recipe
