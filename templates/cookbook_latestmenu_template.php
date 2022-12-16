@@ -17,11 +17,12 @@ $COOKBOOK_LATESTMENU_TEMPLATE['default']['start']   = '<div class="cookbook_late
 $COOKBOOK_LATESTMENU_TEMPLATE['default']['item']    = "
 <div class='row'>
     <div class='col-md-4 my-2'>
-        {SETIMAGE: w=200}{COOKBOOK_RECIPE_THUMB}
+        {SETIMAGE: w=200}
+        <a href='{COOKBOOK_RECIPE_URL}'>{COOKBOOK_RECIPE_THUMB}</a>
     </div>
 
     <div class='col-md-8 my-2'>
-        {COOKBOOK_RECIPE_NAME}
+        {COOKBOOK_RECIPE_NAME: type=link}
     </div>
 </div>
 ";
@@ -39,7 +40,7 @@ $COOKBOOK_LATESTMENU_TEMPLATE['image-title']['item']    = '
     {SETIMAGE: w=100}{COOKBOOK_RECIPE_THUMB}
   </div>
   <div class="cookbook_latest_menu-item-name flex-grow-2 ms-3">
-    {COOKBOOK_RECIPE_NAME}
+    {COOKBOOK_RECIPE_NAME: type=link}
   </div>
 </div>';
 

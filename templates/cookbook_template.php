@@ -18,14 +18,14 @@ $COOKBOOK_TEMPLATE['overview_grid']['items'] = '
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
             {SETIMAGE: w=200&h=150&crop=1}
-            {COOKBOOK_RECIPE_THUMB}
+            <a href="{COOKBOOK_RECIPE_URL}">{COOKBOOK_RECIPE_THUMB}</a>
             <div class="caption text-center">
-                <h3>{COOKBOOK_RECIPE_NAME}</h3>
+                <h3>{COOKBOOK_RECIPE_NAME: type=link}</h3>
                 <p>{COOKBOOK_SUMMARY: max=150}</p>
 
                 <ul class="list-inline text-center">
-                    <li>{GLYPH=fa-clock} {COOKBOOK_TIME}</li>
-                    <li>{GLYPH=fa-user} {COOKBOOK_AUTHOR}</li>
+                    <li>{GLYPH=fa-clock} {COOKBOOK_RECIPE_TIME}</li>
+                    <li>{GLYPH=fa-user} {COOKBOOK_RECIPE_AUTHOR}</li>
                 </ul>
             </div>
         </div>
@@ -61,11 +61,11 @@ $COOKBOOK_TEMPLATE['overview_datatable']['items'] = '
 		<tr>
 			<td>{COOKBOOK_RECIPE_NAME}</td>
 	    	<td>{COOKBOOK_CATEGORY_NAME}</td>
-	    	<td>{COOKBOOK_PERSONS}</td>
-	    	<td>{COOKBOOK_TIME}</td>
-            <td>{COOKBOOK_DIFFICULTY}</td>
-	    	<td>{COOKBOOK_AUTHORRATING}</td>
-	    	<td>{COOKBOOK_KEYWORDS: limit=5}</td>
+	    	<td>{COOKBOOK_RECIPE_PERSONS}</td>
+	    	<td>{COOKBOOK_RECIPE_TIME}</td>
+            <td>{COOKBOOK_RECIPE_DIFFICULTY}</td>
+	    	<td>{COOKBOOK_RECIPE_AUTHORRATING}</td>
+	    	<td>{COOKBOOK_RECIPE_KEYWORDS: limit=5}</td>
     	</tr>
 ';
 
@@ -88,7 +88,7 @@ $COOKBOOK_TEMPLATE['recipe_layout'] = '
 <div class="row">
     <div class="col-md-12">
         {SETSTYLE=cookbook_comments}
-        {COOKBOOK_COMMENTS}
+        {COOKBOOK_RECIPE_COMMENTS}
         {SETSTYLE=default}
     </div>
 </div>
@@ -96,7 +96,7 @@ $COOKBOOK_TEMPLATE['recipe_layout'] = '
 <div class="row">
     <div class="col-md-12">  
         {SETSTYLE=cookbook_related}   
-        {COOKBOOK_RELATED}
+        {COOKBOOK_RECIPE_RELATED}
         {SETSTYLE=default}
     </div>
 </div>
@@ -105,37 +105,37 @@ $COOKBOOK_TEMPLATE['recipe_layout'] = '
 $COOKBOOK_TEMPLATE['recipe_content'] = '
 <!-- Start content left  -->
 <div class="col-md-8 recipe-box">
-    <div class="recipe-box-title">{COOKBOOK_RECIPE_NAME=no_url}</div>
+    <div class="recipe-box-title">{COOKBOOK_RECIPE_NAME}</div>
     <div class="recipe-box-content">
         <h3>{LAN=LAN_CB_INGREDIENTS}</h3>
         {SETIMAGE: w=180&h=180}
-        <img class="img-thumbnail pull-right hidden-xs" alt="{COOKBOOK_RECIPE_NAME=sef}" src="{COOKBOOK_RECIPE_THUMB=url}">
-        {COOKBOOK_INGREDIENTS}
+        <img class="img-thumbnail pull-right hidden-xs" alt="{COOKBOOK_RECIPE_ANCHOR}" src="{COOKBOOK_RECIPE_THUMB_URL}">
+        {COOKBOOK_RECIPE_INGREDIENTS}
         <div class="recipe-instructions">
             <h3>{LAN=LAN_CB_INSTRUCTIONS}</h3>
-            {COOKBOOK_INSTRUCTIONS}
+            {COOKBOOK_RECIPE_INSTRUCTIONS}
         </div>
     </div>
 </div>
 <!-- End content left-->
 ';
 
-$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_AUTHORRATING: type=stars']   = '<div id="rating">{---}</div>';
-$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_DIFFICULTY: type=stars']     = '<div id="difficulty">{---}</div>';
+$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_RECIPE_AUTHORRATING: type=stars']   = '<div id="rating">{---}</div>';
+$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_RECIPE_DIFFICULTY: type=stars']     = '<div id="difficulty">{---}</div>';
 
 $COOKBOOK_TEMPLATE['recipe_info'] = '
 <!-- Sidebar -->
 <div class="col-md-4 recipe-sidebar">
     <h3>{LAN=LAN_CB_RECIPEINFO}</h3>
     <ul class="fa-ul">
-        <li>{GLYPH: type=fa-cutlery&class=fa-li} {COOKBOOK_CATEGORY_NAME=no_url}</li>
-        <li>{GLYPH: type=fa-users&class=fa-li} {COOKBOOK_PERSONS}</li>
-        <li>{GLYPH: type=fa-clock-o&class=fa-li} {COOKBOOK_TIME}</li>
-        <li>{GLYPH: type=fa-tags&class=fa-li} {COOKBOOK_KEYWORDS}</li>
-        <li>{GLYPH: type=fa-trophy&class=fa-li} {COOKBOOK_AUTHORRATING: type=stars}</li>
-        <li>{GLYPH: type=fa-toolbox&class=fa-li} {COOKBOOK_DIFFICULTY: type=stars}</li>
-        <li>{GLYPH: type=fa-user&class=fa-li} {COOKBOOK_AUTHOR}</li>
-        <li>{GLYPH: type=fa-calendar-alt&class=fa-li} {COOKBOOK_DATE}</li>
+        <li>{GLYPH: type=fa-cutlery&class=fa-li} {COOKBOOK_CATEGORY_NAME: type=link}</li>
+        <li>{GLYPH: type=fa-users&class=fa-li} {COOKBOOK_RECIPE_PERSONS}</li>
+        <li>{GLYPH: type=fa-clock-o&class=fa-li} {COOKBOOK_RECIPE_TIME}</li>
+        <li>{GLYPH: type=fa-tags&class=fa-li} {COOKBOOK_RECIPE_KEYWORDS}</li>
+        <li>{GLYPH: type=fa-trophy&class=fa-li} {COOKBOOK_RECIPE_AUTHORRATING: type=stars}</li>
+        <li>{GLYPH: type=fa-toolbox&class=fa-li} {COOKBOOK_RECIPE_DIFFICULTY: type=stars}</li>
+        <li>{GLYPH: type=fa-user&class=fa-li} {COOKBOOK_RECIPE_AUTHOR}</li>
+        <li>{GLYPH: type=fa-calendar-alt&class=fa-li} {COOKBOOK_RECIPE_DATE}</li>
     </ul>
 
     <h3>{LAN=LAN_CB_ACTIONS}</h3>
@@ -160,24 +160,24 @@ $COOKBOOK_WRAPPER['print_recipe_layout'] = $COOKBOOK_WRAPPER['recipe_info'];
 
 // PRINT TEMPLATE FOR INDIVIDUAL RECIPE
 $COOKBOOK_TEMPLATE['print_recipe_layout'] = '
-<h1>{COOKBOOK_RECIPE_NAME=no_url}<h1>
+<h1>{COOKBOOK_RECIPE_NAME}<h1>
 
 <h2>{LAN=LAN_CB_INGREDIENTS}</h2>
-<p>{COOKBOOK_INGREDIENTS}</p>
+<p>{COOKBOOK_RECIPE_INGREDIENTS}</p>
 	            
 <h2>{LAN=LAN_CB_INSTRUCTIONS}</h2>
-{COOKBOOK_INSTRUCTIONS}
+{COOKBOOK_RECIPE_INSTRUCTIONS}
 	           
 <h3>{LAN=LAN_CB_RECIPEINFO}</h3>
 <ul class="fa-ul">
-	<li>{GLYPH: type=fa-cutlery&class=fa-li} {COOKBOOK_CATEGORY_NAME=no_url}</li>
-	<li>{GLYPH: type=fa-users&class=fa-li} {COOKBOOK_PERSONS}</li>
-	<li>{GLYPH: type=fa-clock-o&class=fa-li} {COOKBOOK_TIME}</li>
-	<li>{GLYPH: type=fa-tags&class=fa-li} {COOKBOOK_KEYWORDS}</li>
-    <li>{GLYPH: type=fa-trophy&class=fa-li} {COOKBOOK_AUTHORRATING: type=stars}</li>
-    <li>{GLYPH: type=fa-toolbox&class=fa-li} {COOKBOOK_DIFFICULTY: type=stars}</li>
-    <li>{GLYPH: type=fa-user&class=fa-li} {COOKBOOK_AUTHOR}</li>
-    <li>{GLYPH: type=fa-calendar-alt&class=fa-li} {COOKBOOK_DATE}</li>
+	<li>{GLYPH: type=fa-cutlery&class=fa-li} {COOKBOOK_CATEGORY_NAME}</li>
+	<li>{GLYPH: type=fa-users&class=fa-li} {COOKBOOK_RECIPE_PERSONS}</li>
+	<li>{GLYPH: type=fa-clock-o&class=fa-li} {COOKBOOK_RECIPE_TIME}</li>
+	<li>{GLYPH: type=fa-tags&class=fa-li} {COOKBOOK_RECIPE_KEYWORDS}</li>
+    <li>{GLYPH: type=fa-trophy&class=fa-li} {COOKBOOK_RECIPE_AUTHORRATING: type=stars}</li>
+    <li>{GLYPH: type=fa-toolbox&class=fa-li} {COOKBOOK_RECIPE_DIFFICULTY: type=stars}</li>
+    <li>{GLYPH: type=fa-user&class=fa-li} {COOKBOOK_RECIPE_AUTHOR}</li>
+    <li>{GLYPH: type=fa-calendar-alt&class=fa-li} {COOKBOOK_RECIPE_DATE}</li>
 </ul>
 ';
 
