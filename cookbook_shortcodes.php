@@ -12,13 +12,15 @@ if (!defined('e107_INIT')) { exit; }
     
 class cookbook_shortcodes extends e_shortcode
 {
-    function sc_cookbook_id($parm = array())
+    function sc_cookbook_recipe_id($parm = array())
     {
         return $this->var['r_id'];
     }
 
     function sc_cookbook_recipe_thumb($parm = array())
     {
+        $class = (!empty($parm['class'])) ? $parm['class'] : 'img-responsive';
+
     	$thumbImage = $this->var['r_thumbnail']; 
 
     	// If no thumbnail is set, use default thumbnail
@@ -29,21 +31,31 @@ class cookbook_shortcodes extends e_shortcode
 
         $thumbUrl = e107::getParser()->thumbUrl($thumbImage);
 
-        if($parm == 'url')
-        {
-           return $thumbUrl; 
-        }
-
-        return '<img class="img-responsive" src="'.$thumbUrl.'" alt="'.$this->sc_cookbook_recipe_name('no_url').'" />';
+        return '<img class="'.$class.'" src="'.$thumbUrl.'" alt="'.$this->sc_cookbook_recipe_anchor.'" />';
     }
 
-    function sc_cookbook_date($parm = array())
+    function sc_cookbook_recipe_thumb_url($parm = array())
+    {
+        $thumbImage = $this->var['r_thumbnail']; 
+
+        // If no thumbnail is set, use default thumbnail
+        if(!$thumbImage)
+        {
+            $thumbImage = "{e_PLUGIN}cookbook/images/default_image.webp";
+        }
+
+        $thumbUrl = e107::getParser()->thumbUrl($thumbImage);
+
+        return $thumbUrl;
+    }
+
+    function sc_cookbook_recipe_date($parm = array())
     {
         $date_format = e107::getPlugPref('cookbook', 'date_format', 'short'); 
         return e107::getDate()->convert_date($this->var["r_datestamp"], $date_format);
     }
 
-    function sc_cookbook_author($parm = array())
+    function sc_cookbook_recipe_author($parm = array())
     {
         $username = e107::getDb()->retrieve('user', 'user_name', 'user_id = '.$this->var["r_author"].'');
         return $username;
@@ -51,9 +63,31 @@ class cookbook_shortcodes extends e_shortcode
 
     function sc_cookbook_recipe_name($parm = array())
     {
-        if($parm == 'no_url') { return $this->var["r_name"]; }
-        if($parm == 'sef') { return $this->var["r_name_sef"]; }
+        $type   = varset($parm['type']);
+        $class  = (!empty($parm['class'])) ? $parm['class'] : '';
 
+        if($type == "link")
+        {
+            $urlparms = array(
+                'r_id'          => $this->var["r_id"],
+                'r_name_sef'    => $this->var['r_name_sef'],
+            );
+
+            $url = e107::url('cookbook', 'id', $urlparms);
+
+            return '<a class="'.$class.'" href="'.$url.'">'.$this->var["r_name"].'</a>';
+        }
+
+        return $this->var["r_name"];
+    }
+
+    function sc_cookbook_recipe_anchor($parm = array())
+    {
+        return $this->var["r_name_sef"];
+    }
+
+    function sc_cookbook_recipe_url($parm = array())
+    {
         $urlparms = array(
             'r_id'          => $this->var["r_id"],
             'r_name_sef'    => $this->var['r_name_sef'],
@@ -61,26 +95,65 @@ class cookbook_shortcodes extends e_shortcode
 
         $url = e107::url('cookbook', 'id', $urlparms);
 
-        return '<a href="'.$url.'">'.$this->var["r_name"].'</a>';
+        return $url; 
     }
 
     function sc_cookbook_category_name($parm = array())
     {
+        $type   = varset($parm['type']);
+        $class  = (!empty($parm['class'])) ? $parm['class'] : '';
+
         $category = e107::getDb()->retrieve('cookbook_categories', 'c_id, c_name, c_name_sef', 'c_id = '.$this->var['r_category']);
 
-        if($parm == 'no_url')
+        if($type == "link")
         {
-            return $category['c_name'];
+            $urlparms = array(
+                'c_id'        => $category['c_id'],
+                'c_name_sef'  => $category['c_name_sef'],
+            );
+
+            $url = e107::url('cookbook', 'category', $urlparms);
+
+            return '<a class="'.$class.'" href="'.$url.'">'.$category['c_name'].'</a>';
         }
+        
+        return $category['name']; 
+    }
+
+    function sc_cookbook_category_anchor($parm = array())
+    {
+         $category_sef = e107::getDb()->retrieve('cookbook_categories', 'c_name_sef', 'c_id = '.$this->var['r_category']);
+
+         return $category_sef;
+    }
+
+    /**
+    * Return URL to the category. Can also render a simple link.
+    *
+    * @param string $type when set to 'link', returns a rendered link in <a> tags. 
+    * 
+    * @example {COOKBOOK_CATEGORY_URL} // returns raw url
+    * @example {COOKBOOK_CATEGORY_URL: type=link} // returns rendered link
+    */
+    function sc_cookbook_category_url($parm = array())
+    {
+        $type = varset($parm['type']); 
+
+        $category = e107::getDb()->retrieve('cookbook_categories', 'c_id, c_name, c_name_sef', 'c_id = '.$this->var['r_category']);
 
         $urlparms = array(
-            'c_id'	      => $category['c_id'],
+            'c_id'        => $category['c_id'],
             'c_name_sef'  => $category['c_name_sef'],
         );
 
         $url = e107::url('cookbook', 'category', $urlparms);
 
-        return '<a href="'.$url.'">'.$category['c_name'].'</a>';
+        if($type == "link")
+        {
+            return '<a href="'.$url.'">'.$category['c_name'].'</a>';
+        }
+
+        return $url; 
     }
 
     function sc_cookbook_recipes_in_category($parm = array())
@@ -88,26 +161,25 @@ class cookbook_shortcodes extends e_shortcode
         return e107::getDb()->count('cookbook_recipes', '(*)', 'WHERE r_category = '.$this->var["r_category"]);
     }
 
-    function sc_cookbook_persons($parm = array())
+    function sc_cookbook_recipe_persons($parm = array())
     {
         return $this->var["r_persons"];
     }
 
-    function sc_cookbook_time($parm = array())
+    function sc_cookbook_recipe_time($parm = array())
     {
         return $this->var["r_time"];
     }
-
 
     /**
     * Renders the author rating of a recipe
     *
     * @param string $stars - determines whether star images are displayed or just the numeric value
     * 
-    * @example {COOKBOOK_AUTHORRATING} // returns numeric value, e.g. "1" 
-    * @example {COOKBOOK_AUTHORRATING: type=stars} // returns star images of the rating
+    * @example {COOKBOOK_RECIPE_AUTHORRATING} // returns numeric value, e.g. "1" 
+    * @example {COOKBOOK_RECIPE_AUTHORRATING: type=stars} // returns star images of the rating
     */
-    function sc_cookbook_authorrating($parm = array())
+    function sc_cookbook_recipe_authorrating($parm = array())
     {
         $type = varset($parm['type']);
        
@@ -144,10 +216,10 @@ class cookbook_shortcodes extends e_shortcode
     *
     * @param string $stars - determines whether star images are displayed or just the textual value
     * 
-    * @example {COOKBOOK_DIFFICULTY} // returns textual value, e.g. "Easy" (value in DB is 1)
-    * @example {COOKBOOK_DIFFICULTY: type=stars} // returns star images of the rating
+    * @example {COOKBOOK_RECIPE_DIFFICULTY} // returns textual value, e.g. "Easy" (value in DB is 1)
+    * @example {COOKBOOK_RECIPE_DIFFICULTY: type=stars} // returns star images of the rating
     */
-    function sc_cookbook_difficulty($parm = array())
+    function sc_cookbook_recipe_difficulty($parm = array())
     {
         $type = varset($parm['type']);
        
@@ -194,7 +266,7 @@ class cookbook_shortcodes extends e_shortcode
         }
     }
 
-    function sc_cookbook_userrating($parm = array())
+    function sc_cookbook_recipe_userrating($parm = array())
     {
         return e107::getForm()->rate("cookbook", $this->var["r_id"]);
     }
@@ -295,10 +367,10 @@ class cookbook_shortcodes extends e_shortcode
     *
     * @param int $max - Limits the summary to a maximum amount of characters
     * 
-    * @example {COOKBOOK_SUMMARY: max=150} // returns the summary limited to 150 characters. 
+    * @example {COOKBOOK_RECIPE_SUMMARY: max=150} // returns the summary limited to 150 characters. 
     * 
     */
-    function sc_cookbook_summary($parm = array())
+    function sc_cookbook_recipe_summary($parm = array())
     {
         if($parm['max'])
         {
@@ -312,12 +384,12 @@ class cookbook_shortcodes extends e_shortcode
         return e107::getParser()->toHTML($this->var["r_summary"], TRUE);
     }
 
-	function sc_cookbook_ingredients($parm = array())
+	function sc_cookbook_recipe_ingredients($parm = array())
    	{
 		return e107::getParser()->toHTML($this->var["r_ingredients"], TRUE);
 	}
 
-	function sc_cookbook_instructions($parm = array())
+	function sc_cookbook_recipe_instructions($parm = array())
 	{
 		return  e107::getParser()->toHTML($this->var["r_instructions"], TRUE);
 	}
@@ -457,10 +529,10 @@ class cookbook_shortcodes extends e_shortcode
     /**
     * Shows a comments form on a recipe
     * 
-    * @example {COOKBOOK_COMMENTS}
+    * @example {COOKBOOK_RECIPE_COMMENTS}
     * 
     */
-    function sc_cookbook_comments($parm = array())
+    function sc_cookbook_recipe_comments($parm = array())
     {
         $comments_pref = e107::getPlugPref('cookbook', 'comments_enabled', 1);
 
@@ -484,10 +556,10 @@ class cookbook_shortcodes extends e_shortcode
     * @param string $parm['types'] // Allows to cross-check with other areas (e.g. news) for similar tags
     * @param int $parm['limit']
     * 
-    * @example {COOKBOOK_RELATED: types=cookbook,news&limit=3} // Shows maximum of 3 related items, which could be cookbook recipes or news items
+    * @example {COOKBOOK_RECIPE_RELATED: types=cookbook,news&limit=3} // Shows maximum of 3 related items, which could be cookbook recipes or news items
     * 
     */
-    function sc_cookbook_related($parm = array())
+    function sc_cookbook_recipe_related($parm = array())
     {
         $related_pref = e107::getPlugPref('cookbook', 'recipe_showrelated', 1);
 
