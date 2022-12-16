@@ -445,6 +445,13 @@ class cookbook_recipes_ui extends e_admin_ui
 			'help'	=> 'Number of recipes that are shown per page (when using Grid view)',
 			'tab'	=> 0,
 		),
+		'gridview_sortorder' => array(
+			'title'	=> 'Grid overview: Sorting order',
+			'type'	=> 'hidden',
+			'data' 	=> 'str',
+			'help'	=> 'Order recipes ascending (oldest recipes first) or descending (newest recipes first)',
+			'tab'	=> 0,
+		),
 		'date_format' => array(
 			'title'	=> 'Date format',
 			'type'	=> 'dropdown',
@@ -575,6 +582,15 @@ class cookbook_recipes_ui extends e_admin_ui
 			{
 				// Change type from 'hidden' to 'number'
 				$this->prefs['gridview_itemspp']['type'] = 'number';
+
+				// Change type from 'hidden' to 'dropdown'
+				$this->prefs['gridview_sortorder']['type'] = 'dropdown';
+
+				// Set sorting order options
+				$this->prefs['gridview_sortorder']['writeParms'] = array(
+					"asc" 	=> "Oldest recipes first", // TODO LAN
+					"desc" 	=> "Newest recipes first", // TODO LAN
+				); 
 			}
 
 	}

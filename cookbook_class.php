@@ -533,8 +533,10 @@ class cookbook
 		$template = e107::getTemplate('cookbook');
 		$template = array_change_key_case($template);
 
+		$order = e107::getPlugPref('cookbook', 'gridview_sortorder', 'desc'); 
+
 		// Retrieve all recipe entries
-		$recipes = $sql->retrieve('cookbook_recipes', '*', '', TRUE);
+		$recipes = $sql->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp '.$order, TRUE);
 
 		// Check if there are recipes 
 		if($recipes)

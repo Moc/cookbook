@@ -16,6 +16,8 @@
 	</siteLinks>
 	<pluginPrefs>
 		<pref name='overview_format'>overview_grid</pref>
+		<pref name='gridview_itemspp'>10</pref>
+		<pref name='gridview_sortorder'>desc</pref>
 		<pref name='date_format'>short</pref>
 		<pref name='comments_enabled'>1</pref>
 		<pref name='recipe_authorrating'>0</pref>
