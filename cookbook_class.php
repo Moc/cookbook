@@ -333,7 +333,8 @@ class cookbook
 			$this->caption = LAN_CATEGORY." - ".$category_name;
 
 			// Retrieve all recipe entries within this category
-			$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category_id.'', true);
+			$order   = e107::getPlugPref('cookbook', 'gridview_sortorder', 'desc');
+			$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category_id.' ORDER BY r_datestamp '.$order, true);
 
 			$cUrlparms = array(
 				"c_id"  => $category_id,
@@ -392,7 +393,8 @@ class cookbook
 				$text .= "<h3>".$category['c_name']."</h3>"; // TODO get rid of hardcoded styling
 
 				// Retrieve all recipe entries for this category
-				$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category["c_id"].'', TRUE);
+				$order   = e107::getPlugPref('cookbook', 'gridview_sortorder', 'desc');
+				$recipes = $sql->retrieve('cookbook_recipes', '*', 'r_category = '.$category["c_id"].' ORDER BY r_datestamp '.$order, TRUE);
 
 				// Check if there are recipes in this category
 				if($recipes)
