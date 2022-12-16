@@ -57,7 +57,7 @@ if(!class_exists('cookbook_categoriesmenu'))
                         $sc->setVars($category);
                         
                         // Return render item from template
-                        $text .= e107::getParser()->parseTemplate($this->template['item'], false, $sc);
+                        $text .= e107::getParser()->parseTemplate($this->template['item'], true, $sc);
                     }
                 }
                 else
