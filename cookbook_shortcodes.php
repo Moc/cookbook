@@ -403,14 +403,14 @@ class cookbook_shortcodes extends e_shortcode
     * @param string $type - url, link, icon (default is 'link')
     * 
     *
-    * @example {COOKBOOK_EDIT} // returns <a class='' href="url to recipe">Edit</a>
-    * @example {COOKBOOK_EDIT: type=icon} // returns <a class='' href="url to recipe">pencil icon</a> 
-    * @example {COOKBOOK_EDIT: type=icon&icon=fa gears} // returns <a class='' href="url to recipe">gears icon icon</a>
-    * @example {COOKBOOK_EDIT: type=url} // retuns just the URL: e_PLUGIN_ABS.'cookbook/admin_config.php?action=edit&id='.$this->var["r_id"]
-    * @example {COOKBOOK_EDIT: class=btn btn-default} // returns <a class='btn btn-default' href="url to recipe">Edit</a>
+    * @example {COOKBOOK_RECIPE_EDIT} // returns <a class='' href="url to recipe">Edit</a>
+    * @example {COOKBOOK_RECIPE_EDIT: type=icon} // returns <a class='' href="url to recipe">pencil icon</a> 
+    * @example {COOKBOOK_RECIPE_EDIT: type=icon&icon=fa gears} // returns <a class='' href="url to recipe">gears icon icon</a>
+    * @example {COOKBOOK_RECIPE_EDIT: type=url} // retuns just the URL: e_PLUGIN_ABS.'cookbook/admin_config.php?action=edit&id='.$this->var["r_id"]
+    * @example {COOKBOOK_RECIPE_EDIT: class=btn btn-default} // returns <a class='btn btn-default' href="url to recipe">Edit</a>
     *
     */
-	function sc_cookbook_edit($parm = array())
+	function sc_cookbook_recipe_edit($parm = array())
 	{
         // Check permissions 
         if(!check_class(e107::getPlugPref('cookbook', 'submission_userclass')))
@@ -485,14 +485,14 @@ class cookbook_shortcodes extends e_shortcode
     * @param string $type - url, link, icon (default is 'link')
     *
     *  
-    * @example {COOKBOOK_PRINT} // returns <a class='' href="url to print-friendly recipe">Print recipe</a>
-    * @example {COOKBOOK_PRINT: type=icon} // returns <a class='' href="url to print-friendly recipe">print icon</a> 
-    * @example {COOKBOOK_PRINT: type=icon&icon=fa gears} // returns <a class='' href="url to print-friendly recipe">gears icon icon</a>
-    * @example {COOKBOOK_PRINT: type=url} // retuns just the URL: e_HTTP.'print.php?plugin:cookbook.'.$this->var["r_id"];
-    * @example {COOKBOOK_PRINT: class=btn btn-default} // returns <a class='btn btn-default' href="url to print-friendly recipe">Print recipe</a>
+    * @example {COOKBOOK_RECIPE_PRINT} // returns <a class='' href="url to print-friendly recipe">Print recipe</a>
+    * @example {COOKBOOK_RECIPE_PRINT: type=icon} // returns <a class='' href="url to print-friendly recipe">print icon</a> 
+    * @example {COOKBOOK_RECIPE_PRINT: type=icon&icon=fa gears} // returns <a class='' href="url to print-friendly recipe">gears icon icon</a>
+    * @example {COOKBOOK_RECIPE_PRINT: type=url} // retuns just the URL: e_HTTP.'print.php?plugin:cookbook.'.$this->var["r_id"];
+    * @example {COOKBOOK_RECIPE_PRINT: class=btn btn-default} // returns <a class='btn btn-default' href="url to print-friendly recipe">Print recipe</a>
     * 
     */
-    function sc_cookbook_print($parm = array())
+    function sc_cookbook_recipe_print($parm = array())
     {
         $print_pref = e107::getPlugPref('cookbook', 'recipe_showprint', 1);
 

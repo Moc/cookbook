@@ -141,8 +141,8 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
     <h3>{LAN=LAN_CB_ACTIONS}</h3>
     <ul class="fa-ul">
         {COOKBOOK_BOOKMARK}
-        <li>{GLYPH: type=fa-pencil&class=fa-li} {COOKBOOK_EDIT}</li>
-        <li>{GLYPH: type=fa-print&class=fa-li} {COOKBOOK_PRINT}</li>
+        <li>{GLYPH: type=fa-pencil&class=fa-li} {COOKBOOK_RECIPE_EDIT}</li>
+        <li>{GLYPH: type=fa-print&class=fa-li} {COOKBOOK_RECIPE_PRINT}</li>
     </ul>
 </div>
 <!-- End sidebar -->
