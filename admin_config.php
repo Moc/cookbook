@@ -404,37 +404,37 @@ class cookbook_recipes_ui extends e_admin_ui
 	protected $fieldpref = array('r_id', 'r_thumbnail', 'r_name', 'r_category', 'r_persons', 'r_time');
 
 	// Preferences
-	protected $preftabs = array('Display options', 'Posting options', 'Recipe options');
+	protected $preftabs = array(LAN_CB_PREF_TAB_DISPLAY, LAN_CB_PREF_TAB_POSTING, LAN_CB_PREF_TAB_RECIPE);
 
 	protected $prefs = array(
 
 		//0 - Display options
 		'overview_format'	=> array(
-			'title'	=> 'Overview format',
+			'title'	=> LAN_CB_PREF_OVERVIEWFORMAT,
 			'type'	=> 'dropdown',
 			'data' 	=> 'str',
-			'help'	=> 'Grid view or Datatables',
+			'help'	=> LAN_CB_PREF_OVERVIEWFORMAT_HELP,
 			'tab'	=> 0,
 		),
 		'gridview_itemspp'	=> array(
-			'title'	=> 'Grid overview: items per page',
+			'title'	=> LAN_CB_PREF_GRIDVIEW_ITEMSPP,
 			'type'	=> 'hidden',
 			'data' 	=> 'int',
-			'help'	=> 'Number of recipes that are shown per page (when using Grid view)',
+			'help'	=> LAN_CB_PREF_GRIDVIEW_ITEMSPP_HELP,
 			'tab'	=> 0,
 		),
 		'gridview_sortorder' => array(
-			'title'	=> 'Grid overview: Sorting order',
+			'title'	=> LAN_CB_PREF_GRIDVIEW_SORTORDER,
 			'type'	=> 'hidden',
 			'data' 	=> 'str',
-			'help'	=> 'Order recipes ascending (oldest recipes first) or descending (newest recipes first)',
+			'help'	=> LAN_CB_PREF_GRIDVIEW_SORTORDER_HELP,
 			'tab'	=> 0,
 		),
 		'date_format' => array(
-			'title'	=> 'Date format',
+			'title'	=> LAN_CB_PREF_DATEFORMAT,
 			'type'	=> 'dropdown',
 			'data'	=> 'str',
-			'help'	=> 'Uses the format defined in Admin Area > Preferences > Date Display options',
+			'help'	=> LAN_CB_PREF_DATEFORMAT_HELP,
 			'tab'	=> 0,
 		),
 
@@ -447,68 +447,68 @@ class cookbook_recipes_ui extends e_admin_ui
 			'tab'	=> 1,
 		),*/
 		'comments_enabled' => array(
-			'title'	=> 'Comments on recipes',
+			'title'	=> LAN_CB_PREF_COMMENTS,
 			'type'	=> 'boolean',
 			'data'	=> 'int',
-			'help'	=> 'If enabled, users can comment on recipes', // Comments class? - can only be on/off and 'anonymous' in core? See Admin Area > Comments Manager > Preferences // TODO; see if we can override this. 
+			'help'	=> LAN_CB_PREF_COMMENTS_HELP, // Comments class? - can only be on/off and 'anonymous' in core? See Admin Area > Comments Manager > Preferences // TODO; see if we can override this. 
 			'tab'	=> 1,
 		),
 	
 		// 2 - Recipe options:
 		'recipe_authorrating' => array(
-			'title'	=> 'Use author rating',
+			'title'	=> LAN_CB_PREF_AUTHORRATING,
 			'type'	=> 'boolean',
 			'data' 	=> 'str',
-			'help'	=> 'When enabled, recipe authors can rate their own recipes',
+			'help'	=> LAN_CB_PREF_AUTHORRATING_HELP,
 			'tab'	=> 2,
 		),
 		'recipe_userrating' => array(
-			'title'	=> 'User rating',
+			'title'	=> LAN_CB_PREF_USERRATING,
 			'type'	=> 'boolean',
 			'data' 	=> 'str',
-			'help'	=> 'When enabled, users can rate recipes',
+			'help'	=> LAN_CB_PREF_USERRATING_HELP,
 			'tab'	=> 2,
 		),
 		'recipe_userratingclass' => array(
-			'title'	=> 'User rating class',
+			'title'	=> LAN_CB_PREF_USERRATINGCLASS,
 			'type'	=> 'userclass',
 			'data' 	=> 'int',
-			'help'	=> 'Userclass that is allowed to rate recipes',
+			'help'	=> LAN_CB_PREF_USERRATINGCLASS_HELP,
 			'tab'	=> 2,
 		),
 		'recipe_difficulty' => array(
-			'title'	=> 'Use difficulty levels',
+			'title'	=> LAN_CB_PREF_DIFFICULTYLEVEL,
 			'type'	=> 'boolean',
 			'data'	=> 'int',
-			'help'	=> 'If enabled, recipes can have three difficulty levels: easy, moderate, hard',
+			'help'	=> LAN_CB_PREF_DIFFICULTYLEVEL_HELP,
 			'tab'	=> 2,
 		),
 		'recipe_showrelated' => array(
-			'title'	=> 'Show related recipes',
+			'title'	=> LAN_CB_PREF_SHOWRELATED,
 			'type'	=> 'boolean',
 			'data'	=> 'int',
-			'help'	=> 'If enabled, other recipes related to the recipe that is being viewed will appear.',
+			'help'	=> LAN_CB_PREF_SHOWRELATED_HELP,
 			'tab'	=> 2,
 		),
 		'recipe_showprint' => array(
-			'title'	=> 'Show print option',
+			'title'	=> LAN_CB_PREF_SHOWPRINT,
 			'type'	=> 'boolean',
 			'data'	=> 'int',
-			'help'	=> 'If enabled, users will have the option to print a print-friendly version of the recipe',
+			'help'	=> LAN_CB_PREF_SHOWPRINT_HELP,
 			'tab'	=> 2,
 		),
 		'recipe_showbookmark' => array(
-			'title'	=> 'Show bookmark option',
+			'title'	=> LAN_CB_PREF_SHOWBOOKMARK,
 			'type'	=> 'boolean',
 			'data'	=> 'int',
-			'help'	=> 'If enabled, users will have the option to bookmark specific recipes',
+			'help'	=> LAN_CB_PREF_SHOWBOOKMARK_HELP,
 			'tab'	=> 2,
 		),
 		'recipe_showsharing' => array(
-			'title'	=> 'Show sharing options',
+			'title'	=> LAN_CB_PREF_SHOWSHARING,
 			'type'	=> 'boolean',
 			'data'	=> 'int',
-			'help'	=> 'If enabled, users will have the option to share a recipe on several (social) media.',
+			'help'	=> LAN_CB_PREF_SHOWSHARING_HELP,
 			'tab'	=> 2,
 		),
 	);
@@ -565,8 +565,8 @@ class cookbook_recipes_ui extends e_admin_ui
 
 			// Overview format: allow to choose between a Grid overview or Datatables
 			$this->prefs['overview_format']['writeParms'] = array(
-				"overview_grid"			=> "Grid overview",  // TODO LAN
-				"overview_datatable" 	=> "Datatable overview",  // TODO LAN
+				"overview_grid"			=> LAN_CB_PREF_OVERVIEWFORMAT_GRID,
+				"overview_datatable" 	=> LAN_CB_PREF_OVERVIEWFORMAT_DATATABLES,
 			); 
 
 			// Grid overview: items per page
@@ -580,8 +580,8 @@ class cookbook_recipes_ui extends e_admin_ui
 
 				// Set sorting order options
 				$this->prefs['gridview_sortorder']['writeParms'] = array(
-					"asc" 	=> "Oldest recipes first", // TODO LAN
-					"desc" 	=> "Newest recipes first", // TODO LAN
+					"asc" 	=> LAN_CB_PREF_GRIDVIEW_SORTORDER_ASC,
+					"desc" 	=> LAN_CB_PREF_GRIDVIEW_SORTORDER_DESC,
 				); 
 			}
 

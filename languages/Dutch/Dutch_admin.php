@@ -20,3 +20,57 @@ define("LAN_CB_HELP_KEYWORDS", 		"Keywords die bij dit recept passen");
 define("LAN_CB_HELP_AUTHORRATING",  "Beoordeling van het recept door de auteur. Tussen de 1 en 3 sterren.");
 define("LAN_CB_HELP_DIFFICULTY",	"De moeilijkheidsgraad van een recept: makkelijk, gemiddeld, complex.");
 define("LAN_CB_HELP_SUMMARY",       "Samenvatten van het recept.");
+
+// PREFS
+    // TABS
+define("LAN_CB_PREF_TAB_DISPLAY", "Weergave opties"); 
+define("LAN_CB_PREF_TAB_POSTING", "Post opties"); 
+define("LAN_CB_PREF_TAB_RECIPE", "Recept opties"); 
+
+    //0 - Display options
+define("LAN_CB_PREF_OVERVIEWFORMAT",        "Overzicht weergave"); 
+define("LAN_CB_PREF_OVERVIEWFORMAT_HELP",   "Gebruik 'Grid view' oF 'DataTables'"); 
+
+define("LAN_CB_PREF_OVERVIEWFORMAT_GRID",        "Grid weergave"); 
+define("LAN_CB_PREF_OVERVIEWFORMAT_DATATABLES",  "DataTable weergave");
+
+define("LAN_CB_PREF_GRIDVIEW_ITEMSPP",      "Grid weergave: items per pagina"); 
+define("LAN_CB_PREF_GRIDVIEW_ITEMSPP_HELP", "Aantal recepten die getoond worden per pagina (wanneer 'Grid weergave' gebruikt wordt)");
+
+define("LAN_CB_PREF_GRIDVIEW_SORTORDER",      "Grid weergave: soorteervolgorde"); 
+define("LAN_CB_PREF_GRIDVIEW_SORTORDER_HELP", "Toon recepten oplopend (oudste recepten eerst) of aflopend (nieuwste recepten eerst)");
+
+define("LAN_CB_PREF_GRIDVIEW_SORTORDER_ASC", "Oudste recepten eerst"); 
+define("LAN_CB_PREF_GRIDVIEW_SORTORDER_DESC", "Nieuwste recepten eerst"); 
+
+define("LAN_CB_PREF_DATEFORMAT",        "Datumnotitie"); 
+define("LAN_CB_PREF_DATEFORMAT_HELP",   "Gebruik de datumnotitie zoals ingesteld bij Beheerscherm > Voorkeuren > Datumweergave");
+
+    //1 - Posting options
+define("LAN_CB_PREF_COMMENTS",      "Commentaar op recepten");
+define("LAN_CB_PREF_COMMENTS_HELP", "Gebruikers kunnen commentaar posten bij recepten");
+
+    //2 - Recipe options:
+define("LAN_CB_PREF_AUTHORRATING",      "Auteur beoordeling");
+define("LAN_CB_PREF_AUTHORRATING_HELP", "Recept auteurs kunnen hun eigen recepten beoordelen");
+
+define("LAN_CB_PREF_USERRATING",      "Gebruikersbeoordeling");
+define("LAN_CB_PREF_USERRATING_HELP", "Gebruikers kunnen recepten beoordelen");
+
+define("LAN_CB_PREF_USERRATINGCLASS",      "Gebruikersbeoordeling klasse");
+define("LAN_CB_PREF_USERRATINGCLASS_HELP", "Deze groep gebruikers kunnen recepten beoordelen");
+
+define("LAN_CB_PREF_DIFFICULTYLEVEL",      "Gebruik moeilijkheidsgraad");
+define("LAN_CB_PREF_DIFFICULTYLEVEL_HELP", "Recepten kunnen drie moeilijksheidsgraden hebben: eenvoudig, gemiddeld, moeilijk");
+
+define("LAN_CB_PREF_SHOWRELATED",      "Gerelateerde recepten");
+define("LAN_CB_PREF_SHOWRELATED_HELP", "Laat recepten gerelateerd aan het huidige recept zien");
+
+define("LAN_CB_PREF_SHOWPRINT",      "Print optie");
+define("LAN_CB_PREF_SHOWPRINT_HELP", "Gebruikers hebben de mogelijkheid om een print-vriendelijke versie van het recept te printen");
+
+define("LAN_CB_PREF_SHOWBOOKMARK",      "Bladwijzer optie");
+define("LAN_CB_PREF_SHOWBOOKMARK_HELP", "Gebruikers kunnen een bladwijzer maken van een recept");
+
+define("LAN_CB_PREF_SHOWSHARING",      "Deel opties");
+define("LAN_CB_PREF_SHOWSHARING_HELP", "Gebruikers krijgen de optie om een recept te delen vai verschillende (social) media");
