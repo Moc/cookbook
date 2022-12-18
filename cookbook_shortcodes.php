@@ -293,12 +293,12 @@ class cookbook_shortcodes extends e_shortcode
     * @param string $class - a custom class that is used when rendering individual keywords
     * @param int $limit - the (maximum) amount of keywords that are displayed
     *
-    * @example {COOKBOOK_KEYWORDS: class=btn btn-default pull-right} 
-    * @example {COOKBOOK_KEYWORDS: limit=2} 
-    * @example {COOKBOOK_KEYWORDS: class=btn btn-default pull-right&limit=2} 
+    * @example {COOKBOOK_RECIPE_KEYWORDS: class=btn btn-default pull-right} 
+    * @example {COOKBOOK_RECIPE_KEYWORDS: limit=2} 
+    * @example {COOKBOOK_RECIPE_KEYWORDS: class=btn btn-default pull-right&limit=2} 
     *
     */
-    function sc_cookbook_keywords($parm = array())
+    function sc_cookbook_recipe_keywords($parm = array())
     {
         // Retrieve keywords from db. Stop when no keywords are present.
         $keywords = $this->var['r_keywords'];
