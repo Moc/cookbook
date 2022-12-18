@@ -145,6 +145,15 @@ class cookbook_shortcodes extends e_shortcode
         return $url; 
     }
 
+    /**
+    * Returns the ID of a category 
+    *
+    * @example {COOKBOOK_CATEGORY_ID} 
+    */
+    function sc_cookbook_category_id($parm = array())
+    {
+        return $this->var['c_id'];
+    }
 
     /**
     * Renders a thumbnail of a category
