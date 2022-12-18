@@ -13,10 +13,14 @@ define("LAN_CB_CREATE_RECIPE",  	"Add a recipe");
 
 define("LAN_CB_PERSONS",  "Persons");
 
-// HELP
+// HELP 
 define("LAN_CB_HELP_TIME", 			"Preparation time of the recipe (in minutes).");
 define("LAN_CB_HELP_PERSONS", 		"Amount of people that the recipe is for.");
 define("LAN_CB_HELP_KEYWORDS", 		"Keywords that are applicable to the recipe.");
 define("LAN_CB_HELP_AUTHORRATING",  "Author rating of the recipe. Between 1 and 3 stars.");
 define("LAN_CB_HELP_DIFFICULTY",	"The difficulty level of a recipe: easy, moderate, hard");
 define("LAN_CB_HELP_SUMMARY",       "Summary of the recipe.");
+
+// PREFS
+define("LAN_CB_PREF_OVERVIEWFORMAT",        "Overview format"); 
+define("LAN_CB_PREF_OVERVIEWFORMAT_HELP",   "Use 'Grid view' or 'Datatables'"

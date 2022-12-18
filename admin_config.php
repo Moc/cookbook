@@ -406,30 +406,6 @@ class cookbook_recipes_ui extends e_admin_ui
 	// Preferences
 	protected $preftabs = array('Display options', 'Posting options', 'Recipe options');
 
-	/* NOTES:
-	0 - Display options:
-		- Datatables or Grid view 
-		- In case of grid view: number of recipes per page
-		- Sort order?
-		- Date/time format
-
-	1 - Posting options:
-		- Submission class
-		- Auto approve class
-		- Comments enabled
-		- Comments class? - can only be on/off and 'anonymous' in core? See Admin Area > Comments Manager > Preferences // TODO; see if we can override this. 
-
-	2 - Recipe options:
-		- Difficulty level 
-		- preparation time?
-		- Show related recipes
-		- Show print
-		- Show bookmark
-		- Show sharing
-
-	*/
-
-
 	protected $prefs = array(
 
 		//0 - Display options
@@ -474,7 +450,7 @@ class cookbook_recipes_ui extends e_admin_ui
 			'title'	=> 'Comments on recipes',
 			'type'	=> 'boolean',
 			'data'	=> 'int',
-			'help'	=> 'If enabled, users can comment on recipes',
+			'help'	=> 'If enabled, users can comment on recipes', // Comments class? - can only be on/off and 'anonymous' in core? See Admin Area > Comments Manager > Preferences // TODO; see if we can override this. 
 			'tab'	=> 1,
 		),
 	
