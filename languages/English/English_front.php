@@ -17,9 +17,11 @@ define("LAN_CB_RECIPE_LATEST", "Latest recipes");
 
 // Individual recipe
 define("LAN_CB_RECIPEINFO", "Recipe information");
-define("LAN_CB_ACTIONS", "Actions"); 
+define("LAN_CB_ACTIONS", "Actions");
 
-// Bookmarks
+define("LAN_CB_RATE_RECIPE", "Rate this recipe"); 
+
+// Actions
 define("LAN_CB_BOOKMARKS",              "Bookmarks"); 
 define("LAN_CB_NOBOOKMARKS",            "No recipes bookmarked yet."); 
 define("LAN_CB_ADDTOBOOKMARKS",         "Add to bookmarks"); 

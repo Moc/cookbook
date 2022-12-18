@@ -486,6 +486,20 @@ class cookbook_recipes_ui extends e_admin_ui
 			'help'	=> 'When enabled, recipe authors can rate their own recipes',
 			'tab'	=> 2,
 		),
+		'recipe_userrating' => array(
+			'title'	=> 'User rating',
+			'type'	=> 'boolean',
+			'data' 	=> 'str',
+			'help'	=> 'When enabled, users can rate recipes',
+			'tab'	=> 2,
+		),
+		'recipe_userratingclass' => array(
+			'title'	=> 'User rating class',
+			'type'	=> 'userclass',
+			'data' 	=> 'int',
+			'help'	=> 'Userclass that is allowed to rate recipes',
+			'tab'	=> 2,
+		),
 		'recipe_difficulty' => array(
 			'title'	=> 'Use difficulty levels',
 			'type'	=> 'boolean',

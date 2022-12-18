@@ -268,7 +268,23 @@ class cookbook_shortcodes extends e_shortcode
 
     function sc_cookbook_recipe_userrating($parm = array())
     {
-        return e107::getForm()->rate("cookbook", $this->var["r_id"]);
+        $userrating_pref = e107::getPlugPref('cookbook', 'recipe_userrating', 0);
+
+        if(!$userrating_pref)
+        {
+            return;
+        }
+
+        // Check permissions 
+        if(!check_class(e107::getPlugPref('cookbook', 'recipe_userratingclass')))
+        {
+            return;
+        }
+
+        $options = array(); 
+        $options['label'] = LAN_CB_RATE_RECIPE;
+
+        return e107::getForm()->rate("cookbook", $this->var["r_id"], $options);
     }
 
     /**

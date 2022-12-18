@@ -21,6 +21,8 @@
 		<pref name='date_format'>short</pref>
 		<pref name='comments_enabled'>1</pref>
 		<pref name='recipe_authorrating'>0</pref>
+		<pref name='recipe_userrating'>0</pref>
+		<pref name='recipe_userratingclass'>0</pref>
 		<pref name='recipe_difficulty'>1</pref>
 		<pref name='recipe_showrelated'>1</pref>
 		<pref name='recipe_showprint'>1</pref>
