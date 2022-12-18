@@ -16,7 +16,9 @@ $COOKBOOK_POPKEYWORDS_TEMPLATE['default']['caption'] = '{COOKBOOK_POPKEYWORDSMEN
 $COOKBOOK_POPKEYWORDS_TEMPLATE['default']['start']   = '<div class="cookbook_popkeywords_menu">';
 $COOKBOOK_POPKEYWORDS_TEMPLATE['default']['item']    = "
 <div class='row'>
-    {COOKBOOK_POPULAR_KEYWORDS: class=btn btn-default&limit=5} 
+    <div class='col-md-12'>
+        {COOKBOOK_POPULAR_KEYWORDS: class=btn btn-default my-1&limit=5} 
+    </div>
 </div>
 ";
 $COOKBOOK_POPKEYWORDS_TEMPLATE['default']['end']     = '</div>';
