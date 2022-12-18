@@ -17,6 +17,8 @@ if (!getperms('P'))
 	exit;
 }
 
+//e107::css('cookbook', 'plugins/iconpicker/css/bootstrap-iconpicker.min.css');
+
 class cookbook_adminArea extends e_admin_dispatcher
 {
 	protected $modes = array(
@@ -398,6 +400,17 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left', 
 	  	),
+	  	/*'r_instructionsnew' => array( 
+	  		'title' 		=> "New instructions field", 
+	  		'type' 			=> 'method', 
+	  		'data' 			=> 'json', 
+	  		'width' 		=> 'auto', 
+	  		'help' 			=> '', 
+	  		'readParms' 	=> '', 
+	  		'writeParms' 	=> '', 
+	  		'class' 		=> 'left', 
+	  		'thclass' 		=> 'left',  
+	  	),*/
 	  	'options' => array( 
 	  		'title' 	=> LAN_OPTIONS, 		
 	  		'type' 		=> null, 		
@@ -705,6 +718,104 @@ class cookbook_recipes_ui extends e_admin_ui
 
 class cookbook_recipes_form_ui extends e_admin_form_ui
 {
+
+	/*// Custom Method/Function 
+	function r_instructionsnew($curVal, $mode)
+	{
+		$value = array();
+
+		if(!empty($curVal))
+		{
+			$value = e107::unserialize($curVal);
+		}
+
+		 		
+		switch($mode)
+		{
+			case 'read': // List Page
+				if(empty($value))
+				{
+					return null;
+				}
+
+				$tp = e107::getParser();
+
+				$text = '<table style="background-color:transparent" cellspacing="4">';
+
+					foreach($value as $row)
+					{
+						$text .= "<tr><td style='width:30px;vertical-align:top'>";
+						$text .= $tp->toIcon($row['icon']);
+						$text .= "</td><td>";
+						$text .= " ".$row['text'];
+						$text .= "</td></tr>";
+
+					}
+				$text .= "</table>";
+
+				return $text;
+
+			break;
+			
+			case 'write': // Edit Page
+
+				$amt = range(0,5); // TODO make this JS, allow to add new lines
+
+				$text = "<table class='table table-condensed table-bordered' style='margin:0;'>
+				<colgroup>
+					<col style='width:5%' />
+					<col />
+					<col />
+					<col />
+				</colgroup>
+				<tr>
+					<th class='text-center'>Icon</th>
+					<th class='text-center'>Instructions</th>
+					<th>Time</th>
+					<th>Image</th>
+				</tr>";
+	
+
+				foreach($amt as $v)
+				{
+					$name = 'r_instructionsnew['.$v.']';
+					$val = varset($value[$v], array());
+
+					$text .= "<tr>
+								<td class='text-center'>".$this->glyphPicker($name.'[icon]', varset($val['icon']))."</td>
+								<td>".$this->bbarea($name.'[text]', varset($val['text']),1,80,array('size'=>'block-level'))."</td>
+								<td>".$this->textarea($name.'[text]', varset($val['text']),1,80,array('size'=>'block-level'))."</td>
+								<td>".$this->select($name.'[animation]',$optAnimation, varset($val['animation']), array( 'useValues'=>1), true)."</td>
+							</tr>";
+
+				}
+
+				$text .= "</table>";
+
+
+				return $text;
+			break;
+			
+			case 'filter':
+			case 'batch':
+				return array();
+			break;
+		}
+	}
+
+	function glyphPicker($name, $value)
+	{
+		$ico = str_replace(".glyph", '', $value);
+
+		//$pack = e107::pref('hero','icon_pack', 'fontawesome');
+		$pack = "fontawesome";
+
+		return '<button class="btn btn-block btn-default iconpicker" role="iconpicker" name="'.$name.'" data-iconset="'.$pack.'" data-icon="'.$ico.'"></button>';
+
+	}*/
+
+
+
 	/*
 	function r_thumbnail($curval,$mode)
 	{
@@ -767,6 +878,9 @@ new cookbook_adminArea();
 
 require_once(e_ADMIN."auth.php");
 e107::getAdminUI()->runPage();
+
+//e107::js('cookbook', 'plugins/iconpicker/js/bootstrap-iconpicker-iconset-all.min.js');
+//e107::js('cookbook', 'plugins/iconpicker/js/bootstrap-iconpicker.min.js');
 
 require_once(e_ADMIN."footer.php");
 exit;
