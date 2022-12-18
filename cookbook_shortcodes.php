@@ -12,11 +12,24 @@ if (!defined('e107_INIT')) { exit; }
     
 class cookbook_shortcodes extends e_shortcode
 {
+    /**
+    * Returns the ID of a recipe 
+    *
+    * @example {COOKBOOK_RECIPE_ID} 
+    */
     function sc_cookbook_recipe_id($parm = array())
     {
         return $this->var['r_id'];
     }
 
+    /**
+    * Renders a thumbnail of a recipe. 
+    * 
+    * @param string $class - a custom class that is used when rendering the link
+    * 
+    * @example {COOKBOOK_RECIPE_THUMB} 
+    * @example {COOKBOOK_RECIPE_THUMB: class=something} // returns rendered link with custom class
+    */
     function sc_cookbook_recipe_thumb($parm = array())
     {
         $class = (!empty($parm['class'])) ? $parm['class'] : 'img-responsive';
@@ -34,6 +47,11 @@ class cookbook_shortcodes extends e_shortcode
         return '<img class="'.$class.'" src="'.$thumbUrl.'" alt="'.$this->sc_cookbook_recipe_anchor.'" />';
     }
 
+    /**
+    * Returns the URL of the thumbnail of a recipe. When no thumb is selected, url to default image is returned. 
+    *
+    * @example {COOKBOOK_RECIPE_THUMB_URL} 
+    */
     function sc_cookbook_recipe_thumb_url($parm = array())
     {
         $thumbImage = $this->var['r_thumbnail']; 
@@ -48,19 +66,38 @@ class cookbook_shortcodes extends e_shortcode
 
         return $thumbUrl;
     }
-
+    
+    /**
+    * Returns the date of the recipe. Uses date formatting as defined in preferences. 
+    *
+    * @example {COOKBOOK_RECIPE_DATE} 
+    */
     function sc_cookbook_recipe_date($parm = array())
     {
         $date_format = e107::getPlugPref('cookbook', 'date_format', 'short'); 
         return e107::getDate()->convert_date($this->var["r_datestamp"], $date_format);
     }
 
+    /**
+    * Returns the username of the author of the recipe 
+    *
+    * @example {COOKBOOK_RECIPE_AUTHOR} 
+    */
     function sc_cookbook_recipe_author($parm = array())
     {
         $username = e107::getDb()->retrieve('user', 'user_name', 'user_id = '.$this->var["r_author"].'');
         return $username;
     }
 
+    /**
+    * Returns the name of a recipe. Can also render a simple link.
+    *
+    * @param string $type - when set to 'link', returns a rendered link in <a> tags. 
+    * @param string $class - a custom class that is used when rendering the link
+    * 
+    * @example {COOKBOOK_RECIPE_NAME} // returns only the name
+    * @example {COOKBOOK_RECIPE_NAME: type=link&class=btn small} // returns rendered link with custom class
+    */
     function sc_cookbook_recipe_name($parm = array())
     {
         $type   = varset($parm['type']);
@@ -81,11 +118,21 @@ class cookbook_shortcodes extends e_shortcode
         return $this->var["r_name"];
     }
 
+    /**
+    * Returns the SEF anchor for a recipe name
+    *
+    * @example {COOKBOOK_RECIPE_ANCHOR}
+    */
     function sc_cookbook_recipe_anchor($parm = array())
     {
         return $this->var["r_name_sef"];
     }
 
+    /**
+    * Returns the URL of a recipe. 
+    *
+    * @example {COOKBOOK_RECIPE_URL} 
+    */
     function sc_cookbook_recipe_url($parm = array())
     {
         $urlparms = array(
@@ -98,6 +145,15 @@ class cookbook_shortcodes extends e_shortcode
         return $url; 
     }
 
+    /**
+    * Returns the name of the category. Can also render a simple link.
+    *
+    * @param string $type - when set to 'link', returns a rendered link in <a> tags. 
+    * @param string $class - a custom class that is used when rendering the link
+    * 
+    * @example {COOKBOOK_CATEGORY_NAME} // returns only the name
+    * @example {COOKBOOK_CATEGORY_NAME: type=link&class=btn small} // returns rendered link with custom class
+    */
     function sc_cookbook_category_name($parm = array())
     {
         $type   = varset($parm['type']);
@@ -120,6 +176,11 @@ class cookbook_shortcodes extends e_shortcode
         return $category['c_name']; 
     }
 
+    /**
+    * Returns the SEF anchor for a category name.
+    *
+    * @example {COOKBOOK_CATEGORY_ANCHOR}
+    */
     function sc_cookbook_category_anchor($parm = array())
     {
          $category_sef = e107::getDb()->retrieve('cookbook_categories', 'c_name_sef', 'c_id = '.$this->var['r_category']);
@@ -171,11 +232,21 @@ class cookbook_shortcodes extends e_shortcode
         return e107::getDb()->count('cookbook_recipes', '(*)', 'WHERE r_category = '.$id);
     }
 
+    /**
+    * Returns the persons value of a recipe
+    *
+    * @example {COOKBOOK_RECIPE_PERSONS}
+    */
     function sc_cookbook_recipe_persons($parm = array())
     {
         return $this->var["r_persons"];
     }
 
+    /**
+    * Returns the time value of a recipe
+    *
+    * @example {COOKBOOK_RECIPE_TIME}
+    */
     function sc_cookbook_recipe_time($parm = array())
     {
         return $this->var["r_time"];
@@ -366,6 +437,12 @@ class cookbook_shortcodes extends e_shortcode
         return implode(' ', $ret);
     }
 
+    /**
+    * Shows a a Tagcloud of all keywords of all recipes
+    * 
+    * @example {COOKBOOK_TAGCLOUD}
+    * 
+    */
 	function sc_cookbook_tagcloud($parm = array())
    	{
         require_once(e_PLUGIN."cookbook/cookbook_class.php");
@@ -619,6 +696,12 @@ class cookbook_shortcodes extends e_shortcode
         return e107::getForm()->renderRelated($parm, $this->var['r_keywords'], array('cookbook' => $this->var['r_id']), $template);
     }
 
+    /**
+    * Shows the Next Prev when using Grid View 
+    * 
+    * @example {COOKBOOK_GRID_NEXTPREV}
+    * 
+    */
     function sc_grid_nextprev($parm = array())
     {
         $count      = $this->var['recipecount'];
