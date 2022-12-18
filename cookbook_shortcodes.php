@@ -117,7 +117,7 @@ class cookbook_shortcodes extends e_shortcode
             return '<a class="'.$class.'" href="'.$url.'">'.$category['c_name'].'</a>';
         }
         
-        return $category['name']; 
+        return $category['c_name']; 
     }
 
     function sc_cookbook_category_anchor($parm = array())
