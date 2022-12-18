@@ -115,6 +115,8 @@ $COOKBOOK_TEMPLATE['recipe_content'] = '
             <h3>{LAN=LAN_CB_INSTRUCTIONS}</h3>
             {COOKBOOK_RECIPE_INSTRUCTIONS}
         </div>
+
+        {COOKBOOK_RECIPE_USERRATING}
     </div>
 </div>
 <!-- End content left-->
