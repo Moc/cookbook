@@ -118,6 +118,14 @@ class cookbook_categories_ui extends e_admin_ui
 			'class' 		=> 'left', 
 			'thclass' 		=> 'left',  
 		),
+		'c_thumbnail' => array( 
+	  		'title' 		=> LAN_IMAGE, 			
+	  		'type' 			=> 'image', 
+	  		'data'			=> 'str',
+	  		'width' 		=> '110px',	
+	  		'readParms'		=> array('thumb' => '80x80'), 
+	  		'writeParms'	=> array('media' => 'cookbook'),
+	  	),
 		'c_name' => array(
 			'title' 		=> LAN_NAME, 	
 			'type' 			=> 'text', 
@@ -147,7 +155,7 @@ class cookbook_categories_ui extends e_admin_ui
 		),
 	);
 
-	protected $fieldpref = array('c_id', 'c_name');
+	protected $fieldpref = array('c_id', 'c_thumbnail', 'c_name');
 
 
 	public function init()

@@ -145,6 +145,52 @@ class cookbook_shortcodes extends e_shortcode
         return $url; 
     }
 
+
+    /**
+    * Renders a thumbnail of a category
+    * 
+    * @param string $class - a custom class that is used when rendering the link
+    * 
+    * @example {COOKBOOK_CATEGORY_THUMB} 
+    * @example {COOKBOOK_CATEGORY_THUMB: class=something} // returns rendered link with custom class
+    */
+    function sc_cookbook_category_thumb($parm = array())
+    {
+        $class = (!empty($parm['class'])) ? $parm['class'] : 'img-responsive';
+
+        $thumbImage = $this->var['c_thumbnail']; 
+
+        // If no thumbnail is set, use default thumbnail
+        if(!$thumbImage)
+        {
+            $thumbImage = "{e_PLUGIN}cookbook/images/default_image.webp";
+        }
+
+        $thumbUrl = e107::getParser()->thumbUrl($thumbImage);
+
+        return '<img class="'.$class.'" src="'.$thumbUrl.'" alt="'.$this->sc_cookbook_category_anchor.'" />';
+    }
+
+    /**
+    * Returns the URL of the thumbnail of a category. When no thumb is selected, url to default image is returned. 
+    *
+    * @example {COOKBOOK_CATEGORY_THUMB_URL} 
+    */
+    function sc_cookbook_category_thumb_url($parm = array())
+    {
+        $thumbImage = $this->var['c_thumbnail']; 
+
+        // If no thumbnail is set, use default thumbnail
+        if(!$thumbImage)
+        {
+            $thumbImage = "{e_PLUGIN}cookbook/images/default_image.webp";
+        }
+
+        $thumbUrl = e107::getParser()->thumbUrl($thumbImage);
+
+        return $thumbUrl;
+    }
+
     /**
     * Returns the name of the category. Can also render a simple link.
     *

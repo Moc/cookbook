@@ -1,5 +1,6 @@
 CREATE TABLE `cookbook_categories` (
   `c_id` tinyint(3) NOT NULL AUTO_INCREMENT,
+  `c_thumbnail` text,
   `c_name` varchar(255) NOT NULL,
   `c_name_sef` varchar(255) NOT NULL default '',
   PRIMARY KEY (`c_id`)
