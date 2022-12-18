@@ -156,9 +156,19 @@ class cookbook_shortcodes extends e_shortcode
         return $url; 
     }
 
+    /**
+    * Returns the number of recipes in the (current) category. Can also be a specific category id. 
+    * 
+    * @param int $id - id of a specific category. 
+    *
+    * @example {COOKBOOK_RECIPES_IN_CATEGORY} // returns number of recipes in current category
+    * @example {COOKBOOK_RECIPES_IN_CATEGORY: id=5} // returns number of recipes in category id 5
+    */
     function sc_cookbook_recipes_in_category($parm = array())
     {
-        return e107::getDb()->count('cookbook_recipes', '(*)', 'WHERE r_category = '.$this->var["r_category"]);
+        $id = (!empty($parm['id'])) ? $parm['id'] : $this->var["r_category"];
+
+        return e107::getDb()->count('cookbook_recipes', '(*)', 'WHERE r_category = '.$id);
     }
 
     function sc_cookbook_recipe_persons($parm = array())
