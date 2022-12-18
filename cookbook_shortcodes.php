@@ -438,6 +438,52 @@ class cookbook_shortcodes extends e_shortcode
     }
 
     /**
+    * Renders most used/popular keywords. Used in "Popular keywords" menu.
+    *
+    * @param string $class - a custom class that is used when rendering individual keywords
+    * @param int $limit - the (maximum) amount of keywords that are displayed
+    *
+    * @example {COOKBOOK_POPULAR_KEYWORDS: class=btn btn-default pull-right} 
+    * @example {COOKBOOK_POPULAR_KEYWORDS: limit=2} 
+    * @example {COOKBOOK_POPULAR_KEYWORDS: class=btn btn-default pull-right&limit=2} 
+    *
+    */
+    function sc_cookbook_popular_keywords($parm = array())
+    {
+        $return = $urlparms = array();
+
+        // Set class
+        $class = (!empty($parm['class'])) ? $parm['class'] : 'btn btn-default';
+
+        // Set limit
+        $limit = (!empty($parm['limit'])) ? $parm['limit'] : '5';
+
+        require_once(e_PLUGIN."cookbook/cookbook_class.php");
+        $cookbook_class = new cookbook;
+
+        // Get all tags from cache file
+        $array = $cookbook_class->compileTagsFile();
+
+        // Sort array so most popular keywords (keys) are listed first
+        arsort($array); 
+
+        // Get limit amount of the first most popular keywords (keys)
+        $all_keywords = array_slice($array, 0, $limit); 
+
+        // Loop through, add url, and format. 
+        foreach ($all_keywords as $keyword => $count)
+        {
+            $urlparms['keyword']    = $keyword;
+            $url                    = e107::url('cookbook', 'keyword', $urlparms);
+            $keyword                = htmlspecialchars($keyword, ENT_QUOTES, 'utf-8');
+            $ret[]                  = '<a href="'.$url.'" title="'.$keyword.'"><span class="'.$class.'">'.$keyword.'</span></a>';
+        }
+
+        // And let's return the keywords so the template can display them
+        return implode(' ', $ret);
+    }
+
+    /**
     * Shows a a Tagcloud of all keywords of all recipes
     * 
     * @example {COOKBOOK_TAGCLOUD}

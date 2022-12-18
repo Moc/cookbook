@@ -53,6 +53,22 @@ class cookbook_menu
 				'writeParms' => array('size' => 'xxlarge')
 			);
 		}
+
+		if($menu == "cookbook_popkeywords")
+		{
+			$fields['caption'] 	= array(
+				'title' 		=> LAN_CAPTION, 
+				'type' 			=> 'text', 
+				'multilan' 		=> true, 
+				'writeParms' 	=> array('size' => 'xxlarge')
+			);
+
+			$fields['limit'] = array(
+				'title' 		=> LAN_LIMIT, 
+				'type' 			=> 'number', 
+				'writeParms' 	=> array('default' => 10)
+			);
+		}
 		
         return $fields;
 	}
