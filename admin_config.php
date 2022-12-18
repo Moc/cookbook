@@ -86,6 +86,7 @@ class cookbook_categories_ui extends e_admin_ui
 	protected $pid				= 'c_id';
 	protected $perPage			= 10;
 	protected $batchDelete		= true;
+	protected $batchExport      = true;
 //	protected $batchCopy		= true;
 //	protected $sortField		= 'somefield_order';
 //	protected $orderStep		= 10;
@@ -212,6 +213,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	protected $pid				= 'r_id';
 	protected $perPage			= 20;
 	protected $batchDelete		= true;
+	protected $batchExport      = true;
 //	protected $batchCopy		= true;
 //	protected $sortField		= 'somefield_order';
 //	protected $orderStep		= 10;
