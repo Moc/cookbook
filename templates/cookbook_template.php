@@ -21,7 +21,7 @@ $COOKBOOK_TEMPLATE['overview_grid']['items'] = '
             <a href="{COOKBOOK_RECIPE_URL}">{COOKBOOK_RECIPE_THUMB}</a>
             <div class="caption text-center">
                 <h3>{COOKBOOK_RECIPE_NAME: type=link}</h3>
-                <p>{COOKBOOK_SUMMARY: max=150}</p>
+                <p>{COOKBOOK_RECIPE_SUMMARY: max=150}</p>
 
                 <ul class="list-inline text-center">
                     <li>{GLYPH=fa-clock} {COOKBOOK_RECIPE_TIME}</li>
