@@ -59,8 +59,8 @@ $COOKBOOK_TEMPLATE['overview_datatable']['start'] = '
 
 $COOKBOOK_TEMPLATE['overview_datatable']['items'] = '
 		<tr>
-			<td>{COOKBOOK_RECIPE_NAME}</td>
-	    	<td>{COOKBOOK_CATEGORY_NAME}</td>
+			<td>{COOKBOOK_RECIPE_NAME: type=link}</td>
+	    	<td>{COOKBOOK_CATEGORY_NAME: type=link}</td>
 	    	<td>{COOKBOOK_RECIPE_PERSONS}</td>
 	    	<td>{COOKBOOK_RECIPE_TIME}</td>
             <td>{COOKBOOK_RECIPE_DIFFICULTY}</td>
