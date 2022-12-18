@@ -266,6 +266,14 @@ class cookbook_shortcodes extends e_shortcode
         }
     }
 
+    /**
+    * Renders an area where users can rate the current recipes and see the rating of the recipe
+    *
+    * @param string $LABEL - a custom label, rather than the default "Rate this recipe"
+    *
+    * @example {COOKBOOK_RECIPE_USERRATING: label=Do something} 
+    *
+    */
     function sc_cookbook_recipe_userrating($parm = array())
     {
         $userrating_pref = e107::getPlugPref('cookbook', 'recipe_userrating', 0);
@@ -281,8 +289,10 @@ class cookbook_shortcodes extends e_shortcode
             return;
         }
 
+        $label = (!empty($parm['label'])) ? $parm['label'] : LAN_CB_RATE_RECIPE;
+
         $options = array(); 
-        $options['label'] = LAN_CB_RATE_RECIPE;
+        $options['label'] = $labeL;
 
         return e107::getForm()->rate("cookbook", $this->var["r_id"], $options);
     }
