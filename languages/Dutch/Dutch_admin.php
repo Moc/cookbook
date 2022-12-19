@@ -29,10 +29,10 @@ define("LAN_CB_PREF_TAB_RECIPE", "Recept opties");
 
     //0 - Display options
 define("LAN_CB_PREF_OVERVIEWFORMAT",        "Overzicht weergave"); 
-define("LAN_CB_PREF_OVERVIEWFORMAT_HELP",   "Gebruik 'Grid view' oF 'DataTables'"); 
+define("LAN_CB_PREF_OVERVIEWFORMAT_HELP",   "Gebruik 'Grid view' of 'DataTables'"); 
 
 define("LAN_CB_PREF_OVERVIEWFORMAT_GRID",        "Grid weergave"); 
-define("LAN_CB_PREF_OVERVIEWFORMAT_DATATABLES",  "DataTable weergave");
+define("LAN_CB_PREF_OVERVIEWFORMAT_DATATABLES",  "DataTables weergave");
 
 define("LAN_CB_PREF_GRIDVIEW_ITEMSPP",      "Grid weergave: items per pagina"); 
 define("LAN_CB_PREF_GRIDVIEW_ITEMSPP_HELP", "Aantal recepten die getoond worden per pagina (wanneer 'Grid weergave' gebruikt wordt)");
