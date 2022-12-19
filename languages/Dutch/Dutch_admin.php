@@ -43,6 +43,9 @@ define("LAN_CB_PREF_GRIDVIEW_SORTORDER_HELP", "Toon recepten oplopend (oudste re
 define("LAN_CB_PREF_GRIDVIEW_SORTORDER_ASC", "Oudste recepten eerst"); 
 define("LAN_CB_PREF_GRIDVIEW_SORTORDER_DESC", "Nieuwste recepten eerst"); 
 
+define("LAN_CB_PREF_LATEST_ITEMSPP",        "Recente recepten: items per pagina");
+define("LAN_CB_PREF_LATEST_ITEMSPP_HELP",   "Definieert het aantal recepten dat op de 'meest recente recepten' pagina wordt getoond");
+
 define("LAN_CB_PREF_DATEFORMAT",        "Datumnotitie"); 
 define("LAN_CB_PREF_DATEFORMAT_HELP",   "Gebruik de datumnotitie zoals ingesteld bij Beheerscherm > Voorkeuren > Datumweergave");
 

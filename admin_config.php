@@ -451,6 +451,13 @@ class cookbook_recipes_ui extends e_admin_ui
 			'help'	=> LAN_CB_PREF_GRIDVIEW_SORTORDER_HELP,
 			'tab'	=> 0,
 		),
+		'latest_itemspp' => array(
+			'title'	=> LAN_CB_PREF_LATEST_ITEMSPP,
+			'type'	=> 'number',
+			'data' 	=> 'int',
+			'help'	=> LAN_CB_PREF_LATEST_ITEMSPP_HELP,
+			'tab'	=> 0,
+		),
 		'date_format' => array(
 			'title'	=> LAN_CB_PREF_DATEFORMAT,
 			'type'	=> 'dropdown',

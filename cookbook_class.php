@@ -290,9 +290,10 @@ class cookbook
 			'url' 	=> e107::url('cookbook', 'latest'),
 		);
 
-		// TODO add pref for number of latest recipes to show?
+		$limit = e107::getPlugPref("cookbook", "latest_itemspp", 10); 
+
 		// Retrieve the 10 most recently added recipes 
-		$recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp DESC LIMIT 0,10', true);
+		$recipes = e107::getDb()->retrieve('cookbook_recipes', '*', 'ORDER BY r_datestamp DESC LIMIT 0,'.$limit, true);
 
 	
 		// Check if there are recipes in this category

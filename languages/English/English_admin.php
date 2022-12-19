@@ -43,6 +43,9 @@ define("LAN_CB_PREF_GRIDVIEW_SORTORDER_HELP", "Order recipes ascending (oldest r
 define("LAN_CB_PREF_GRIDVIEW_SORTORDER_ASC", "Oldest recipes first"); 
 define("LAN_CB_PREF_GRIDVIEW_SORTORDER_DESC", "Newest recipes first"); 
 
+define("LAN_CB_PREF_LATEST_ITEMSPP",        "Latest recipes: items per page");
+define("LAN_CB_PREF_LATEST_ITEMSPP_HELP",   "Defines how many recipes are shown on the 'latest recipes' page");
+
 define("LAN_CB_PREF_DATEFORMAT",        "Date format"); 
 define("LAN_CB_PREF_DATEFORMAT_HELP",   "Uses the format defined in Admin Area > Preferences > Date Display options");
 
