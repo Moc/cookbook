@@ -657,7 +657,7 @@ class cookbook_shortcodes extends e_shortcode
 	}
 
 
-    function sc_cookbook_bookmark($parm = '')
+    function sc_cookbook_recipe_bookmark($parm = '')
     {
         $bookmark_pref = e107::getPlugPref('cookbook', 'recipe_showbookmark', 1);
 
@@ -677,16 +677,24 @@ class cookbook_shortcodes extends e_shortcode
         // Not bookmarked yet, display 'empty' bookmark icon
         if(!$bookmarked)
         {
-            $text = '<i class="fa-li far fa-bookmark"></i> '.LAN_CB_ADDTOBOOKMARKS;
+            $value      = LAN_CB_ADDTOBOOKMARKS;
+            $template   = e107::getTemplate('cookbook', 'cookbook', 'recipe_bookmark_empty');
              
         }
         // Already bookmarked, display 'full' bookmark icon
         else
         {
-            $text = '<i class="fa-li fas fa-bookmark"></i> '.LAN_CB_REMOVEFROMBOOKMARKS;
+            $value      = LAN_CB_REMOVEFROMBOOKMARKS;
+            $template   = e107::getTemplate('cookbook', 'cookbook', 'recipe_bookmark_full');
         }
 
-        return '<li><span data-cookbook-action="bookmark" data-cookbook-recipeid="'.$this->var['r_id'].'"><a href="">'.$text.'</a></span></li>';
+        $vars = array(
+            'VALUE' => $value,
+        );
+
+        $text = e107::getParser()->simpleParse($template, $vars);
+
+        return '<span data-cookbook-action="bookmark" data-cookbook-recipeid="'.$this->var['r_id'].'">'.$text.'</span>';
     }
 
 

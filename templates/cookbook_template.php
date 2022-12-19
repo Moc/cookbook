@@ -142,7 +142,7 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
 
     <h3>{LAN=LAN_CB_ACTIONS}</h3>
     <ul class="fa-ul">
-        {COOKBOOK_BOOKMARK}
+        <li>{COOKBOOK_RECIPE_BOOKMARK}</li>
         <li>{GLYPH: type=fa-pencil&class=fa-li} {COOKBOOK_RECIPE_EDIT}</li>
         <li>{GLYPH: type=fa-print&class=fa-li} {COOKBOOK_RECIPE_PRINT}</li>
     </ul>
@@ -152,6 +152,10 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
 
 // Styling of an individual keyword (when using {COOKBOOK_RECIPE_KEYWORDS})
 $COOKBOOK_TEMPLATE['recipe_keyword'] = '<a href="{URL}" title="{KEYWORD}"><span class="label label-primary">{KEYWORD}</span></a>';
+
+// Styling of bookmark
+$COOKBOOK_TEMPLATE['recipe_bookmark_empty'] = '<i class="fa-li far fa-bookmark"></i> <a href="">{VALUE}</a>'; // Used when recipe has not been bookmarked yet
+$COOKBOOK_TEMPLATE['recipe_bookmark_full']  = '<i class="fa-li fas fa-bookmark"></i> <a href="">{VALUE}</a>'; // Used when recipe is already bookmarked
 
 // KEYWORD OVERVIEW (TAGCLOUD) (div #id should always be 'recipe_tagcloud')
 $COOKBOOK_TEMPLATE['keyword_overview'] = '
