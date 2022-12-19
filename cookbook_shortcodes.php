@@ -531,7 +531,7 @@ class cookbook_shortcodes extends e_shortcode
         $all_keywords = array_slice($array, 0, $limit); 
 
         // Loop through, add url, and format. 
-        foreach ($all_keywords as $keyword => $count)
+        foreach ($all_keywords as $keyword => $value)
         {
             $urlparms['keyword']    = $keyword;
             $url                    = e107::url('cookbook', 'keyword', $urlparms);
@@ -540,9 +540,9 @@ class cookbook_shortcodes extends e_shortcode
             $vars = array(
                 'KEYWORD'   => $keyword,
                 'URL'       => $url,
+                'COUNT'     => $value,
             ); 
-
-            //$ret[] = '<a href="'.$url.'" title="'.$keyword.'"><span class="'.$class.'">'.$keyword.'</span></a>';
+            
             $ret[] = e107::getParser()->simpleParse($template['item'], $vars); 
         }
 
