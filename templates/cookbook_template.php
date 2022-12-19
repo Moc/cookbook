@@ -26,6 +26,7 @@ $COOKBOOK_TEMPLATE['overview_grid']['items'] = '
                 <ul class="list-inline text-center">
                     <li>{GLYPH=fa-clock} {COOKBOOK_RECIPE_TIME}</li>
                     <li>{GLYPH=fa-user} {COOKBOOK_RECIPE_AUTHOR}</li>
+                    <li>{GLYPH=fa-cutlery} {COOKBOOK_CATEGORY_NAME}</li>
                 </ul>
             </div>
         </div>
