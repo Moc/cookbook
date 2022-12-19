@@ -334,7 +334,8 @@ class cookbook_shortcodes extends e_shortcode
                         readOnly: true,
                         number: 3,
                         score: '.$this->var["r_authorrating"].',
-                        path: "'.e_PLUGIN_ABS.'cookbook/images/stars"
+                        path: "'.e_PLUGIN_ABS.'cookbook/images/stars",
+                        hints: ["Good", "Very good", "Exceptional"], <!-- TODO LAN -->
                     });
                 });
             ')."<!-- -->";
@@ -374,7 +375,8 @@ class cookbook_shortcodes extends e_shortcode
                         readOnly: true,
                         number: 3,
                         score: '.$this->var["r_difficulty"].',
-                        path: "'.e_PLUGIN_ABS.'cookbook/images/stars"
+                        path: "'.e_PLUGIN_ABS.'cookbook/images/stars",
+                        hints: ["'.LAN_CB_COMPLEX_EASY.'", "'.LAN_CB_COMPLEX_MODERATE.'", "'.LAN_CB_COMPLEX_HARD.'"],
                     });
                 });
             ')."<!-- -->";
