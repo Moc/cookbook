@@ -644,7 +644,7 @@ class cookbook_recipes_ui extends e_admin_ui
 
 	public function afterCreate($new_data, $old_data, $id)
 	{
-		e107::getCache()->clear('cookbook_recipe_tags');
+		e107::getCache()->clear('cookbook_recipe_keywords');
 	}
 
 	// Make some adjustments before storing the updated data into the database
@@ -680,7 +680,7 @@ class cookbook_recipes_ui extends e_admin_ui
 
 	public function afterUpdate($new_data, $old_data, $id)
 	{
-		e107::getCache()->clear('cookbook_recipe_tags');
+		e107::getCache()->clear('cookbook_recipe_keywords');
 	}
 
 	public function onUpdateError($new_data, $old_data, $id)
