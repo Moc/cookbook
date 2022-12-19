@@ -349,7 +349,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'inline' 		=> true, 
 	  		'help' 			=> LAN_CB_HELP_AUTHORRATING, 
 	  		'readParms' 	=> array(), 
-	  		'writeParms' 	=> array(), 
+	  		'writeParms' 	=> array('default' => 1, 'min' => 1, 'max' => 3), 
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left',  
 	  	),
@@ -556,9 +556,6 @@ class cookbook_recipes_ui extends e_admin_ui
 		{
 			// Change type from 'hidden' to 'number'
 			$this->fields['r_authorrating']['type'] = 'number';
-
-			// If enabled, default author rating is 1
-			$this->fields['r_authorrating']['writeParms'] = '1';
 		}
 
 
@@ -620,10 +617,10 @@ class cookbook_recipes_ui extends e_admin_ui
 			$new_data['r_datestamp'] = time();
 		}
 
-		// Default recipe rating is 1
-		if(!$new_data['r_authorrating'])
+		// Default author rating set to 1 when an invalid value is detected
+		if($new_data['r_authorrating'] >= 1 && $val <= 3)
 		{
-			$new_data['r_authorrating'] = '1';
+			$new_data['r_authorrating'] = 1;
 		}
 
 		// Set recipe author
@@ -655,10 +652,10 @@ class cookbook_recipes_ui extends e_admin_ui
 			$new_data['r_datestamp'] = time();
 		}
 
-		// Default recipe rating is 1
-		if(!$new_data['r_authorrating'])
+		// Default author rating set to 1 when an invalid value is detected
+		if($new_data['r_authorrating'] >= 1 && $val <= 3)
 		{
-			$new_data['r_authorrating'] = '1';
+			$new_data['r_authorrating'] = 1;
 		}
 
 		// Automatically update SEF
