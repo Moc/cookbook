@@ -428,7 +428,7 @@ class cookbook_shortcodes extends e_shortcode
         $label = (!empty($parm['label'])) ? $parm['label'] : LAN_CB_RATE_RECIPE;
 
         $options = array(); 
-        $options['label'] = $labeL;
+        $options['label'] = $label;
 
         return e107::getForm()->rate("cookbook", $this->var["r_id"], $options);
     }
