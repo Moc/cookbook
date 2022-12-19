@@ -495,23 +495,28 @@ class cookbook_shortcodes extends e_shortcode
     /**
     * Renders most used/popular keywords. Used in "Popular keywords" menu.
     *
-    * @param string $class - a custom class that is used when rendering individual keywords
     * @param int $limit - the (maximum) amount of keywords that are displayed
+    * @param string $tempate - the template key to use
     *
-    * @example {COOKBOOK_POPULAR_KEYWORDS: class=btn btn-default pull-right} 
     * @example {COOKBOOK_POPULAR_KEYWORDS: limit=2} 
-    * @example {COOKBOOK_POPULAR_KEYWORDS: class=btn btn-default pull-right&limit=2} 
+    * @example {COOKBOOK_POPULAR_KEYWORDS: limit=2&template=other}
     *
     */
     function sc_cookbook_popular_keywords($parm = array())
     {
-        $return = $urlparms = array();
+        $return     = $urlparms = array();
+        
 
         // Set class
         $class = (!empty($parm['class'])) ? $parm['class'] : 'btn btn-default';
 
         // Set limit
         $limit = (!empty($parm['limit'])) ? $parm['limit'] : '5';
+
+        // Set template key
+        $tmplkey = (!empty($parm['template'])) ? $parm['template'] : 'default';
+
+        $template   = e107::getTemplate('cookbook', 'cookbook_popkeywords', $tmplkey);
 
         require_once(e_PLUGIN."cookbook/cookbook_class.php");
         $cookbook_class = new cookbook;
@@ -531,7 +536,14 @@ class cookbook_shortcodes extends e_shortcode
             $urlparms['keyword']    = $keyword;
             $url                    = e107::url('cookbook', 'keyword', $urlparms);
             $keyword                = htmlspecialchars($keyword, ENT_QUOTES, 'utf-8');
-            $ret[]                  = '<a href="'.$url.'" title="'.$keyword.'"><span class="'.$class.'">'.$keyword.'</span></a>';
+
+            $vars = array(
+                'KEYWORD'   => $keyword,
+                'URL'       => $url,
+            ); 
+
+            //$ret[] = '<a href="'.$url.'" title="'.$keyword.'"><span class="'.$class.'">'.$keyword.'</span></a>';
+            $ret[] = e107::getParser()->simpleParse($template['item'], $vars); 
         }
 
         // And let's return the keywords so the template can display them

@@ -49,7 +49,7 @@ if(!class_exists('cookbook_popkeywords_menu'))
             // Load shortcodes
             $sc = e107::getScBatch('cookbook', TRUE);
 
-            $text .= e107::getParser()->parseTemplate($this->template['item'], true, $sc);
+            $text .= e107::getParser()->parseTemplate($this->template['body'], true, $sc);
 
             return $text;
         }
