@@ -436,12 +436,9 @@ class cookbook_shortcodes extends e_shortcode
     /**
     * Renders all keywords belonging to a recipe
     *
-    * @param string $class - a custom class that is used when rendering individual keywords
     * @param int $limit - the (maximum) amount of keywords that are displayed
     *
-    * @example {COOKBOOK_RECIPE_KEYWORDS: class=btn btn-default pull-right} 
-    * @example {COOKBOOK_RECIPE_KEYWORDS: limit=2} 
-    * @example {COOKBOOK_RECIPE_KEYWORDS: class=btn btn-default pull-right&limit=2} 
+    * @example {COOKBOOK_RECIPE_KEYWORDS: limit=2}
     *
     */
     function sc_cookbook_recipe_keywords($parm = array())
@@ -451,41 +448,29 @@ class cookbook_shortcodes extends e_shortcode
         if(!$keywords) return '';
 
         // Define other variables
-        $ret = $urlparms = array();
-        $all_keywords = array_map('trim', explode(',', $keywords));
-
-        // Set class
-        $class = (!empty($parm['class'])) ? $parm['class'] : 'label label-primary';
+        $ret            = $urlparms = array();
+        $all_keywords   = array_map('trim', explode(',', $keywords));
+        $template       = e107::getTemplate('cookbook', 'cookbook', 'recipe_keyword');
 
         // Limit is set, clean the array to get rid of the surplus keywords
         if($parm['limit'])
         {
-            // Set variables
-            $limit 	 = $parm['limit'];
-            $real_limit = $parm['limit']-1;
-
-            // Explode by limit. If more keywords are present than limit, the last keyword contains all the surplus keywords.
-            $all_keywords = array_filter(array_map('trim', explode(',', $keywords, $limit)));
-
-            // Check if the last keyword consists of just one just one keyword or if it's combined of more keywords (see above)
-            // If the latter, strip everything after the first separator (comma)
-            // Then replace the cleaned last keyword with the combined last keyword.
-
-            if(is_countable($all_keywords) && is_countable($real_limit) && count($all_keywords >= $real_limit))
-            {
-                $last_keyword = $all_keywords[$real_limit];
-                list($part1, $part2) = explode(',', $last_keyword);
-                $all_keywords = array_map('trim', array_replace($all_keywords, array($real_limit => $part1)));
-            }
+           $all_keywords = array_slice($all_keywords, 0, $parm['limit']);
         }
 
         // The array of keywords is clean. Now format them into individual labels
         foreach ($all_keywords as $keyword)
         {
-            $urlparms['keyword'] = $keyword;
-            $url = e107::url('cookbook', 'keyword', $urlparms);
-            $keyword = htmlspecialchars($keyword, ENT_QUOTES, 'utf-8');
-            $ret[] = '<a href="'.$url.'" title="'.$keyword.'"><span class="'.$class.'">'.$keyword.'</span></a>';
+            $urlparms['keyword']    = $keyword;
+            $url                    = e107::url('cookbook', 'keyword', $urlparms);
+            $keyword                = htmlspecialchars($keyword, ENT_QUOTES, 'utf-8');
+           
+            $vars = array(
+                'KEYWORD'   => $keyword,
+                'URL'       => $url,
+            ); 
+
+            $ret[] = e107::getParser()->simpleParse($template, $vars); 
         }
 
         // And let's return the keywords so the template can display them :)
@@ -542,7 +527,7 @@ class cookbook_shortcodes extends e_shortcode
                 'URL'       => $url,
                 'COUNT'     => $value,
             ); 
-            
+
             $ret[] = e107::getParser()->simpleParse($template['item'], $vars); 
         }
 

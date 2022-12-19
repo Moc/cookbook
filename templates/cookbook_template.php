@@ -133,7 +133,7 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
         <li>{GLYPH: type=fa-cutlery&class=fa-li} {COOKBOOK_CATEGORY_NAME: type=link}</li>
         <li>{GLYPH: type=fa-users&class=fa-li} {COOKBOOK_RECIPE_PERSONS}</li>
         <li>{GLYPH: type=fa-clock-o&class=fa-li} {COOKBOOK_RECIPE_TIME}</li>
-        <li>{GLYPH: type=fa-tags&class=fa-li} {COOKBOOK_RECIPE_KEYWORDS}</li>
+        <li>{GLYPH: type=fa-tags&class=fa-li} {COOKBOOK_RECIPE_KEYWORDS: limit=5}</li>
         <li>{GLYPH: type=fa-trophy&class=fa-li} {COOKBOOK_RECIPE_AUTHORRATING: type=stars}</li>
         <li>{GLYPH: type=fa-toolbox&class=fa-li} {COOKBOOK_RECIPE_DIFFICULTY: type=stars}</li>
         <li>{GLYPH: type=fa-user&class=fa-li} {COOKBOOK_RECIPE_AUTHOR}</li>
@@ -150,6 +150,8 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
 <!-- End sidebar -->
 ';
 
+// Styling of an individual keyword (when using {COOKBOOK_RECIPE_KEYWORDS})
+$COOKBOOK_TEMPLATE['recipe_keyword'] = '<a href="{URL}" title="{KEYWORD}"><span class="label label-primary">{KEYWORD}</span></a>';
 
 // KEYWORD OVERVIEW (TAGCLOUD) (div #id should always be 'recipe_tagcloud')
 $COOKBOOK_TEMPLATE['keyword_overview'] = '
