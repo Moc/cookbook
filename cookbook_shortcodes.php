@@ -517,7 +517,7 @@ class cookbook_shortcodes extends e_shortcode
         $cookbook_class = new cookbook;
 
         // Get all tags from cache file
-        $array = $cookbook_class->compileTagsFile();
+        $array = $cookbook_class->compileKeywordsFile();
 
         // Sort array so most popular keywords (keys) are listed first
         arsort($array); 
@@ -549,7 +549,7 @@ class cookbook_shortcodes extends e_shortcode
         require_once(e_PLUGIN."cookbook/cookbook_class.php");
         $cookbook_class = new cookbook;
 
-    	$vals = $cookbook_class->compileTagsFile();
+    	$vals = $cookbook_class->compileKeywordsFile();
 
 		// Start preparing the required JS data
 		$word_array_js = '';

@@ -576,41 +576,46 @@ class cookbook
 		return false; 
 	}
 
-	public function compileTagsFile()
+	public function compileKeywordsFile()
 	{
-		$cache_name = 'cookbook_recipe_tags'; // name of cache file 
-      	$vals = ''; // this will be the list of all the tags and their count
+		$cache_name = 'cookbook_recipe_keywords'; // name of cache file 
+      	$vals = ''; // this will be the list of all the keywords and their count
 
-      	// Check if the tagcloud has been cached and is not older than cache_time
+      	// Check if the keywords file has been cached and is not older than cache_time
       	if( e107::getCache()->retrieve($cache_name))
       	{
           	$vals_cache = e107::getCache()->retrieve($cache_name);
           	$vals = e107::unserialize($vals_cache);
       	}
-     	// Tagcloud is not cached or older than cache_time
+     	// Keywords file is not cached or older than cache_time
      	else
       	{
-        	// Retrieve tags from database
-        	$all_tags = e107::getDb()->retrieve('cookbook_recipes', 'r_keywords', '', TRUE);
-
+        	// Retrieve keywords from database
+        	$all_keywords = e107::getDb()->retrieve('cookbook_recipes', 'r_keywords', '', TRUE);
+ 
         	// Loop through the results and form simpler array
          	$values = array();
-        	foreach($all_tags as $tag)
+        	foreach($all_keywords as $keyword)
          	{
-           		$values[] = $tag['r_keywords'];
+           		$values[] = $keyword['r_keywords'];
          	}
 
-         	// Loop through the array and split all the comma separated tags into separate array values
-         	// Each tag now has its own array key
-         	$new_array = array();
+         	// Loop through the array and split all the comma separated keywords into separate array values
+         	// Each keyords now has its own array key
+        	$new_array = array();
          	foreach($values as $value)
          	{
-            	//$tag_names = explode(", ", $value);
-                $tag_names = preg_split( "/(, |,)/", $value); // split by , or , (space)
-            	$new_array = array_merge($new_array, $tag_names);
+         		// Filter out recipes without any keywords
+         		if(empty($value))
+         		{
+         			continue; 
+         		}
+
+                $keyword_names = preg_split( "/(, |,)/", $value); // split by , or , (space)
+            	$new_array = array_merge($new_array, $keyword_names);
          	}
 
-         	// Generate the tag names and their respective count
+         	// Generate the keywords and their respective count
          	$vals = array_count_values($new_array);
 
         	// Cache the results
