@@ -35,6 +35,9 @@ if(!class_exists("cookbook_setup"))
 				e107::getMessage()->addError("Failed to import demo data."); // TODO LAN
 				e107::getMessage()->addDebug(print_a($ret['failed'],true));
 			}*/
+
+			// TODO, RUN THIS QUERY FOR SEARCH TO FUNCTION
+			//   FULLTEXT KEY (r_name, r_summary, r_ingredients, r_instructions)
 			
 		}
 

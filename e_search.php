@@ -33,7 +33,6 @@ class cookbook_search extends e_search
 			),
 			
 			'search_fields'	=> array(
-				'r_author' 			=> '1', 
 				'r_name' 			=> '1', 
 				'r_summary' 		=> '0.8', 
 				'r_ingredients' 	=> '0.6', 
