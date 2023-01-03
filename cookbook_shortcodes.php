@@ -643,12 +643,12 @@ class cookbook_shortcodes extends e_shortcode
 		
         $url = e_PLUGIN_ABS.'cookbook/admin_config.php?action=edit&id='.$this->var["r_id"].'';
 
-        if($parm['type'] == "icon" && !empty($icon))
+        if($type == "icon" && !empty($icon))
         { 
             return '<a class="'.$class.'" href="'.$url.'">'.e107::getParser()->toGlyph($icon).'</a>';
         }
 
-        if($parm['type'] == "url")
+        if($type == "url")
         { 
             return $url;
         }
@@ -734,12 +734,12 @@ class cookbook_shortcodes extends e_shortcode
         // Set type
         $type = (!empty($parm['type'])) ? $parm['type'] : 'link';
 
-        if($parm['type'] == "icon" && !empty($icon))
+        if($icon == "icon" && !empty($icon))
         { 
             return '<a class="'.$class.'" href="'.$url.'">'.e107::getParser()->toGlyph($icon).'</a>';
         }
 
-        if($parm['type'] == "url")
+        if($icon == "url")
         { 
             return $url;
         }

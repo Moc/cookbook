@@ -136,7 +136,7 @@ class cookbook
 	// Renders an individual recipe
 	public function renderRecipe($rid = '')
 	{
-		$id = (int) $id;
+		$rid = (int) $rid;
 
 		$text = '';
 
