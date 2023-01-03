@@ -11,7 +11,6 @@
 define("LAN_CB_MANAGE_RECIPES",  	"Recipe overview");
 define("LAN_CB_CREATE_RECIPE",  	"Add a recipe");
 
-define("LAN_CB_PERSONS",  "Persons");
 
 // HELP 
 define("LAN_CB_HELP_TIME", 			"Preparation time of the recipe (in minutes).");

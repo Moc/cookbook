@@ -11,7 +11,6 @@
 define("LAN_CB_MANAGE_RECIPES",  	"Recepten overzicht");
 define("LAN_CB_CREATE_RECIPE",  	"Voeg een recept toe");
 
-define("LAN_CB_PERSONS",  "Personen");
 
 // HELP
 define("LAN_CB_HELP_TIME", 			"Bereidingstijd in minuten.");
