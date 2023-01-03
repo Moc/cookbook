@@ -68,7 +68,7 @@ if(USER_AREA && varsettrue($cookbook_page))
 
 		$order = "order: [[5, 'desc']],";
 
-		if(defset('e_ROUTE') === "cookbook/recent")
+		if($route === "cookbook/latest")
 		{
 			$order = "order: [],";
 		}
