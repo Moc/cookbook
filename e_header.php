@@ -15,9 +15,6 @@ if(defset('e_CURRENT_PLUGIN') == "cookbook" && e107::isInstalled('cookbook'))
     $cookbook_page = true;
 }
 
-$route = e107::route();
-//print_a($route);
-
 $overview_pref = e107::getPlugPref('cookbook', 'overview_format', 'overview_grid'); 
 
 // Code is only needed on frontend cookbook pages
@@ -66,23 +63,10 @@ if(USER_AREA && varsettrue($cookbook_page))
 		$default_lan 	= e_PLUGIN_ABS."cookbook/plugins/datatables/languages/English.json";
 		$dt_lan_file 	= (file_exists($system_lan) ? $system_lan : $default_lan);
 
-		$order = "order: [[5, 'desc']],";
-
-		if($route === "cookbook/latest")
-		{
-			$order = "order: [],";
-		}
-		
-
 		e107::js('inline',
 		"
 			$(document).ready(function() {
 			    $('table.recipes').dataTable( {
-			    	".$order."
-			        columnDefs: [
-			        	{orderable: false, targets: 0},
-					   	{orderable: false, targets: 6}, 
-					],
 					language: {
 	        			url: '".$dt_lan_file."'
 	   				}

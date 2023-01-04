@@ -40,19 +40,21 @@ $COOKBOOK_TEMPLATE['overview_grid']['end'] = '
 </div>';   
 
 
-// OVERVIEW TABLE 
+// OVERVIEW TABLE (DATATABLES) 
+// NOTE: requires the "recipes" class in <table>. Otherise DataTabels won't initialise. 
+// NOTE: you can use DataTables data-attributes for customization: https://datatables.net/examples/advanced_init/html5-data-options.html
 $COOKBOOK_TEMPLATE['overview_datatable']['start'] = '
 <div align="left pull-left">
-<table class="table table-bordered text-left recipes dt-responsive nowrap" cellspacing="0" width="100%">
+<table class="table table-bordered text-left recipes dt-responsive nowrap" data-order=\'[[5, "desc"]]\' cellspacing="0" width="100%">
 	<thead>
 		<tr>
-		  	<th width="40%">{LAN=LAN_CB_RECIPE}</th>
+		  	<th data-orderable="false" width="40%">{LAN=LAN_CB_RECIPE}</th>
 		  	<th>{GLYPH=fa-cutlery}</th>
 		  	<th>{GLYPH=fa-users}</th>
 	  	 	<th>{GLYPH=fa-clock-o}</th>
 	  	 	<th>{GLYPH=fa-toolbox}</th>
             <th>{GLYPH=fa-star}</th>
-	  	 	<th>{GLYPH=fa-tags}</th>
+	  	 	<th data-orderable="false">{GLYPH=fa-tags}</th>
 		</tr>
 	</thead>
     <tbody>
