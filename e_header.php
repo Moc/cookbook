@@ -15,7 +15,8 @@ if(defset('e_CURRENT_PLUGIN') == "cookbook" && e107::isInstalled('cookbook'))
     $cookbook_page = true;
 }
 
-$overview_pref = e107::getPlugPref('cookbook', 'overview_format', 'overview_grid'); 
+$route 			= e107::route(); 
+$overview_pref 	= e107::getPlugPref('cookbook', 'overview_format', 'overview_grid'); 
 
 // Code is only needed on frontend cookbook pages
 if(USER_AREA && varsettrue($cookbook_page))
