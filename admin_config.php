@@ -17,8 +17,6 @@ if (!getperms('P'))
 	exit;
 }
 
-//e107::css('cookbook', 'plugins/iconpicker/css/bootstrap-iconpicker.min.css');
-
 class cookbook_adminArea extends e_admin_dispatcher
 {
 	protected $modes = array(
@@ -400,17 +398,17 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left', 
 	  	),
-	  	/*'r_instructionsnew' => array( 
-	  		'title' 		=> "New instructions field", 
-	  		'type' 			=> 'method', 
+	  	'r_instructionsnew' => array( 
+	  		'title' 		=> "New instructions", 
+	  		'type' 			=> 'hidden', 
 	  		'data' 			=> 'json', 
 	  		'width' 		=> 'auto', 
-	  		'help' 			=> '', 
+	  		'help' 			=> 'test', 
 	  		'readParms' 	=> '', 
 	  		'writeParms' 	=> '', 
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left',  
-	  	),*/
+	  	),
 	  	'options' => array( 
 	  		'title' 	=> LAN_OPTIONS, 		
 	  		'type' 		=> null, 		
@@ -463,6 +461,13 @@ class cookbook_recipes_ui extends e_admin_ui
 			'type'	=> 'dropdown',
 			'data'	=> 'str',
 			'help'	=> LAN_CB_PREF_DATEFORMAT_HELP,
+			'tab'	=> 0,
+		),
+		'devmode' => array(
+			'title'	=> "Developer mode (temporary)",
+			'type'	=> 'boolean',
+			'data'	=> 'int',
+			'help'	=> "Enables some functionalities that are work in progress. Will be removed soon.",
 			'tab'	=> 0,
 		),
 
@@ -556,6 +561,13 @@ class cookbook_recipes_ui extends e_admin_ui
 		}
 
 		$this->fields['r_category']['writeParms'] = $this->category;
+
+		// Developer mode - enables some work-in-progress functionality
+		if($pref['devmode'])
+		{
+			// Change type from 'hidden' to 'number'
+			$this->fields['r_instructionsnew']['type'] = 'method';
+		}
 
 
 		// Author rating
@@ -723,7 +735,7 @@ class cookbook_recipes_ui extends e_admin_ui
 class cookbook_recipes_form_ui extends e_admin_form_ui
 {
 
-	/*// Custom Method/Function 
+	// Custom Method/Function 
 	function r_instructionsnew($curVal, $mode)
 	{
 		$value = array();
@@ -737,26 +749,19 @@ class cookbook_recipes_form_ui extends e_admin_form_ui
 		switch($mode)
 		{
 			case 'read': // List Page
+
 				if(empty($value))
 				{
 					return null;
 				}
 
-				$tp = e107::getParser();
+				$text = '';
 
-				$text = '<table style="background-color:transparent" cellspacing="4">';
-
-					foreach($value as $row)
-					{
-						$text .= "<tr><td style='width:30px;vertical-align:top'>";
-						$text .= $tp->toIcon($row['icon']);
-						$text .= "</td><td>";
-						$text .= " ".$row['text'];
-						$text .= "</td></tr>";
-
-					}
-				$text .= "</table>";
-
+				foreach($value as $row)
+				{
+					$text .= "<p>".e107::getParser()->toText($row['text'])." </p>";
+				}
+				
 				return $text;
 
 			break;
@@ -773,23 +778,26 @@ class cookbook_recipes_form_ui extends e_admin_form_ui
 					<col />
 				</colgroup>
 				<tr>
-					<th class='text-center'>Icon</th>
+					<th>#</th>
 					<th class='text-center'>Instructions</th>
 					<th>Time</th>
 					<th>Image</th>
 				</tr>";
-	
+				
+				$count = 0; 
 
 				foreach($amt as $v)
 				{
+					$count++; 
+
 					$name = 'r_instructionsnew['.$v.']';
 					$val = varset($value[$v], array());
 
 					$text .= "<tr>
-								<td class='text-center'>".$this->glyphPicker($name.'[icon]', varset($val['icon']))."</td>
-								<td>".$this->bbarea($name.'[text]', varset($val['text']),1,80,array('size'=>'block-level'))."</td>
-								<td>".$this->textarea($name.'[text]', varset($val['text']),1,80,array('size'=>'block-level'))."</td>
-								<td>".$this->select($name.'[animation]',$optAnimation, varset($val['animation']), array( 'useValues'=>1), true)."</td>
+								<td>Step ".$count."</td>
+								<td>".$this->bbarea($name.'[text]', varset($val['text']), '', '_common', 'small')."</td>
+								<td>".$this->number($name.'[time]', varset($val['time']))."</td>
+								<td>".$this->imagepicker($name.'[image]', varset($val['image']), '', 'media=cookbook_recipes')."</td>
 							</tr>";
 
 				}
@@ -807,17 +815,7 @@ class cookbook_recipes_form_ui extends e_admin_form_ui
 		}
 	}
 
-	function glyphPicker($name, $value)
-	{
-		$ico = str_replace(".glyph", '', $value);
-
-		//$pack = e107::pref('hero','icon_pack', 'fontawesome');
-		$pack = "fontawesome";
-
-		return '<button class="btn btn-block btn-default iconpicker" role="iconpicker" name="'.$name.'" data-iconset="'.$pack.'" data-icon="'.$ico.'"></button>';
-
-	}*/
-
+	
 
 
 	/*
@@ -883,8 +881,8 @@ new cookbook_adminArea();
 require_once(e_ADMIN."auth.php");
 e107::getAdminUI()->runPage();
 
-//e107::js('cookbook', 'plugins/iconpicker/js/bootstrap-iconpicker-iconset-all.min.js');
-//e107::js('cookbook', 'plugins/iconpicker/js/bootstrap-iconpicker.min.js');
+e107::js('cookbook', 'plugins/iconpicker/js/bootstrap-iconpicker-iconset-all.min.js');
+e107::js('cookbook', 'plugins/iconpicker/js/bootstrap-iconpicker.min.js');
 
 require_once(e_ADMIN."footer.php");
 exit;

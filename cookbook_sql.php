@@ -22,6 +22,7 @@ CREATE TABLE `cookbook_recipes` (
   `r_summary` text,
   `r_ingredients` text NOT NULL,
   `r_instructions` text NOT NULL,
+  `r_instructionsnew` text NOT NULL,
   PRIMARY KEY (r_id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
