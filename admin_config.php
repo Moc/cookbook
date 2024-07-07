@@ -398,7 +398,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left', 
 	  	),
-	  	'r_instructionsnew' => array( 
+	  	/*'r_instructionsnew' => array( 
 	  		'title' 		=> "New instructions", 
 	  		'type' 			=> 'hidden', 
 	  		'data' 			=> 'json', 
@@ -408,7 +408,7 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'writeParms' 	=> '', 
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left',  
-	  	),
+	  	),*/
 	  	'options' => array( 
 	  		'title' 	=> LAN_OPTIONS, 		
 	  		'type' 		=> null, 		
@@ -563,11 +563,11 @@ class cookbook_recipes_ui extends e_admin_ui
 		$this->fields['r_category']['writeParms'] = $this->category;
 
 		// Developer mode - enables some work-in-progress functionality
-		if($pref['devmode'])
+		/*if($pref['devmode'])
 		{
 			// Change type from 'hidden' to 'number'
 			$this->fields['r_instructionsnew']['type'] = 'method';
-		}
+		}*/
 
 
 		// Author rating
@@ -736,6 +736,7 @@ class cookbook_recipes_form_ui extends e_admin_form_ui
 {
 
 	// Custom Method/Function 
+	/*
 	function r_instructionsnew($curVal, $mode)
 	{
 		$value = array();
@@ -814,6 +815,7 @@ class cookbook_recipes_form_ui extends e_admin_form_ui
 			break;
 		}
 	}
+	*/
 
 	
 
