@@ -680,9 +680,9 @@ class cookbook_recipes_ui extends e_admin_ui
 		// Preferences 
 			// Date format: choose between 'long|short|relative', as defined in Preferences > Date Display options
 			$this->prefs['date_format']['writeParms'] = array(
-				"long" 		=> "long", // TODO LAN
-				"short" 	=> "short", // TODO LAN
-				"relative" 	=> "relative" // TODO LAN
+				"long" 		=> LAN_CB_PREF_DATEFORMAT_LONG, 
+				"short" 	=> LAN_CB_PREF_DATEFORMAT_SHORT, 
+				"relative" 	=> LAN_CB_PREF_DATEFORMAT_RELATIVE 
 			); 
 
 			// Overview format: allow to choose between a Grid overview or Datatables

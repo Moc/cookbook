@@ -51,6 +51,9 @@ define("LAN_CB_PREF_LATEST_ITEMSPP_HELP",   "Defines how many recipes are shown 
 
 define("LAN_CB_PREF_DATEFORMAT",        "Date format"); 
 define("LAN_CB_PREF_DATEFORMAT_HELP",   "Uses the format defined in Admin Area > Preferences > Date Display options");
+define("LAN_CB_PREF_DATEFORMAT_LONG",   "Long date format");
+define("LAN_CB_PREF_DATEFORMAT_SHORT",   "Short date format");
+define("LAN_CB_PREF_DATEFORMAT_RELATIVE", "Relative date format");
 
     //1 - Posting options
 define("LAN_CB_PREF_COMMENTS",      "Comments on recipes");

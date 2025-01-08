@@ -51,6 +51,9 @@ define("LAN_CB_PREF_LATEST_ITEMSPP_HELP",   "Definieert het aantal recepten dat 
 
 define("LAN_CB_PREF_DATEFORMAT",        "Datumnotitie"); 
 define("LAN_CB_PREF_DATEFORMAT_HELP",   "Gebruik de datumnotitie zoals ingesteld bij Beheerscherm > Voorkeuren > Datumweergave");
+define("LAN_CB_PREF_DATEFORMAT_LONG",   "Lange datumnotatie");
+define("LAN_CB_PREF_DATEFORMAT_SHORT",   "Korte datumnotatie");
+define("LAN_CB_PREF_DATEFORMAT_RELATIVE", "Relatieve datumnotatie");
 
     //1 - Posting options
 define("LAN_CB_PREF_COMMENTS",      "Commentaar op recepten");
