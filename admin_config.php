@@ -118,14 +118,25 @@ class cookbook_categories_ui extends e_admin_ui
 			'class' 		=> 'left', 
 			'thclass' 		=> 'left',  
 		),
-		'c_thumbnail' => array( 
+		'c_thumbnail' 		=> array( 
+			'title' 		=> LAN_IMAGE, 	
+			'type' 			=> 'method', 
+			'data' 			=> 'str', 
+			'width' 		=> '100px', 
+			'help' 			=> '', 
+			'readParms' 	=> 'thumb=100x100', 
+			'writeParms' 	=> 'media=cookbook_image_2', 
+			'class' 		=> 'left', 
+			'thclass' 		=> 'left',  
+		),
+		/*'c_thumbnail' => array( 
 	  		'title' 		=> LAN_IMAGE, 			
 	  		'type' 			=> 'image', 
 	  		'data'			=> 'str',
 	  		'width' 		=> '110px',	
 	  		'readParms'		=> array('thumb' => '80x80'), 
 	  		'writeParms'	=> array('media' => 'cookbook'),
-	  	),
+	  	),*/
 		'c_name' => array(
 			'title' 		=> LAN_NAME, 	
 			'type' 			=> 'text', 
@@ -170,6 +181,13 @@ class cookbook_categories_ui extends e_admin_ui
 		// Automatically generate and set SEF of category name
 		$new_data['c_name_sef'] = empty($new_data['c_name_sef']) ?  eHelper::title2sef($new_data['c_name']) : eHelper::secureSef($new_data['c_name_sef']);
 
+		// Check if remote URL for recipe category thumbnail is set. If yes, override the c_thumbnail field. 
+		if(!empty($new_data['c_thumbnail_remote']))
+		{
+			$new_data['c_thumbnail'] = $new_data['c_thumbnail_remote'];
+		}
+
+
 		return $new_data;
 	}
 
@@ -190,6 +208,12 @@ class cookbook_categories_ui extends e_admin_ui
 		// Automatically update SEF
 		$new_data['c_name_sef'] = eHelper::title2sef($new_data['c_name']);
 
+		// Check if remote URL for recipe category thumbnail is set. If yes, override the c_thumbnail field. 
+		if(!empty($new_data['c_thumbnail_remote']))
+		{
+			$new_data['c_thumbnail'] = $new_data['c_thumbnail_remote'];
+		}
+
 		return $new_data;
 	}
 
@@ -207,6 +231,56 @@ class cookbook_categories_ui extends e_admin_ui
 
 class cookbook_categories_form_ui extends e_admin_form_ui
 {
+
+	function c_thumbnail($curVal, $mode)
+	{
+		switch($mode)
+		{
+			// List Page
+			case 'read': 
+				return e107::getParser()->toImage($curVal);
+				//break;
+
+			// Edit Page
+			case 'write': 
+
+				if(strpos($curVal,'http') === 0)
+				{
+					$val1 = null;
+					$val2 = $curVal;
+				}
+				else
+				{
+					$val1 = $curVal;
+					$val2 = null;
+				}
+
+				$tab1 = $this->imagepicker('c_thumbnail', $val1, null, "media=cookbook_image_2");
+
+
+				$tab2 = "<p>".$this->text('c_thumbnail_remote', $val2, 255, array('size' => 'xxlarge', 'placeholder' => LAN_CB_THUMBNAIL_REMOTE_PLACEHOLDER, 'title' => LAN_CB_THUMBNAIL_REMOTE_TITLE))."</p>";
+
+				if(!empty($val2))
+				{
+					$tab2 .= e107::getParser()->toImage($val2);
+				}
+
+				$tabText = array(
+					'local'  => array('caption' => LAN_CB_THUMBNAIL_LOCAL, 'text' => $tab1),
+					'remote' => array('caption' => LAN_CB_THUMBNAIL_REMOTE, 'text' => $tab2),
+				);
+
+				return $this->tabs($tabText);
+				//break;
+
+			case 'filter':
+			case 'batch':
+				return "";
+				//break;
+		}
+
+		return;
+	}
 
 }
 
@@ -254,14 +328,25 @@ class cookbook_recipes_ui extends e_admin_ui
 			'class' 		=> 'left', 
 			'thclass' 		=> 'left',  
 		),
-	  	'r_thumbnail' => array( 
+		'r_thumbnail' 		=> array( 
+			'title' 		=> LAN_IMAGE, 	
+			'type' 			=> 'method', 
+			'data' 			=> 'str', 
+			'width' 		=> '100px', 
+			'help' 			=> '', 
+			'readParms' 	=> 'thumb=100x100', 
+			'writeParms' 	=> 'media=cookbook_image', 
+			'class' 		=> 'left', 
+			'thclass' 		=> 'left',  
+		),
+	  	/*'r_thumbnail' => array( 
 	  		'title' 		=> LAN_IMAGE, 			
 	  		'type' 			=> 'image', 
 	  		'data'			=> 'str',
 	  		'width' 		=> '110px',	
 	  		'readParms'		=> array('thumb' => '80x80'), 
 	  		'writeParms'	=> array('media' => 'cookbook'),
-	  	),
+	  	),*/
 	  	'r_name' => array( 
 	  		'title' 		=> LAN_TITLE, 			
 	  		'type' 			=> 'text', 		
@@ -630,6 +715,12 @@ class cookbook_recipes_ui extends e_admin_ui
 		// Process image thumbnails
 		//$new_data['r_thumbnail'] = $this->processThumbs($new_data['r_thumbnail']);
 
+		// Check if remote URL for recipe thumbnail is set. If yes, override the r_thumbnail field. 
+		if(!empty($new_data['r_thumbnail_remote']))
+		{
+			$new_data['r_thumbnail'] = $new_data['r_thumbnail_remote'];
+		}
+
 		// Default recipe date is the creation date
 		if(empty($new_data['r_datestamp']))
 		{
@@ -664,6 +755,12 @@ class cookbook_recipes_ui extends e_admin_ui
 	{
 		// Process image thumnails
 		//$new_data['r_thumbnail'] = $this->processThumbs($new_data['r_thumbnail']);
+
+		// Check if remote URL for recipe thumbnail is set. If yes, override the r_thumbnail field. 
+		if(!empty($new_data['r_thumbnail_remote']))
+		{
+			$new_data['r_thumbnail'] = $new_data['r_thumbnail_remote'];
+		}
 
 		// Default recipe date is the creation date
 		if(empty($new_data['r_datestamp']))
@@ -734,6 +831,57 @@ class cookbook_recipes_ui extends e_admin_ui
 
 class cookbook_recipes_form_ui extends e_admin_form_ui
 {
+	function r_thumbnail($curVal, $mode)
+	{
+		switch($mode)
+		{
+			// List Page
+			case 'read': 
+				return e107::getParser()->toImage($curVal);
+				//break;
+
+			// Edit Page
+			case 'write': 
+
+				if(strpos($curVal,'http') === 0)
+				{
+					$val1 = null;
+					$val2 = $curVal;
+				}
+				else
+				{
+					$val1 = $curVal;
+					$val2 = null;
+				}
+
+				$tab1 = $this->imagepicker('r_thumbnail', $val1, null, "media=cookbook_image");
+
+
+				$tab2 = "<p>".$this->text('r_thumbnail_remote', $val2, 255, array('size' => 'xxlarge', 'placeholder' => LAN_CB_THUMBNAIL_REMOTE_PLACEHOLDER, 'title' => LAN_CB_THUMBNAIL_REMOTE_TITLE))."</p>";
+
+				if(!empty($val2))
+				{
+					$tab2 .= e107::getParser()->toImage($val2);
+				}
+
+				$tabText = array(
+					'local'  => array('caption' => LAN_CB_THUMBNAIL_LOCAL, 'text' => $tab1),
+					'remote' => array('caption' => LAN_CB_THUMBNAIL_REMOTE, 'text' => $tab2),
+				);
+
+				return $this->tabs($tabText);
+				//break;
+
+			case 'filter':
+			case 'batch':
+				return "";
+				//break;
+		}
+
+		return;
+	}
+
+
 
 	// Custom Method/Function 
 	/*

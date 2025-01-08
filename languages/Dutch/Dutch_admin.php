@@ -11,6 +11,10 @@
 define("LAN_CB_MANAGE_RECIPES",  	"Recepten overzicht");
 define("LAN_CB_CREATE_RECIPE",  	"Voeg een recept toe");
 
+define("LAN_CB_THUMBNAIL_LOCAL", "Lokaal");
+define("LAN_CB_THUMBNAIL_REMOTE", "Extern");
+define("LAN_CB_THUMBNAIL_REMOTE_PLACEHOLDER", "bijv.. http://een-website.nl/afbeelding.jpg");
+define("LAN_CB_THUMBNAIL_REMOTE_TITLE", "Dit zal een lokale afbeelding die ingesteld is overschrijven.");
 
 // HELP
 define("LAN_CB_HELP_TIME", 			"Bereidingstijd in minuten.");

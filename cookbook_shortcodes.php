@@ -42,7 +42,17 @@ class cookbook_shortcodes extends e_shortcode
     		$thumbImage = "{e_PLUGIN}cookbook/images/default_image.webp";
     	}
 
-        $thumbUrl = e107::getParser()->thumbUrl($thumbImage);
+        // Check if the set thumbnail is an external URL or a local media manager managed file
+        if(filter_var($thumbImage, FILTER_VALIDATE_URL) === false) 
+        {
+            $thumbUrl = e107::getParser()->thumbUrl($thumbImage);
+        }
+        else
+        {
+            $thumbUrl = $thumbImage; 
+        }
+
+        
 
         return '<img class="'.$class.'" src="'.$thumbUrl.'" alt="'.$this->sc_cookbook_recipe_anchor.'" />';
     }
@@ -62,7 +72,15 @@ class cookbook_shortcodes extends e_shortcode
             $thumbImage = "{e_PLUGIN}cookbook/images/default_image.webp";
         }
 
-        $thumbUrl = e107::getParser()->thumbUrl($thumbImage);
+        // Check if the set thumbnail is an external URL or a local media manager managed file
+        if(filter_var($thumbImage, FILTER_VALIDATE_URL) === false) 
+        {
+            $thumbUrl = e107::getParser()->thumbUrl($thumbImage);
+        }
+        else
+        {
+            $thumbUrl = $thumbImage; 
+        }
 
         return $thumbUrl;
     }

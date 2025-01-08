@@ -33,7 +33,8 @@
 		<pref name='devmode'>0</pref>
 	</pluginPrefs>
 	<mediaCategories>
-		<category type="image">Cookbook</category>
+		<category type="image" sef="cookbook-recipes" perm="everyone">Cookbook recipes</category>
+		<category type="image" sef="cookbook-categories" perm="everyone">Cookbook categories</category>
 	</mediaCategories>
 	<copyright>Created by Tijn Kuyper. Released under the terms and conditions of the Apache License 2.0.</copyright>
 </e107Plugin>
