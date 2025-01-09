@@ -12,7 +12,7 @@
 		<link url="admin_config.php" description="" icon="images/icon_32.png" iconSmall="images/icon_16.png" icon128="images/icon_128.png" primary="true">LAN_CONFIGURE</link>
 	</adminLinks>
 	<siteLinks>
-		<link url="{e_PLUGIN}cookbook/index.php" icon="images/icon_32.png" sef='index' perm='everyone'>Cookbook</link>
+		<link url="{e_PLUGIN}cookbook/index.php" icon="{e_PLUGIN}cookbook/images/icon_32.png" sef='index' perm='everyone'>Cookbook</link>
 	</siteLinks>
 	<pluginPrefs>
 		<pref name='overview_format'>overview_grid</pref>

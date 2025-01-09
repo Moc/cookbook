@@ -631,10 +631,13 @@ class cookbook_recipes_ui extends e_admin_ui
 		),
 	);
 
+	protected $category = array();
+
 	public function init()
 	{
 		$sql = e107::getDb();
 		$pref = e107::pref('cookbook');
+
 
 		// Link recipes with categories
 		if($sql->select('cookbook_categories'))
