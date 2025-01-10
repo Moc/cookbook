@@ -105,20 +105,22 @@ $COOKBOOK_TEMPLATE['recipe_layout'] = '
 </div>
 ';
 
+// NOTE: <div id="recipe-ingredients"> is used by JS to add checkboxes to the ingredient list (to each <li>)
 $COOKBOOK_TEMPLATE['recipe_content'] = '
 <!-- Start content left  -->
 <div class="col-md-8 recipe-box">
     <div class="recipe-box-title">{COOKBOOK_RECIPE_NAME}</div>
     <div class="recipe-box-content">
-        <h3>{LAN=LAN_CB_INGREDIENTS}</h3>
-        {SETIMAGE: w=180&h=180}
-        <img class="img-thumbnail pull-right hidden-xs" alt="{COOKBOOK_RECIPE_ANCHOR}" src="{COOKBOOK_RECIPE_THUMB_URL}">
-        {COOKBOOK_RECIPE_INGREDIENTS}
+        <div id="recipe-ingredients">
+            <h3>{LAN=LAN_CB_INGREDIENTS}</h3>
+            {SETIMAGE: w=180&h=180}
+            <img class="img-thumbnail pull-right hidden-xs" alt="{COOKBOOK_RECIPE_ANCHOR}" src="{COOKBOOK_RECIPE_THUMB_URL}">
+            {COOKBOOK_RECIPE_INGREDIENTS}
+        </div>
         <div class="recipe-instructions">
             <h3>{LAN=LAN_CB_INSTRUCTIONS}</h3>
             {COOKBOOK_RECIPE_INSTRUCTIONS}
         </div>
-
         {COOKBOOK_RECIPE_USERRATING}
     </div>
 </div>

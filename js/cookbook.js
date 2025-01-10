@@ -60,6 +60,10 @@ var e107 = e107 || {'settings': {}, 'behaviors': {}};
 					    },
 					});
 				});
+
+
+			    // Add checkboxes to ingredient list 
+				$('div#recipe-ingredients ul li').prepend('<input type="checkbox" value="0" /> ');
 			});
 		}
 	};
