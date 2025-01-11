@@ -29,7 +29,7 @@
 			<field name="r_category">1</field>
 			<field name="r_keywords">easy,party,vegetarian</field>
 			<field name="r_persons">8</field>
-			<field name="r_time">30</field>
+			<field name="r_totaltime">30</field>
 			<field name="r_authorrating">2</field>
 			<field name="r_difficulty">1</field>
 			<field name="r_ingredients"><![CDATA[[html]<ul>
