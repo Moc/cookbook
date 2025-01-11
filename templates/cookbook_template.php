@@ -142,7 +142,7 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
         <li>{GLYPH: type=fa-trophy&class=fa-li} {COOKBOOK_RECIPE_AUTHORRATING: type=stars}</li>
         <li>{GLYPH: type=fa-toolbox&class=fa-li} {COOKBOOK_RECIPE_DIFFICULTY: type=stars}</li>
         <li>{GLYPH: type=fa-user&class=fa-li} {COOKBOOK_RECIPE_AUTHOR}</li>
-        <li>{GLYPH: type=fa-calendar-alt&class=fa-li} {COOKBOOK_RECIPE_DATE}</li>
+        <li>{GLYPH: type=fa-calendar&class=fa-li} {COOKBOOK_RECIPE_DATE}</li>
     </ul>
 
     <h3>{LAN=LAN_CB_ACTIONS}</h3>
