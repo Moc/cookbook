@@ -348,7 +348,7 @@ class cookbook_shortcodes extends e_shortcode
 
             return e107::js('footer-inline', '
                 $(function() {
-                    $("#rating").raty({
+                    $("#authorrating").raty({
                         readOnly: true,
                         number: 3,
                         score: '.$this->var["r_authorrating"].',
@@ -449,6 +449,7 @@ class cookbook_shortcodes extends e_shortcode
 
         $options = array(); 
         $options['label'] = $label;
+        $options['template'] = "RATE|VOTES";
 
         return e107::getForm()->rate("cookbook", $this->var["r_id"], $options);
     }

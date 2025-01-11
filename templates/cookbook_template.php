@@ -127,7 +127,7 @@ $COOKBOOK_TEMPLATE['recipe_content'] = '
 <!-- End content left-->
 ';
 
-$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_RECIPE_AUTHORRATING: type=stars']   = '<div id="rating">{---}</div>';
+$COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_RECIPE_AUTHORRATING: type=stars']   = '<div id="authorrating">{---}</div>';
 $COOKBOOK_WRAPPER['recipe_info']['COOKBOOK_RECIPE_DIFFICULTY: type=stars']     = '<div id="difficulty">{---}</div>';
 
 $COOKBOOK_TEMPLATE['recipe_info'] = '
