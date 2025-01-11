@@ -391,7 +391,14 @@ class cookbook
 			// Loop through categories and display recipes for each category
 			foreach($categories as $category)
 			{
-				$text .= "<h3>".$category['c_name']."</h3>"; // TODO get rid of hardcoded styling
+				$category_name  = $category['c_name'];
+            	$template   	= e107::getTemplate('cookbook', 'cookbook', 'categories_categoryname');
+
+            	$vars = array(
+            		'VALUE' => $category_name,
+        		);
+
+        		$text .= e107::getParser()->simpleParse($template, $vars);
 
 				// Retrieve all recipe entries for this category
 				$order   = e107::getPlugPref('cookbook', 'gridview_sortorder', 'desc');

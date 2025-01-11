@@ -169,6 +169,9 @@ $COOKBOOK_TEMPLATE['keyword_overview'] = '
 ';
 
 
+$COOKBOOK_TEMPLATE['categories_categoryname'] = '<h3>{VALUE}</h3>'; 
+
+
 $COOKBOOK_WRAPPER['print_recipe_layout'] = $COOKBOOK_WRAPPER['recipe_info']; 
 
 // PRINT TEMPLATE FOR INDIVIDUAL RECIPE
