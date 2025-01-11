@@ -312,7 +312,14 @@ class cookbook_shortcodes extends e_shortcode
     */
     function sc_cookbook_recipe_persons($parm = array())
     {
-        return $this->var["r_persons"];
+        if(!$this->var["r_persons"])
+        {
+            return "&nbsp;"; // To align icons properly 
+        }
+        else
+        {
+            return $this->var["r_persons"];
+        }
     }
 
     /**
@@ -364,7 +371,7 @@ class cookbook_shortcodes extends e_shortcode
        
         if(e107::getPlugPref('cookbook', 'recipe_authorrating') == false)
         {
-            return false;
+            return "&nbsp;";
         }
 
         // Check if we want to display the stars
@@ -405,7 +412,7 @@ class cookbook_shortcodes extends e_shortcode
        
         if(e107::getPlugPref('cookbook', 'recipe_difficulty') == false)
         {
-            return false;
+            return "&nbsp;";
         }
 
         // Check if we want to display the stars
@@ -491,7 +498,7 @@ class cookbook_shortcodes extends e_shortcode
     {
         // Retrieve keywords from db. Stop when no keywords are present.
         $keywords = $this->var['r_keywords'];
-        if(!$keywords) return '';
+        if(!$keywords) return '&nbsp;';
 
         // Define other variables
         $ret            = $urlparms = array();
