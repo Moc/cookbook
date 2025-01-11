@@ -316,13 +316,38 @@ class cookbook_shortcodes extends e_shortcode
     }
 
     /**
-    * Returns the time value of a recipe
+    * Returns the active time value of a recipe
     *
-    * @example {COOKBOOK_RECIPE_TIME}
+    * @example {COOKBOOK_RECIPE_ACTIVETIME}
     */
-    function sc_cookbook_recipe_time($parm = array())
+    function sc_cookbook_recipe_activetime($parm = array())
     {
-        return $this->var["r_time"];
+        if(!$this->var["r_activetime"])
+        {
+            return "&nbsp;"; // To align icons properly 
+        }
+        else
+        {
+            return $this->var["r_activetime"];
+        }
+    }
+
+    /**
+    * Returns the total time value of a recipe
+    *
+    * @example {COOKBOOK_RECIPE_TOTALTIME}
+    */
+    function sc_cookbook_recipe_totaltime($parm = array())
+    {
+        if(!$this->var["r_totaltime"])
+        {
+            return "&nbsp;"; // To align icons properly 
+        }
+        else
+        {
+            return $this->var["r_totaltime"];
+        }
+         
     }
 
     /**

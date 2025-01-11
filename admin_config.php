@@ -412,13 +412,25 @@ class cookbook_recipes_ui extends e_admin_ui
 	  		'class' 		=> 'left', 
 	  		'thclass' 		=> 'left',  
 	  	),
-	  	'r_time' =>   array(
-	  		'title' 		=> LAN_CB_TIME, 	
+	  	'r_activetime' =>   array(
+	  		'title' 		=> LAN_CB_ACTIVETIME, 	
+	  		'type' 			=> 'hidden', 	
+	  		'data' 			=> 'int', 
+	  		'width' 		=> 'auto', 
+	  		'inline' 		=> true, 
+	  		'help' 			=> LAN_CB_HELP_ACTIVETIME, 
+	  		'readParms' 	=> array(), 
+	  		'writeParms' 	=> array(),
+	  		'class' 		=> 'left', 
+	  		'thclass' 		=> 'left',  
+	  	),
+	  	'r_totaltime' =>   array(
+	  		'title' 		=> LAN_CB_TOTALTIME, 	
 	  		'type' 			=> 'number', 	
 	  		'data' 			=> 'int', 
 	  		'width' 		=> 'auto', 
 	  		'inline' 		=> true, 
-	  		'help' 			=> LAN_CB_HELP_TIME, 
+	  		'help' 			=> LAN_CB_HELP_TOTALTIME, 
 	  		'readParms' 	=> array(), 
 	  		'writeParms' 	=> array(),
 	  		'class' 		=> 'left', 
@@ -594,6 +606,13 @@ class cookbook_recipes_ui extends e_admin_ui
 			'help'	=> LAN_CB_PREF_USERRATINGCLASS_HELP,
 			'tab'	=> 2,
 		),
+		'recipe_activetime' => array(
+			'title'	=> LAN_CB_PREF_ACTIVETIME,
+			'type'	=> 'boolean',
+			'data'	=> 'int',
+			'help'	=> LAN_CB_PREF_ACTIVETIME_HELP,
+			'tab'	=> 2,
+		),
 		'recipe_difficulty' => array(
 			'title'	=> LAN_CB_PREF_DIFFICULTYLEVEL,
 			'type'	=> 'boolean',
@@ -672,6 +691,12 @@ class cookbook_recipes_ui extends e_admin_ui
 			$this->fields['r_authorrating']['type'] = 'number';
 		}
 
+		// Active time
+		if($pref['recipe_activetime'])
+		{
+			// Change type from 'hidden' to 'number'
+			$this->fields['r_activetime']['type'] = 'number';
+		}
 
 		// Recipe difficulty 
 		if($pref['recipe_difficulty'])

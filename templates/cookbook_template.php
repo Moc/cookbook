@@ -137,7 +137,7 @@ $COOKBOOK_TEMPLATE['recipe_info'] = '
     <ul class="fa-ul">
         <li>{GLYPH: type=fa-cutlery&class=fa-li} {COOKBOOK_CATEGORY_NAME: type=link}</li>
         <li>{GLYPH: type=fa-users&class=fa-li} {COOKBOOK_RECIPE_PERSONS}</li>
-        <li>{GLYPH: type=fa-clock-o&class=fa-li} {COOKBOOK_RECIPE_TIME}</li>
+        <li>{GLYPH: type=fa-clock-o&class=fa-li} {COOKBOOK_RECIPE_TOTALTIME}</li>
         <li>{GLYPH: type=fa-tags&class=fa-li} {COOKBOOK_RECIPE_KEYWORDS: limit=5}</li>
         <li>{GLYPH: type=fa-trophy&class=fa-li} {COOKBOOK_RECIPE_AUTHORRATING: type=stars}</li>
         <li>{GLYPH: type=fa-toolbox&class=fa-li} {COOKBOOK_RECIPE_DIFFICULTY: type=stars}</li>
