@@ -55,6 +55,9 @@ define("LAN_CB_PREF_DATEFORMAT_LONG",   "Long date format");
 define("LAN_CB_PREF_DATEFORMAT_SHORT",   "Short date format");
 define("LAN_CB_PREF_DATEFORMAT_RELATIVE", "Relative date format");
 
+define("LAN_CB_PREF_INGREDIENT_CHECKBOXES",         "Ingredient checkboxes");
+define("LAN_CB_PREF_INGREDIENT_CHECKBOXES_HELP",    "Displays a checkbox for every ingredient in the ingredient list, when using unordered lists");  
+
     //1 - Posting options
 define("LAN_CB_PREF_COMMENTS",      "Comments on recipes");
 define("LAN_CB_PREF_COMMENTS_HELP", "When enabled, users can comment on recipes");

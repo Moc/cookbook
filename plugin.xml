@@ -30,6 +30,7 @@
 		<pref name='recipe_showbookmark'>1</pref>
 		<pref name='recipe_showsharing'>1</pref>
 		<pref name='submission_userclass'>254</pref>
+		<pref name='recipe_ingredientcheckboxes'>0</pref>
 		<pref name='devmode'>0</pref>
 	</pluginPrefs>
 	<mediaCategories>

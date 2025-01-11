@@ -629,6 +629,13 @@ class cookbook_recipes_ui extends e_admin_ui
 			'help'	=> LAN_CB_PREF_SHOWSHARING_HELP,
 			'tab'	=> 2,
 		),
+		'recipe_ingredientcheckboxes' => array(
+			'title'	=> LAN_CB_PREF_INGREDIENT_CHECKBOXES,
+			'type'	=> 'boolean',
+			'data'	=> 'int',
+			'help'	=> LAN_CB_PREF_INGREDIENT_CHECKBOXES_HELP,
+			'tab'	=> 2,
+		),
 	);
 
 	protected $category = array();

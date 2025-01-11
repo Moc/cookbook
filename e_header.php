@@ -75,4 +75,12 @@ if(USER_AREA && varsettrue($cookbook_page))
 			});
 		");
 	}
+
+	// Add ingredient checkbox if pref is enabled 
+	if(e107::getPlugPref('cookbook', 'recipe_ingredientcheckboxes') == true)
+ 	{
+		e107::js('footer-inline', "
+			$('div#recipe-ingredients ul li').prepend('<input type=\"checkbox\" value=\"0\" /> ');
+		");
+	}
 }
